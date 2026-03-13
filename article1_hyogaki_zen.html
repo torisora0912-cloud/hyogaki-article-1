@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アンダークラスと就職氷河期世代【前編】</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700;900&family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --accent: #c0392b;
+    --accent2: #e74c3c;
+    --warm: #f0ebe2;
+    --mid: #3d4a5c;
+    --border: #b8a898;
+    --code-bg: #ddd4c4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--warm);
+    color: var(--ink);
+    line-height: 1.85;
+    font-size: 15px;
+  }
+
+  /* Header */
+  .site-header {
+    background: var(--ink);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .site-header .logo {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 900;
+    color: #fff;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+  }
+  .series-badge {
+    font-size: 10px;
+    background: var(--accent);
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 2px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  /* Hero */
+  .hero {
+    background: var(--ink);
+    color: #fff;
+    padding: 40px 20px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 150px; height: 150px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .hero-kicker {
+    font-size: 10px;
+    color: var(--accent2);
+    letter-spacing: 0.15em;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 900;
+    font-size: clamp(22px, 6vw, 30px);
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+  .hero h1 .accent { color: var(--accent2); }
+  .hero-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+  }
+  .hero-meta {
+    margin-top: 24px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+  }
+  .hero-meta span { display: flex; align-items: center; gap: 4px; }
+
+  /* Nav pills */
+  .chapter-nav {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    scrollbar-width: none;
+    white-space: nowrap;
+    padding: 0 16px;
+  }
+  .chapter-nav::-webkit-scrollbar { display: none; }
+  .chapter-nav a {
+    display: inline-block;
+    padding: 12px 14px;
+    font-size: 11px;
+    color: var(--mid);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .chapter-nav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* Pull quote at top */
+  .pull-quote-hero {
+    margin: 0;
+    padding: 28px 20px;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 14px;
+    line-height: 1.8;
+    position: relative;
+  }
+  .pull-quote-hero::before {
+    content: '❝';
+    font-size: 40px;
+    opacity: 0.25;
+    position: absolute;
+    top: 8px; left: 14px;
+    font-family: serif;
+    line-height: 1;
+  }
+  .pull-quote-hero p { position: relative; z-index: 1; }
+
+  /* Main content */
+  .content {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .intro-text {
+    padding: 24px 20px;
+    font-size: 14px;
+    color: #444;
+    border-bottom: 1px solid var(--border);
+    background: #fff;
+  }
+
+  /* Chapter */
+  .chapter {
+    padding: 0 20px;
+    margin-top: 32px;
+  }
+
+  .chapter-header {
+    margin-bottom: 24px;
+  }
+
+  .chapter-num {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .chapter-title {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.5;
+    border-left: 4px solid var(--accent);
+    padding-left: 14px;
+    color: var(--ink);
+  }
+
+  h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--ink);
+    margin: 28px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  p {
+    margin-bottom: 16px;
+    font-size: 14.5px;
+    line-height: 1.9;
+    color: #2d2d2d;
+  }
+
+  strong {
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  /* Data card */
+  .data-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 20px 0;
+  }
+  .data-card-title {
+    background: var(--ink);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 8px 14px;
+  }
+  .data-card table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .data-card th {
+    background: var(--code-bg);
+    padding: 8px 12px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 700;
+    color: #1a1a2e;
+    letter-spacing: 0.05em;
+  }
+  .data-card td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: #1a1a2e;
+  }
+  .data-card tr:last-child td { border-bottom: none; }
+  .data-card tr:nth-child(even) td { background: #e8dfd4; }
+
+  /* Timeline */
+  .timeline {
+    margin: 20px 0;
+    position: relative;
+    padding-left: 24px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: #8a7a6a;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 16px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -21px;
+    top: 5px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+  .timeline-year {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+  .timeline-text {
+    font-size: 13px;
+    color: #333;
+    line-height: 1.6;
+    margin-top: 2px;
+  }
+  .timeline-item.highlight::before {
+    background: #fff;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+  .timeline-item.highlight .timeline-text {
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  /* Pull quote inline */
+  .pull-quote {
+    border-left: 4px solid var(--accent);
+    padding: 12px 16px;
+    margin: 20px 0;
+    background: #fff;
+    border-radius: 0 6px 6px 0;
+  }
+  .pull-quote p {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink);
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  /* Flow diagram */
+  .flow-box {
+    background: #d4c8b8;
+    border: 1px solid #b8a898;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    font-size: 13px;
+  }
+  .flow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .flow-step:last-child { margin-bottom: 0; }
+  .flow-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .flow-label {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .flow-desc {
+    font-size: 12px;
+    color: #2d3748;
+    line-height: 1.5;
+  }
+  .flow-arrow {
+    text-align: center;
+    color: var(--accent);
+    font-size: 18px;
+    margin: 4px 0 4px 30px;
+  }
+
+  /* Stat highlight */
+  .stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  .stat-box {
+    background: #e8dfd4;
+    border: 1px solid #b8a898;
+    border-radius: 8px;
+    padding: 16px 12px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: #2d3748;
+    line-height: 1.4;
+  }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 36px 20px;
+  }
+
+  /* Section break */
+  .section-break {
+    text-align: center;
+    color: var(--border);
+    font-size: 20px;
+    letter-spacing: 12px;
+    margin: 32px 0;
+  }
+
+  /* References */
+  .references {
+    background: var(--ink);
+    color: #fff;
+    margin-top: 40px;
+    padding: 32px 20px;
+  }
+  .references h2 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 18px;
+    margin-bottom: 24px;
+    color: #fff;
+  }
+  .ref-category {
+    margin-bottom: 24px;
+  }
+  .ref-cat-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--accent2);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .ref-item {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .ref-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .ref-name {
+    font-size: 13px;
+    color: rgba(255,255,255,0.9);
+    font-weight: 500;
+    margin-bottom: 3px;
+  }
+  .ref-url {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    word-break: break-all;
+    text-decoration: none;
+  }
+  .ref-url:hover { color: var(--accent2); }
+
+  /* Footer */
+  .footer {
+    background: #0f0f1a;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 24px 20px;
+    font-size: 12px;
+  }
+  .footer a { color: var(--accent2); text-decoration: none; }
+  .next-link {
+    display: block;
+    background: var(--accent);
+    color: #fff;
+    text-align: center;
+    padding: 16px 20px;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+  .next-link:hover { background: #a93226; }
+
+  /* Scroll progress */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: var(--accent);
+    width: 0%;
+    z-index: 200;
+    transition: width 0.1s;
+  }
+
+  /* Note label */
+  .note-box {
+    background: #f5ecd0;
+    border: 1px solid #c8a84b;
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin: 20px 0;
+    font-size: 13px;
+    color: #3d2d00;
+  }
+  .note-box strong { color: #5a3d00; }
+
+  @media (max-width: 400px) {
+    .stat-row { grid-template-columns: 1fr; }
+    .stat-num { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<header class="site-header">
+  <span class="logo">就職氷河期世代 分析シリーズ</span>
+  <span class="series-badge">前編</span>
+</header>
+
+<div class="hero">
+  <div class="hero-kicker">社会構造分析</div>
+  <h1>アンダークラスと<br><span class="accent">就職氷河期世代</span></h1>
+  <p class="hero-sub">制度が生んだ階層固定の構造を読み解く</p>
+  <div class="hero-meta">
+    <span>📖 前編：概念・経済・社会保障・労働法制</span>
+    <span>🗒 約8,000字</span>
+  </div>
+</div>
+
+<nav class="chapter-nav">
+  <a href="#ch1">第1章 概念整理</a>
+  <a href="#ch2">第2章 世代の位置</a>
+  <a href="#ch3">第3章 経済格差</a>
+  <a href="#ch4">第4章 社会保障</a>
+  <a href="#ch5">第5章 労働法制</a>
+  <a href="#refs">参照サイト</a>
+</nav>
+
+<div class="pull-quote-hero">
+  <p>「努力が足りなかったから非正規になった」のではない。<br>
+  「努力が報われない制度が設計され、放置されてきた」のだ。</p>
+</div>
+
+<div class="content">
+
+  <div class="intro-text">
+    <p>就職氷河期世代（1970〜1985年頃生まれ）が50代に差し掛かろうとしている今、ある社会学的概念が改めて注目されている。<strong>「アンダークラス」</strong>だ。</p>
+    <p>この記事では、アンダークラスという概念そのものの整理から始め、就職氷河期世代がいかにしてその中核を占めるようになったのか、経済・社会保障・労働法制の視点から多角的に分析する。後編では、政治・ジェンダー・国際比較・政策提言を扱う。</p>
+  </div>
+
+  <!-- Chapter 1 -->
+  <div class="chapter" id="ch1">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 01</div>
+      <h2 class="chapter-title">アンダークラスとは何か</h2>
+    </div>
+
+    <h3>1-1. 橋本健二による定義</h3>
+    <p>「アンダークラス」という言葉自体は欧米で生まれた概念だが、日本においてこれを精緻に定義・分析したのが社会学者の<strong>橋本健二</strong>（早稲田大学教授）だ。著書『アンダークラス』（2018年）で、日本版を次のように定義した。</p>
+
+    <div class="pull-quote">
+      <p>「パート・アルバイト・派遣・契約などの非正規労働者のうち、自営業者・主婦（主夫）・学生ではない人々」</p>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-num">930<span style="font-size:16px">万人</span></div>
+        <div class="stat-label">アンダークラスの規模（2015年）</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">38.7<span style="font-size:16px">%</span></div>
+        <div class="stat-label">アンダークラスの貧困率（全体の2.5倍）</div>
+      </div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-title">▍主要指標の比較</div>
+      <table>
+        <tr>
+          <th>指標</th>
+          <th>アンダークラス</th>
+          <th>正規雇用男性</th>
+        </tr>
+        <tr><td>平均年収</td><td style="color:var(--accent);font-weight:700">186万円</td><td>約560万円</td></tr>
+        <tr><td>貧困率</td><td style="color:var(--accent);font-weight:700">38.7%</td><td>約10%</td></tr>
+        <tr><td>持ち家率</td><td>低い</td><td>高い</td></tr>
+        <tr><td>既婚率（男性）</td><td>著しく低い</td><td>高い</td></tr>
+      </table>
+    </div>
+
+    <h3>1-2. 日本版の独自性</h3>
+    <div class="data-card">
+      <div class="data-card-title">▍欧米との比較</div>
+      <table>
+        <tr><th>文脈</th><th>アンダークラスの主要因</th></tr>
+        <tr><td>アメリカ</td><td>人種・都市的貧困・長期失業</td></tr>
+        <tr><td>ヨーロッパ</td><td>社会的排除・移民・経済的周縁化</td></tr>
+        <tr><td style="font-weight:700;color:var(--accent)">日本</td><td style="font-weight:700">雇用形態による制度的格差</td></tr>
+      </table>
+    </div>
+
+    <p>日本版の決定的な特徴は、人種や文化ではなく、<strong>「正規か非正規か」という制度的メカニズムで生産・再生産される</strong>点にある。しかもその「入口」は、新卒採用という極めて狭い一点で決まってしまう。</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Chapter 2 -->
+  <div class="chapter" id="ch2">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 02</div>
+      <h2 class="chapter-title">就職氷河期世代の構造的位置づけ</h2>
+    </div>
+
+    <h3>2-1. 氷河期とは何だったのか</h3>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">1991年</div>
+        <div class="timeline-text">バブル崩壊開始</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1993年</div>
+        <div class="timeline-text">就職氷河期の始まり（大卒求人倍率が急落）</div>
+      </div>
+      <div class="timeline-item highlight">
+        <div class="timeline-year">1999年 ⚠️</div>
+        <div class="timeline-text">労働者派遣法の大幅規制緩和（原則自由化）— 氷河期の真っ只中</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2000年代前半</div>
+        <div class="timeline-text">IT不況・リストラの嵐</div>
+      </div>
+      <div class="timeline-item highlight">
+        <div class="timeline-year">2004年 ⚠️</div>
+        <div class="timeline-text">製造業への派遣解禁 — 非熟練労働の大規模非正規化</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2005年頃</div>
+        <div class="timeline-text">氷河期の「終わり」（しかし置き去りにされた世代は残る）</div>
+      </div>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-num">1,700<span style="font-size:14px">万人</span></div>
+        <div class="stat-label">氷河期世代の規模</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">100<span style="font-size:14px">万人↑</span></div>
+        <div class="stat-label">不本意非正規・無業者等（内閣官房推計）</div>
+      </div>
+    </div>
+
+    <h3>2-2. 傷跡効果（Scarring Effect）</h3>
+    <p>経済学では、若年期の失業・非正規雇用がその後のキャリア全体に長期的な「傷跡」を残す現象を<strong>Scarring Effect（傷跡効果）</strong>と呼ぶ。氷河期世代はこの傷跡効果を最も深く受けた世代だ。</p>
+
+    <div class="flow-box">
+      <div class="flow-step">
+        <div class="flow-icon">①</div>
+        <div>
+          <div class="flow-label">スキル形成の欠如</div>
+          <div class="flow-desc">正規で受けられるOJT（職場内訓練）が非正規では受けられない</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">②</div>
+        <div>
+          <div class="flow-label">職歴の断絶</div>
+          <div class="flow-desc">「正規→非正規」は起きても「非正規→正規」転換は極めて困難</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">③</div>
+        <div>
+          <div class="flow-label">評価の固定化</div>
+          <div class="flow-desc">採用市場で「なぜ非正規だったか」という偏見が働く</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">④</div>
+        <div>
+          <div class="flow-label">年功序列の恩恵ゼロ</div>
+          <div class="flow-desc">正規の賃金上昇カーブに乗れないまま年齢だけ重なる</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Chapter 3 -->
+  <div class="chapter" id="ch3">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 03</div>
+      <h2 class="chapter-title">経済的視点――貧困の固定化メカニズム</h2>
+    </div>
+
+    <h3>3-1. 生涯賃金の格差</h3>
+
+    <div class="data-card">
+      <div class="data-card-title">▍生涯賃金の試算</div>
+      <table>
+        <tr><th>雇用形態</th><th>生涯賃金（目安）</th></tr>
+        <tr><td>正規雇用（氷河期世代男性）</td><td style="font-weight:700">約2.5〜3億円</td></tr>
+        <tr><td>非正規（同世代）</td><td style="color:var(--accent);font-weight:700">約1〜1.3億円</td></tr>
+        <tr style="background:#fff0ef"><td><strong>差額</strong></td><td style="color:var(--accent);font-weight:700">約1.5〜2億円</td></tr>
+      </table>
+    </div>
+
+    <p>退職金（正規平均1,500〜2,000万円 vs 非正規ほぼゼロ）、企業年金、各種手当を含めると、<strong>生涯を通じた経済的格差は2億円を超える</strong>可能性がある。</p>
+
+    <h3>3-2. 資産形成の断絶</h3>
+
+    <div class="flow-box">
+      <div class="flow-step">
+        <div class="flow-icon">🏠</div>
+        <div>
+          <div class="flow-label">住宅</div>
+          <div class="flow-desc">住宅ローン審査が通りにくい→持ち家取得困難</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">💰</div>
+        <div>
+          <div class="flow-label">貯蓄</div>
+          <div class="flow-desc">J-FLEC 2024：単身世帯の貯蓄ゼロ率約38%。非正規層ではさらに高い</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">📈</div>
+        <div>
+          <div class="flow-label">投資・資産運用</div>
+          <div class="flow-desc">「貯蓄から投資へ」の政策の恩恵が届かない層の典型</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>「静かな貧困」の問題：</strong>フルタイムで働いているのに貧困（ワーキングプア）。ホームレスではないが劣悪な住環境。食事はとれているが医療を我慢している。こうした見えにくい貧困は、統計にも政治的議論にも現れにくい。
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Chapter 4 -->
+  <div class="chapter" id="ch4">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 04</div>
+      <h2 class="chapter-title">社会保障の視点――老後リスクの複合</h2>
+    </div>
+
+    <h3>4-1. 年金格差の実態</h3>
+
+    <div class="data-card">
+      <div class="data-card-title">▍正規 vs 非正規の老後比較</div>
+      <table>
+        <tr><th>項目</th><th>正規（厚生年金）</th><th>非正規（国民年金）</th></tr>
+        <tr><td>月額年金</td><td>15〜20万円前後</td><td style="color:var(--accent);font-weight:700">約3.6〜6万円</td></tr>
+        <tr><td>退職金</td><td>平均1,500〜2,000万円</td><td style="color:var(--accent)">ほぼゼロ</td></tr>
+        <tr><td>企業年金</td><td>あり</td><td style="color:var(--accent)">なし</td></tr>
+        <tr><td>各種手当</td><td>完備</td><td style="color:var(--accent)">なし</td></tr>
+      </table>
+    </div>
+
+    <p>国民年金の満額受給額（2024年度）は月約6.8万円。非正規での未払い・免除期間が長ければ実際はこれを大幅に下回る。<strong>月3〜4万円台の年金で老後を生きる</strong>ことが、現実的なシナリオとして迫っている。</p>
+
+    <h3>4-2. 女性非正規の「三重リスク」</h3>
+
+    <div class="flow-box">
+      <div class="flow-step">
+        <div class="flow-icon">⚠️</div>
+        <div>
+          <div class="flow-label">リスク①：自身の年金の薄さ</div>
+          <div class="flow-desc">第3号被保険者として夫の扶養に入っていると、厚生年金加入期間が短く、老後年金が極めて低水準になる</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">⚠️</div>
+        <div>
+          <div class="flow-label">リスク②：夫婦共倒れリスク</div>
+          <div class="flow-desc">夫も氷河期世代の非正規なら、夫婦合算の年金額が生活保護水準を下回る可能性がある</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">⚠️</div>
+        <div>
+          <div class="flow-label">リスク③：離婚・死別時の孤立</div>
+          <div class="flow-desc">夫が国民年金のみなら年金分割はほぼ意味をなさない。遺族年金も大幅に減る</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Chapter 5 -->
+  <div class="chapter" id="ch5">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 05</div>
+      <h2 class="chapter-title">労働法制の視点――制度的根本原因</h2>
+    </div>
+
+    <h3>5-1. 派遣規制緩和の歴史</h3>
+    <p>非正規雇用の拡大は個人の選択ではなく、<strong>政策・法制度の変化によってもたらされた</strong>。</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">1985年</div>
+        <div class="timeline-text">労働者派遣法制定（専門的な26業種のみ）</div>
+      </div>
+      <div class="timeline-item highlight">
+        <div class="timeline-year">1999年 🔴</div>
+        <div class="timeline-text">派遣対象業務を「原則自由化」へ転換 — 氷河期世代の就職活動真っ只中</div>
+      </div>
+      <div class="timeline-item highlight">
+        <div class="timeline-year">2004年 🔴</div>
+        <div class="timeline-text">製造業（工場ライン等）への派遣を解禁 — 非熟練労働の大規模非正規化</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2008年</div>
+        <div class="timeline-text">リーマンショック → 「派遣切り」が社会問題化</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2015年</div>
+        <div class="timeline-text">派遣期間の上限ルール変更（3年ルールの複雑化）</div>
+      </div>
+    </div>
+
+    <p>1999年と2004年の規制緩和は、氷河期世代の就職活動・キャリア形成の真っ只中と完全に重なる。<strong>構造的な非正規化の波が、最も弱い立場にあった若者層を直撃した。</strong></p>
+
+    <h3>5-2. 同一労働同一賃金の限界</h3>
+    <p>2020年施行の「パートタイム・有期雇用労働法」の問題点は3つある。</p>
+
+    <div class="flow-box">
+      <div class="flow-step">
+        <div class="flow-icon">①</div>
+        <div>
+          <div class="flow-label">立証責任が労働者側にある</div>
+          <div class="flow-desc">「不合理な格差だ」と主張するために職務比較・立証が必要。法的知識のない一般労働者には困難</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">②</div>
+        <div>
+          <div class="flow-label">基本給・賞与格差が解消されない</div>
+          <div class="flow-desc">最高裁でも「賞与ゼロは不合理とは言えない」という判断が示されている</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">③</div>
+        <div>
+          <div class="flow-label">中小企業では機能しない</div>
+          <div class="flow-desc">非正規が多く働く中小・サービス業では制度の周知・運用が追いついていない</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>5-3. 公的職業訓練の貧困</h3>
+
+    <div class="data-card">
+      <div class="data-card-title">▍求職者支援制度の現状</div>
+      <table>
+        <tr><th>項目</th><th>現状</th></tr>
+        <tr><td>給付額</td><td style="color:var(--accent);font-weight:700">月10万円（生活には不十分）</td></tr>
+        <tr><td>訓練内容</td><td>産業ニーズとミスマッチの指摘多数</td></tr>
+        <tr><td>40〜50代への対応</td><td style="color:var(--accent)">手薄</td></tr>
+        <tr><td>政府目標</td><td>正規雇用化30万人（2020年〜）</td></tr>
+        <tr><td>実績</td><td style="color:var(--accent)">目標を大幅に下回る</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Summary -->
+  <div class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-num">前編のまとめ</div>
+      <h2 class="chapter-title">構造の全体像</h2>
+    </div>
+
+    <div class="flow-box">
+      <div class="flow-step">
+        <div class="flow-icon">🔴</div>
+        <div>
+          <div class="flow-label">根本原因</div>
+          <div class="flow-desc">バブル崩壊 × 派遣規制緩和（1999・2004年）</div>
+        </div>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">
+        <div class="flow-icon">🚪</div>
+        <div>
+          <div class="flow-label">入口の封鎖</div>
+          <div class="flow-desc">正規雇用の入口が制度的に閉じる</div>
+        </div>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">
+        <div class="flow-icon">💸</div>
+        <div>
+          <div class="flow-label">経済的固定化</div>
+          <div class="flow-desc">傷跡効果 → 低年収 → 資産形成不可 → 老後リスク</div>
+        </div>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">
+        <div class="flow-icon">⚖️</div>
+        <div>
+          <div class="flow-label">制度の限界</div>
+          <div class="flow-desc">同一賃金法・職業訓練・社会保険——いずれも実効性が不十分</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end content -->
+
+<!-- References -->
+<div class="references" id="refs">
+  <h2>📎 参照サイト・文献リスト</h2>
+
+  <div class="ref-category">
+    <div class="ref-cat-title">📚 書籍</div>
+    <div class="ref-item">
+      <div class="ref-name">橋本健二『アンダークラス――新たな下層階級の出現』旺文社（2018年）</div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">橋本健二『新・日本の階級社会』講談社現代新書（2018年）</div>
+    </div>
+  </div>
+
+  <div class="ref-category">
+    <div class="ref-cat-title">🏛 政府・公的機関</div>
+    <div class="ref-item">
+      <div class="ref-name">内閣官房 就職氷河期世代支援推進室</div>
+      <a class="ref-url" href="https://www.cas.go.jp/jp/seisaku/shushoku_hyogaki_shien/" target="_blank">https://www.cas.go.jp/jp/seisaku/shushoku_hyogaki_shien/</a>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">厚生労働省「中高年の活躍支援のご案内」</div>
+      <a class="ref-url" href="https://www.mhlw.go.jp/shushoku_hyogaki_shien/" target="_blank">https://www.mhlw.go.jp/shushoku_hyogaki_shien/</a>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">厚生労働省「賃金構造基本統計調査」</div>
+      <a class="ref-url" href="https://www.mhlw.go.jp/toukei/list/chinginkouzou.html" target="_blank">https://www.mhlw.go.jp/toukei/list/chinginkouzou.html</a>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">厚生労働省「労働者派遣事業の概況」</div>
+      <a class="ref-url" href="https://www.mhlw.go.jp/toukei/itiran/roudou/koyou/haken/22/index.html" target="_blank">https://www.mhlw.go.jp/toukei/itiran/roudou/koyou/haken/22/index.html</a>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">厚生労働省「パートタイム・有期雇用労働法の解説」</div>
+      <a class="ref-url" href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000144972.html" target="_blank">https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000144972.html</a>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">日本年金機構「老齢基礎年金の受給要件・計算方法」</div>
+      <a class="ref-url" href="https://www.nenkin.go.jp/service/jukyu/roureinenkin/jukyu-yoken/20150401-01.html" target="_blank">https://www.nenkin.go.jp/service/jukyu/roureinenkin/jukyu-yoken/20150401-01.html</a>
+    </div>
+  </div>
+
+  <div class="ref-category">
+    <div class="ref-cat-title">📊 統計・調査データ</div>
+    <div class="ref-item">
+      <div class="ref-name">J-FLEC「家計の金融行動に関する世論調査 2024年」</div>
+      <a class="ref-url" href="https://www.j-flec.go.jp/research/" target="_blank">https://www.j-flec.go.jp/research/</a>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">総務省統計局「労働力調査（詳細集計）」非正規雇用関連データ</div>
+      <a class="ref-url" href="https://www.stat.go.jp/gsearch/result.html?q=%E9%9D%9E%E6%AD%A3%E8%A6%8F%E9%9B%87%E7%94%A8%E9%96%A2%E9%80%A3&sa.x=0&sa.y=0&cx=016486846640492889152%3Agpmt0gq8joc&ie=Shift_JIS&oe=utf-8&cof=FORID%3A9" target="_blank">https://www.stat.go.jp/gsearch/result.html?q=非正規雇用関連</a>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">厚生労働省「国民生活基礎調査」</div>
+      <a class="ref-url" href="https://www.mhlw.go.jp/toukei/list/20-21.html" target="_blank">https://www.mhlw.go.jp/toukei/list/20-21.html</a>
+    </div>
+  </div>
+
+  <div class="ref-category">
+    <div class="ref-cat-title">🔬 学術・研究機関</div>
+    <div class="ref-item">
+      <div class="ref-name">RIETI（経済産業研究所）</div>
+      <a class="ref-url" href="https://www.rieti.go.jp/jp/" target="_blank">https://www.rieti.go.jp/jp/</a>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">NIRA総合研究開発機構</div>
+      <a class="ref-url" href="https://www.nira.or.jp/" target="_blank">https://www.nira.or.jp/</a>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">国立社会保障・人口問題研究所</div>
+      <a class="ref-url" href="https://www.ipss.go.jp/" target="_blank">https://www.ipss.go.jp/</a>
+    </div>
+  </div>
+</div>
+
+<a class="next-link" href="#">→ 後編へ：政治・ジェンダー・国際比較・政策提言</a>
+
+<div class="footer">
+  <p>note.com <a href="#">@kami_sora_fly</a> | 就職氷河期世代 分析シリーズ</p>
+</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || document.body.scrollTop;
+    const scrollHeight = doc.scrollHeight - doc.clientHeight;
+    const p = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    document.getElementById('progress').style.width = p + '%';
+  });
+</script>
+</body>
+</html>
