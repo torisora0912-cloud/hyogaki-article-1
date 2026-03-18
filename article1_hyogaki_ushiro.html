@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アンダークラスと就職氷河期世代【後編】</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700;900&family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --accent: #c0392b;
+    --accent2: #e74c3c;
+    --warm: #f0ebe2;
+    --mid: #3d4a5c;
+    --border: #b8a898;
+    --code-bg: #ddd4c4;
+    --green: #27ae60;
+    --blue: #2980b9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--warm);
+    color: var(--ink);
+    line-height: 1.85;
+    font-size: 15px;
+  }
+
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px;
+    background: var(--accent); width: 0%; z-index: 200; transition: width 0.1s;
+  }
+
+  .site-header {
+    background: var(--ink); padding: 12px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .site-header .logo {
+    font-family: 'Noto Serif JP', serif; font-weight: 900;
+    color: #fff; font-size: 13px; letter-spacing: 0.05em;
+  }
+  .series-badge {
+    font-size: 10px; background: var(--blue); color: #fff;
+    padding: 3px 8px; border-radius: 2px; font-weight: 700; letter-spacing: 0.05em;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+    color: #fff; padding: 40px 20px 36px; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -80px; right: -40px;
+    width: 220px; height: 220px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .hero-kicker {
+    font-size: 10px; color: #64b5f6; letter-spacing: 0.15em;
+    font-weight: 700; text-transform: uppercase; margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Noto Serif JP', serif; font-weight: 900;
+    font-size: clamp(22px, 6vw, 30px); line-height: 1.4; margin-bottom: 12px;
+  }
+  .hero h1 .accent { color: #64b5f6; }
+  .hero-sub { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.7; }
+  .hero-meta {
+    margin-top: 24px; display: flex; gap: 16px; flex-wrap: wrap;
+    font-size: 11px; color: rgba(255,255,255,0.45);
+  }
+
+  .chapter-nav {
+    background: #fff; border-bottom: 1px solid var(--border);
+    overflow-x: auto; scrollbar-width: none; white-space: nowrap; padding: 0 16px;
+  }
+  .chapter-nav::-webkit-scrollbar { display: none; }
+  .chapter-nav a {
+    display: inline-block; padding: 12px 14px; font-size: 11px;
+    color: var(--mid); text-decoration: none; border-bottom: 2px solid transparent;
+    font-weight: 500; transition: all 0.2s;
+  }
+  .chapter-nav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .pull-quote-hero {
+    margin: 0; padding: 28px 20px;
+    background: linear-gradient(135deg, #16213e, #0f3460);
+    color: #fff; font-family: 'Noto Serif JP', serif; font-size: 14px;
+    line-height: 1.8; position: relative; border-top: 3px solid #64b5f6;
+  }
+  .pull-quote-hero::before {
+    content: '❝'; font-size: 40px; opacity: 0.2; position: absolute;
+    top: 8px; left: 14px; font-family: serif; line-height: 1;
+  }
+  .pull-quote-hero p { position: relative; z-index: 1; }
+
+  .content { max-width: 680px; margin: 0 auto; }
+
+  .intro-text {
+    padding: 24px 20px; font-size: 14px; color: #444;
+    border-bottom: 1px solid var(--border); background: #fff;
+  }
+
+  .chapter { padding: 0 20px; margin-top: 32px; }
+  .chapter-header { margin-bottom: 24px; }
+  .chapter-num {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    color: var(--blue); text-transform: uppercase; margin-bottom: 6px;
+  }
+  .chapter-title {
+    font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 20px;
+    line-height: 1.5; border-left: 4px solid var(--blue);
+    padding-left: 14px; color: var(--ink);
+  }
+
+  h3 {
+    font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 16px;
+    color: var(--ink); margin: 28px 0 12px; padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  p { margin-bottom: 16px; font-size: 14.5px; line-height: 1.9; color: #2d2d2d; }
+  strong { font-weight: 700; color: var(--ink); }
+
+  .data-card {
+    background: #fff; border: 1px solid var(--border); border-radius: 8px;
+    overflow: hidden; margin: 20px 0;
+  }
+  .data-card-title {
+    background: var(--ink); color: #fff; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em; padding: 8px 14px;
+  }
+  .data-card table { width: 100%; border-collapse: collapse; }
+  .data-card th {
+    background: var(--code-bg); padding: 8px 12px; text-align: left;
+    font-size: 12px; font-weight: 700; color: #1a1a2e; letter-spacing: 0.05em;
+  }
+  .data-card td { padding: 9px 12px; border-bottom: 1px solid var(--border); font-size: 13px; color: #1a1a2e; }
+  .data-card tr:last-child td { border-bottom: none; }
+  .data-card tr:nth-child(even) td { background: #e8dfd4; }
+
+  .flow-box {
+    background: #d4c8b8; border: 1px solid #b8a898;
+    border-radius: 8px; padding: 20px; margin: 20px 0; font-size: 13px;
+  }
+  .flow-step {
+    display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;
+  }
+  .flow-step:last-child { margin-bottom: 0; }
+  .flow-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .flow-label { font-weight: 700; font-size: 13px; color: var(--ink); }
+  .flow-desc { font-size: 12px; color: #2d3748; line-height: 1.5; }
+  .flow-arrow { text-align: center; color: var(--accent); font-size: 18px; margin: 4px 0 4px 30px; }
+
+  .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
+  .stat-box {
+    background: #e8dfd4; border: 1px solid #b8a898; border-radius: 8px;
+    padding: 16px 12px; text-align: center;
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif; font-size: 28px;
+    color: var(--blue); line-height: 1; margin-bottom: 4px;
+  }
+  .stat-label { font-size: 11px; color: #2d3748; line-height: 1.4; }
+
+  .pull-quote {
+    border-left: 4px solid var(--blue); padding: 12px 16px; margin: 20px 0;
+    background: #fff; border-radius: 0 6px 6px 0;
+  }
+  .pull-quote p {
+    font-family: 'Noto Serif JP', serif; font-size: 15px; font-style: italic;
+    color: var(--ink); margin: 0; line-height: 1.7;
+  }
+
+  .divider { height: 1px; background: var(--border); margin: 36px 20px; }
+
+  /* Policy phases */
+  .policy-phase {
+    border-radius: 8px; overflow: hidden; margin: 20px 0;
+    border: 1px solid var(--border);
+  }
+  .policy-phase-header {
+    padding: 10px 16px; font-weight: 700; font-size: 13px; color: #fff;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .phase-short .policy-phase-header { background: var(--accent); }
+  .phase-mid .policy-phase-header { background: #e67e22; }
+  .phase-long .policy-phase-header { background: #8e44ad; }
+  .policy-items { padding: 16px; background: #fff; }
+  .policy-item {
+    padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px;
+    display: flex; gap: 10px;
+  }
+  .policy-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .policy-num {
+    font-weight: 700; color: var(--mid); font-size: 12px; flex-shrink: 0; padding-top: 2px;
+  }
+  .policy-title { font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+  .policy-desc { font-size: 12px; color: #2d3748; line-height: 1.5; }
+
+  /* World comparison */
+  .world-card {
+    background: #fff; border: 1px solid #b8a898; border-radius: 8px;
+    margin: 12px 0; overflow: hidden;
+  }
+  .world-card-header {
+    background: #ddd4c4; padding: 10px 14px; font-size: 13px;
+    font-weight: 700; color: var(--ink); display: flex; align-items: center; gap: 8px;
+  }
+  .world-card-body { padding: 12px 14px; font-size: 13px; color: #1a1a2e; line-height: 1.7; }
+
+  /* Spiral diagram */
+  .spiral-box {
+    background: #f5d5d0; border: 1px solid #d4857a; border-radius: 8px;
+    padding: 20px; margin: 20px 0;
+  }
+  .spiral-title { font-weight: 700; font-size: 13px; color: var(--accent); margin-bottom: 14px; }
+  .spiral-item {
+    display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px;
+    font-size: 13px;
+  }
+  .spiral-arrow { color: var(--accent); text-align: center; margin: 2px 0 2px 28px; font-size: 14px; }
+
+  /* Final box */
+  .final-box {
+    background: var(--ink); color: #fff; padding: 28px 20px; margin: 32px 0 0;
+    border-radius: 0;
+  }
+  .final-box h3 { color: #fff; border-bottom-color: rgba(255,255,255,0.1); }
+  .final-box p { color: rgba(255,255,255,0.85); font-size: 14px; }
+  .final-quote {
+    border-left: 4px solid #64b5f6; padding: 12px 16px; margin: 16px 0;
+    background: rgba(255,255,255,0.05); border-radius: 0 6px 6px 0;
+  }
+  .final-quote p {
+    font-family: 'Noto Serif JP', serif; font-size: 15px; font-style: italic;
+    color: #fff; margin: 0; line-height: 1.7;
+  }
+
+  .references {
+    background: var(--ink); color: #fff; margin-top: 0; padding: 32px 20px;
+  }
+  .references h2 { font-family: 'Noto Serif JP', serif; font-size: 18px; margin-bottom: 24px; color: #fff; }
+  .ref-category { margin-bottom: 24px; }
+  .ref-cat-title {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    color: #64b5f6; text-transform: uppercase; margin-bottom: 10px;
+    padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .ref-item {
+    margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .ref-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .ref-name { font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 500; margin-bottom: 3px; }
+  .ref-url { font-size: 11px; color: rgba(255,255,255,0.4); word-break: break-all; text-decoration: none; }
+  .ref-url:hover { color: #64b5f6; }
+
+  .prev-link {
+    display: block; background: #2c3e50; color: #fff; text-align: center;
+    padding: 16px 20px; font-weight: 700; font-size: 14px;
+    text-decoration: none; letter-spacing: 0.05em;
+  }
+
+  .footer {
+    background: #0f0f1a; color: rgba(255,255,255,0.4); text-align: center;
+    padding: 24px 20px; font-size: 12px;
+  }
+  .footer a { color: #64b5f6; text-decoration: none; }
+
+  .note-box {
+    background: #f5ecd0; border: 1px solid #c8a84b; border-radius: 6px;
+    padding: 14px 16px; margin: 20px 0; font-size: 13px; color: #3d2d00;
+  }
+
+  @media (max-width: 400px) {
+    .stat-row { grid-template-columns: 1fr; }
+    .stat-num { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<header class="site-header">
+  <span class="logo">就職氷河期世代 分析シリーズ</span>
+  <span class="series-badge">後編</span>
+</header>
+
+<div class="hero">
+  <div class="hero-kicker">政治・ジェンダー・国際比較・政策提言</div>
+  <h1>アンダークラスと<br><span class="accent">就職氷河期世代</span></h1>
+  <p class="hero-sub">シルバー民主主義・ジェンダー格差・国際比較、そして政策提言</p>
+  <div class="hero-meta">
+    <span>📖 後編：政治・社会・政策</span>
+    <span>🗒 約9,000字</span>
+  </div>
+</div>
+
+<nav class="chapter-nav">
+  <a href="#ch6">第6章 政治</a>
+  <a href="#ch7">第7章 ジェンダー</a>
+  <a href="#ch8">第8章 国際比較</a>
+  <a href="#ch9">第9章 孤立</a>
+  <a href="#ch10">全体構造</a>
+  <a href="#ch11">政策提言</a>
+  <a href="#refs">参照サイト</a>
+</nav>
+
+<div class="pull-quote-hero">
+  <p>50代に差し掛かった今が、本当に最後の機会だ。<br>
+  この世代が老後に転落すれば、そのコストは社会全体が払うことになる。</p>
+</div>
+
+<div class="content">
+
+  <div class="intro-text">
+    <p>前編では、アンダークラスの概念整理と、就職氷河期世代が経済・社会保障・労働法制の観点からいかに構造的不利を抱えているかを分析した。後編では、<strong>政治・民主主義・ジェンダー・国際比較・社会的孤立・政策提言</strong>という視点から、この問題をさらに深く掘り下げる。</p>
+  </div>
+
+  <!-- Chapter 6 -->
+  <div class="chapter" id="ch6">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 06</div>
+      <h2 class="chapter-title">政治・民主主義の視点――シルバー民主主義との連動</h2>
+    </div>
+
+    <h3>6-1. 投票率の年齢格差</h3>
+
+    <div class="data-card">
+      <div class="data-card-title">▍年代別投票率（衆院選・概算）</div>
+      <table>
+        <tr><th>年代</th><th>投票率（目安）</th></tr>
+        <tr><td>60〜70代</td><td style="font-weight:700">60%台後半〜70%台前半</td></tr>
+        <tr><td>40〜50代（氷河期世代含む）</td><td>50%台半ば〜60%台前半</td></tr>
+        <tr><td>20〜30代</td><td style="color:var(--accent)">30%台半ば〜40%台後半</td></tr>
+      </table>
+    </div>
+
+    <p>地方選挙ではさらに格差が拡大するケースがある。福島県鏡石町の衆院選データでは、60〜70代と40代以下の投票率差が<strong>30〜40ポイント</strong>に達する年もある。</p>
+
+    <h3>6-2. シルバー民主主義の負のスパイラル</h3>
+
+    <div class="spiral-box">
+      <div class="spiral-title">負のスパイラルの構造</div>
+      <div class="spiral-item">
+        <span>🗳</span>
+        <div><strong>高齢者の高投票率</strong></div>
+      </div>
+      <div class="spiral-arrow">↓</div>
+      <div class="spiral-item">
+        <span>🏛</span>
+        <div><strong>政治家の合理的行動</strong><br><span style="font-size:12px;color:var(--mid)">高齢者向け政策を優先（票になる人を優先）</span></div>
+      </div>
+      <div class="spiral-arrow">↓</div>
+      <div class="spiral-item">
+        <span>💊</span>
+        <div><strong>高齢者向け社会保障を維持</strong><br><span style="font-size:12px;color:var(--mid)">就労・住宅・職業訓練が後回しに</span></div>
+      </div>
+      <div class="spiral-arrow">↓</div>
+      <div class="spiral-item">
+        <span>😔</span>
+        <div><strong>氷河期世代の政治不信・無力感</strong></div>
+      </div>
+      <div class="spiral-arrow">↓</div>
+      <div class="spiral-item">
+        <span>🔄</span>
+        <div><strong>さらに投票率が低下→スパイラル継続</strong></div>
+      </div>
+    </div>
+
+    <p>氷河期世代は最も支援を必要としているにもかかわらず、政治的影響力が最も弱い世代でもある。この逆説から抜け出すことが、当事者運動の出発点だ。</p>
+
+    <h3>6-3. 政策提言先として有効なチャンネル</h3>
+
+    <div class="flow-box">
+      <div class="flow-step">
+        <div class="flow-icon">🏢</div>
+        <div>
+          <div class="flow-label">内閣官房 就職氷河期世代支援推進室</div>
+          <div class="flow-desc">行政への直接提言窓口</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">🏥</div>
+        <div>
+          <div class="flow-label">厚生労働省</div>
+          <div class="flow-desc">労働・社会保障政策の主管省</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">👤</div>
+        <div>
+          <div class="flow-label">伊藤孝恵 参議院議員（国民民主党）</div>
+          <div class="flow-desc">氷河期世代問題に精力的に取り組む</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">👤</div>
+        <div>
+          <div class="flow-label">吉川沙織 参議院議員（立憲民主党）</div>
+          <div class="flow-desc">情報通信・労働問題の専門家</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Chapter 7 -->
+  <div class="chapter" id="ch7">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 07</div>
+      <h2 class="chapter-title">ジェンダーの視点――交差する不平等</h2>
+    </div>
+
+    <h3>7-1. 「女性活躍」の光と影</h3>
+    <p>2010年代以降、「女性活躍推進」が政策的に推進された。しかしその恩恵は氷河期世代の中でも均等に届いていない。</p>
+
+    <div class="data-card">
+      <div class="data-card-title">▍誰が恩恵を受け、誰が取り残されたか</div>
+      <table>
+        <tr><th></th><th>状況</th></tr>
+        <tr>
+          <td style="color:var(--green);font-weight:700">恩恵を受けた層</td>
+          <td>大企業・正規雇用の女性（管理職登用、育休充実）</td>
+        </tr>
+        <tr>
+          <td style="color:var(--accent);font-weight:700">取り残された層</td>
+          <td>非正規既婚女性、長期無業女性、介護離職女性</td>
+        </tr>
+      </table>
+    </div>
+
+    <h3>7-2. 第3号被保険者制度という「罠」</h3>
+
+    <div class="flow-box">
+      <div class="flow-step">
+        <div class="flow-icon">⚠️</div>
+        <div>
+          <div class="flow-label">罠①：就労抑制効果</div>
+          <div class="flow-desc">「年収130万円の壁」を超えると扶養から外れる。収入を抑えるため就業時間を制限→キャリア形成機会を失う</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">⚠️</div>
+        <div>
+          <div class="flow-label">罠②：将来の年金が薄くなる</div>
+          <div class="flow-desc">第3号の期間は基礎年金のみのカウント。離婚・死別時に極めて薄い年金しか受け取れない</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">⚠️</div>
+        <div>
+          <div class="flow-label">罠③：夫の経済的地位への依存固定</div>
+          <div class="flow-desc">夫が非正規・低収入でも妻がフルタイムで働けず、世帯収入が慢性的に低いまま固定される</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>7-3. 男性アンダークラスの問題</h3>
+
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-num" style="color:var(--accent)">3〜4<span style="font-size:14px">倍</span></div>
+        <div class="stat-label">非正規男性の未婚率（正規男性比・橋本健二の研究）</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" style="color:var(--accent)">15<span style="font-size:14px">〜20%</span></div>
+        <div class="stat-label">生活保護の捕捉率（先進国最低水準）</div>
+      </div>
+    </div>
+
+    <p>単身・低収入・社会的孤立のトリプルリスクが重なる非正規男性は、孤独死・孤立死のリスクが極めて高い。氷河期世代が高齢期に入る<strong>2030年代以降、この問題が顕在化する</strong>可能性がある。</p>
+
+    <h3>7-4. 世代内格差という見えにくい問題</h3>
+    <p>氷河期世代を一括りに語ることへの注意も必要だ。<strong>同世代の中の格差が他世代より大きい可能性</strong>があり、内部の正規/非正規・男女・学歴・地域差を見落とすと、支援策が的外れになるリスクがある。</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Chapter 8 -->
+  <div class="chapter" id="ch8">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 08</div>
+      <h2 class="chapter-title">国際比較の視点――日本の遅れを測る</h2>
+    </div>
+
+    <div class="world-card">
+      <div class="world-card-header">🇩🇪 ドイツ</div>
+      <div class="world-card-body">
+        ハルツ改革（2003〜2005年）で労働市場の柔軟化と同時に社会保障を再整備。最低賃金の全国統一（2015年）、積極的労働市場政策（ALMP）への多額投資、デュアルシステム（職業訓練制度）の維持・充実。
+      </div>
+    </div>
+
+    <div class="world-card">
+      <div class="world-card-header">🇸🇪 スウェーデン</div>
+      <div class="world-card-body">
+        積極的労働市場政策（ALMP）の先進国。「柔軟な雇用市場＋手厚いセーフティネット」のフレキシキュリティモデル。職業訓練中も生活給付を維持し、再訓練が現実的な選択肢に。
+      </div>
+    </div>
+
+    <div class="world-card">
+      <div class="world-card-header">🇰🇷 韓国（IMF世代との比較）</div>
+      <div class="world-card-body">
+        1997年通貨危機→「IMF世代」（韓国版氷河期世代）が発生。日本と構造的に酷似した問題を抱え、政策対応も同様に遅れている。近年、非正規・格差問題に対する世代間政治対立が激化。
+      </div>
+    </div>
+
+    <div class="world-card" style="border-color:var(--accent)">
+      <div class="world-card-header" style="background:#fff0ef;color:var(--accent)">🇯🇵 日本（現状）</div>
+      <div class="world-card-body">
+        氷河期が始まった1993年から本格的な支援策まで約25〜30年の空白。2020年に「就職氷河期世代支援プログラム」開始（遅すぎるとの批判多数）。規模・予算ともに欧州の積極的労働市場政策と比べ著しく小規模。
+      </div>
+    </div>
+
+    <div class="data-card" style="margin-top:20px">
+      <div class="data-card-title">▍積極的労働市場政策へのGDP比支出</div>
+      <table>
+        <tr><th>国</th><th>GDP比支出（目安）</th></tr>
+        <tr><td>🇸🇪 スウェーデン</td><td style="color:var(--green);font-weight:700">約1.5〜2%</td></tr>
+        <tr><td>🇩🇪 ドイツ</td><td>約0.8〜1%</td></tr>
+        <tr><td style="color:var(--accent)">🇯🇵 日本</td><td style="color:var(--accent);font-weight:700">約0.1〜0.2%</td></tr>
+      </table>
+    </div>
+
+    <div class="pull-quote">
+      <p>「就職氷河期世代の困窮は自己責任ではなく、政策的選択の失敗の結果である」という認識が、先進国の中で日本だけ遅れている。</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Chapter 9 -->
+  <div class="chapter" id="ch9">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 09</div>
+      <h2 class="chapter-title">社会的結束――コミュニティと孤立</h2>
+    </div>
+
+    <h3>9-1. ソーシャルキャピタルの貧困</h3>
+
+    <div class="flow-box">
+      <div class="flow-step">
+        <div class="flow-icon">🏢</div>
+        <div>
+          <div class="flow-label">職場コミュニティへの非帰属</div>
+          <div class="flow-desc">同じ職場でも飲み会・研修・組合活動から除外されやすい。職場は「働く場所」であっても「属する場所」ではない</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">🏘</div>
+        <div>
+          <div class="flow-label">地域コミュニティへの参加困難</div>
+          <div class="flow-desc">低賃金・長時間労働（複数の掛け持ち含む）では、自治会・PTAへ参加する余裕がない</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">👥</div>
+        <div>
+          <div class="flow-label">友人・家族ネットワークの縮小</div>
+          <div class="flow-desc">年齢とともにネットワークが収縮。「頼れる人が誰もいない」が孤立死リスクに直結</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>9-2. 「自己責任」言説の内面化</h3>
+
+    <div class="note-box">
+      1990〜2000年代に広まった「自己責任」言説を内面化した結果、生活保護・公的支援の利用を躊躇し、問題が表面化するまで孤独に耐え続ける傾向がある。<br><br>
+      生活保護の<strong>捕捉率が推計15〜20%</strong>に過ぎないことは、この心理的障壁の大きさを示している。
+    </div>
+
+    <h3>9-3. 当事者コミュニティの可能性</h3>
+    <p>SNSの普及により、氷河期世代の当事者が「自分と同じ経験をしている人がいる」と気づき、つながり始めている変化が起きている。X（旧Twitter）・note・オンラインコミュニティを通じた情報共有・政策提言活動は、<strong>「サイレントマジョリティ」から「声のある少数者」への転換の萌芽</strong>だ。</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Chapter 10 -->
+  <div class="chapter" id="ch10">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 10</div>
+      <h2 class="chapter-title">アンダークラス化の全体構造</h2>
+    </div>
+
+    <div class="spiral-box">
+      <div class="spiral-title">5つの「固定化」メカニズム</div>
+      <div class="spiral-item">
+        <span>🔴</span>
+        <div>
+          <strong>制度的固定化</strong><br>
+          <span style="font-size:12px;color:#666">バブル崩壊 × 派遣規制緩和 → 入口が閉じる</span>
+        </div>
+      </div>
+      <div class="spiral-arrow">↓</div>
+      <div class="spiral-item">
+        <span>💸</span>
+        <div>
+          <strong>経済的固定化</strong><br>
+          <span style="font-size:12px;color:#666">傷跡効果 → 低年収 → 資産形成不可 → 老後リスク</span>
+        </div>
+      </div>
+      <div class="spiral-arrow">↓</div>
+      <div class="spiral-item">
+        <span>🏚</span>
+        <div>
+          <strong>社会的固定化</strong><br>
+          <span style="font-size:12px;color:#666">未婚・孤立 → ソーシャルキャピタル喪失 → 孤立死リスク</span>
+        </div>
+      </div>
+      <div class="spiral-arrow">↓</div>
+      <div class="spiral-item">
+        <span>🗳</span>
+        <div>
+          <strong>政治的固定化</strong><br>
+          <span style="font-size:12px;color:#666">低投票率 → シルバー民主主義 → 支援届かない → 無力感強化</span>
+        </div>
+      </div>
+      <div class="spiral-arrow">↓</div>
+      <div class="spiral-item">
+        <span>🧠</span>
+        <div>
+          <strong>心理的固定化</strong><br>
+          <span style="font-size:12px;color:#666">自己責任の内面化 → 支援を求めない → 問題の不可視化</span>
+        </div>
+      </div>
+      <div class="spiral-arrow">↓</div>
+      <div class="spiral-item">
+        <span>⏰</span>
+        <div>
+          <strong>世代を超えた影響</strong><br>
+          <span style="font-size:12px;color:#666">老後の貧困大量発生 → 社会保障コスト増大 → 若い世代の負担増</span>
+        </div>
+      </div>
+    </div>
+
+    <p>この構造を見れば、アンダークラス化した氷河期世代の問題は「個人の問題」でも「一世代だけの問題」でもないことが明らかだ。<strong>社会全体が受け取ることになる時限爆弾</strong>として、今まさに爆発の秒読みに入っている。</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Chapter 11 -->
+  <div class="chapter" id="ch11">
+    <div class="chapter-header">
+      <div class="chapter-num">Chapter 11</div>
+      <h2 class="chapter-title">政策提言――何をいつまでにすべきか</h2>
+    </div>
+
+    <div class="policy-phase phase-short">
+      <div class="policy-phase-header">🔴 短期（〜2030年）：転換を支えるフェーズ</div>
+      <div class="policy-items">
+        <div class="policy-item">
+          <div class="policy-num">①</div>
+          <div>
+            <div class="policy-title">求職者支援給付の抜本引き上げ</div>
+            <div class="policy-desc">月10万円 → 15〜20万円水準へ。家賃・生活費をカバーできる水準でなければ制度を使えない</div>
+          </div>
+        </div>
+        <div class="policy-item">
+          <div class="policy-num">②</div>
+          <div>
+            <div class="policy-title">氷河期世代専門の正規転換支援拡充</div>
+            <div class="policy-desc">ワンストップ相談窓口の充実、企業への雇用奨励金の拡大、マッチング支援の強化</div>
+          </div>
+        </div>
+        <div class="policy-item">
+          <div class="policy-num">③</div>
+          <div>
+            <div class="policy-title">社会保険適用のさらなる拡大</div>
+            <div class="policy-desc">短時間非正規労働者への厚生年金・健康保険の適用を中小企業にも完全適用</div>
+          </div>
+        </div>
+        <div class="policy-item">
+          <div class="policy-num">④</div>
+          <div>
+            <div class="policy-title">最低賃金の大幅引き上げ</div>
+            <div class="policy-desc">現行（全国加重平均約1,054円）から1,500円水準への早期引き上げ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="policy-phase phase-mid" style="margin-top:16px">
+      <div class="policy-phase-header">🟠 中期（2030〜2040年）：格差是正フェーズ</div>
+      <div class="policy-items">
+        <div class="policy-item">
+          <div class="policy-num">⑤</div>
+          <div>
+            <div class="policy-title">同一労働同一賃金の実効化</div>
+            <div class="policy-desc">立証責任を使用者側に転換し、罰則を強化。EU指令（2023年）のような透明性義務化の導入も検討</div>
+          </div>
+        </div>
+        <div class="policy-item">
+          <div class="policy-num">⑥</div>
+          <div>
+            <div class="policy-title">基礎年金の底上げ</div>
+            <div class="policy-desc">国民年金の給付水準を大幅に引き上げ、最低保障機能を強化</div>
+          </div>
+        </div>
+        <div class="policy-item">
+          <div class="policy-num">⑦</div>
+          <div>
+            <div class="policy-title">「106万・130万の壁」の撤廃</div>
+            <div class="policy-desc">第3号被保険者制度の段階的廃止と全労働者への厚生年金一元化。働き控えを解消</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="policy-phase phase-long" style="margin-top:16px">
+      <div class="policy-phase-header">🟣 長期（2040年〜）：社会的保障フェーズ</div>
+      <div class="policy-items">
+        <div class="policy-item">
+          <div class="policy-num">⑧</div>
+          <div>
+            <div class="policy-title">低年金者向け最低保障年金制度の創設</div>
+            <div class="policy-desc">月8〜10万円以下の年金に公費で差額を補填。大量の低年金高齢者が生活保護に流入する前に機能させる</div>
+          </div>
+        </div>
+        <div class="policy-item">
+          <div class="policy-num">⑨</div>
+          <div>
+            <div class="policy-title">生活保護の捕捉率向上</div>
+            <div class="policy-desc">申請主義の廃止・プッシュ型支援の導入・扶養照会の廃止（または大幅緩和）</div>
+          </div>
+        </div>
+        <div class="policy-item">
+          <div class="policy-num">⑩</div>
+          <div>
+            <div class="policy-title">公営住宅の抜本的拡充</div>
+            <div class="policy-desc">低年金・低資産の高齢者が民間賃貸市場から排除されないよう、公営住宅ストックを増やし高齢単身者への優先供給を制度化</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end content -->
+
+<!-- Final message -->
+<div class="final-box">
+  <div style="padding:0 0 20px">
+    <h3 style="border-bottom-color:rgba(255,255,255,0.15);color:#fff;font-size:18px;margin-bottom:16px">最後のタイムリミット</h3>
+    <p>この世代が60代・70代に入ってからでは、正規転換支援も職業訓練も意味をなさない。今の40代後半〜50代前半という時期こそが、まだ手を打てる最後の窓だ。</p>
+    <p>今手を打たなければ——2030〜2040年代に大量の低年金・低貯蓄高齢者が出現し、生活保護受給者の急増、社会保障コストの膨張、若い世代の負担増と世代間不信の深刻化が待っている。</p>
+    <div class="final-quote">
+      <p>アンダークラスと氷河期世代の問題は、過去の問題ではなく、今まさに分岐点にある未来の問題だ。<br><br>
+      <strong style="color:#fff">諦めることが、最もコストの高い選択だ。</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- References -->
+<div class="references" id="refs">
+  <h2>📎 参照サイト・文献リスト</h2>
+
+  <div class="ref-category">
+    <div class="ref-cat-title">🏛 政府・公的機関</div>
+    <div class="ref-item">
+      <div class="ref-name">内閣官房 就職氷河期世代支援の推進に向けた全国プラットフォーム</div>
+      <a class="ref-url" href="https://www.cas.go.jp/jp/seisaku/shushoku_hyogaki_shien/suishin_platform/index.html" target="_blank">https://www.cas.go.jp/jp/seisaku/shushoku_hyogaki_shien/suishin_platform/index.html</a>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">首相官邸「就職氷河期世代支援のアクションプラン」</div>
+      <a class="ref-url" href="https://www.kantei.go.jp/jp/singi/hyogaki_shien/" target="_blank">https://www.kantei.go.jp/jp/singi/hyogaki_shien/</a>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">総務省「衆議院議員総選挙年齢別投票率」</div>
+      <a class="ref-url" href="https://www.soumu.go.jp/senkyo/senkyo_s/news/sonota/nendaibetu/" target="_blank">https://www.soumu.go.jp/senkyo/senkyo_s/news/sonota/nendaibetu/</a>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">厚生労働省「生活保護制度の現状について」</div>
+      <a class="ref-url" href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/seikatsuhogo/seikatuhogo/" target="_blank">https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/seikatsuhogo/seikatuhogo/</a>
+    </div>
+  </div>
+
+  <div class="ref-category">
+    <div class="ref-cat-title">🏦 年金・社会保険</div>
+    <div class="ref-item">
+      <div class="ref-name">日本年金機構「第3号被保険者について」</div>
+      <a class="ref-url" href="https://www.nenkin.go.jp/service/yougo/tagyo/dai3hihokensha.html" target="_blank">https://www.nenkin.go.jp/service/yougo/tagyo/dai3hihokensha.html</a>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">厚生労働省「被用者保険（厚生年金・健康保険）の適用拡大」</div>
+      <a class="ref-url" href="https://www.mhlw.go.jp/content/12401000/001505993.pdf" target="_blank">https://www.mhlw.go.jp/content/12401000/001505993.pdf</a>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">厚生労働省「令和6年度の年金額改定について」</div>
+      <a class="ref-url" href="https://www.mhlw.go.jp/stf/houdou/0000191631_00018.html" target="_blank">https://www.mhlw.go.jp/stf/houdou/0000191631_00018.html</a>
+    </div>
+  </div>
+
+  <div class="ref-category">
+    <div class="ref-cat-title">🔬 学術・研究機関</div>
+    <div class="ref-item">
+      <div class="ref-name">NIRA総合研究開発機構</div>
+      <a class="ref-url" href="https://www.nira.or.jp/" target="_blank">https://www.nira.or.jp/</a>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">RIETI（経済産業研究所）</div>
+      <a class="ref-url" href="https://www.rieti.go.jp/jp/" target="_blank">https://www.rieti.go.jp/jp/</a>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">国立社会保障・人口問題研究所</div>
+      <a class="ref-url" href="https://www.ipss.go.jp/" target="_blank">https://www.ipss.go.jp/</a>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">内閣府「男女共同参画白書」</div>
+      <a class="ref-url" href="https://www.gender.go.jp/about_danjo/whitepaper/" target="_blank">https://www.gender.go.jp/about_danjo/whitepaper/</a>
+    </div>
+  </div>
+
+  <div class="ref-category">
+    <div class="ref-cat-title">🌐 国際比較</div>
+    <div class="ref-item">
+      <div class="ref-name">OECD「Employment Outlook」（各国労働市場政策比較）</div>
+      <a class="ref-url" href="https://www.oecd.org/employment/emp/oecdemploymentoutlook.htm" target="_blank">https://www.oecd.org/employment/emp/oecdemploymentoutlook.htm</a>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">EU「Pay Transparency Directive 2023」</div>
+      <a class="ref-url" href="https://ec.europa.eu/commission/presscorner/detail/en/ip_23_2199" target="_blank">https://ec.europa.eu/commission/presscorner/detail/en/ip_23_2199</a>
+    </div>
+  </div>
+
+  <div class="ref-category">
+    <div class="ref-cat-title">👤 議員・政策提言先</div>
+    <div class="ref-item">
+      <div class="ref-name">伊藤孝恵 参議院議員（国民民主党）</div>
+      <a class="ref-url" href="https://ito-takae.jp/" target="_blank">https://ito-takae.jp/</a>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">吉川沙織 参議院議員（立憲民主党）</div>
+      <a class="ref-url" href="https://yoshikawa-saori.com/" target="_blank">https://yoshikawa-saori.com/</a>
+    </div>
+  </div>
+
+  <div class="ref-category">
+    <div class="ref-cat-title">📊 統計データ</div>
+    <div class="ref-item">
+      <div class="ref-name">J-FLEC「家計の金融行動に関する世論調査 2024年」</div>
+      <a class="ref-url" href="https://www.j-flec.go.jp/research/" target="_blank">https://www.j-flec.go.jp/research/</a>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">総務省「就業構造基本調査」</div>
+      <a class="ref-url" href="https://www.e-stat.go.jp/stat-search/files?page=1&query=%E5%B0%B1%E6%A5%AD%E6%A7%8B%E9%80%A0%E5%9F%BA%E6%9C%AC%E8%AA%BF%E6%9F%BB&layout=dataset&toukei=00200532&metadata=1&data=1" target="_blank">https://www.e-stat.go.jp/stat-search/files?page=1&query=就業構造基本調査</a>
+    </div>
+  </div>
+</div>
+
+<a class="prev-link" href="#">← 前編へ：概念・経済・社会保障・労働法制</a>
+
+<div class="footer">
+  <p>note.com <a href="#">@kami_sora_fly</a> | 就職氷河期世代 分析シリーズ</p>
+</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || document.body.scrollTop;
+    const scrollHeight = doc.scrollHeight - doc.clientHeight;
+    const p = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    document.getElementById('progress').style.width = p + '%';
+  });
+</script>
+</body>
+</html>
