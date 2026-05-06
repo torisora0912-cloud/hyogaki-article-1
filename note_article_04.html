@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>30年後の請求書が届いた｜Q16〜Q19・総括と提言 第4回（最終回）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1814; --ink-mid: #3d3a35; --ink-mute: #7a756c; --ink-faint: #b5b0a7;
+    --paper: #faf8f4; --paper-warm: #f0ece4;
+    --accent: #c0392b; --accent-lt: #f5e6e4;
+    --rule: #d8d3cb;
+    --blue: #1a4a7a; --blue-lt: #e8eef6;
+    --green: #1a6e4a; --green-lt: #e6f4ed;
+    --serif: 'Noto Serif JP', serif;
+    --sans: 'Noto Sans JP', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+    --w-text: 680px; --w-wide: 860px;
+  }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+
+  .site-header { border-bottom: 2px solid var(--ink); padding: 18px 32px; display: flex; align-items: baseline; gap: 16px; position: sticky; top: 0; background: var(--paper); z-index: 100; }
+  .site-name { font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0.06em; color: var(--ink-mid); }
+  .series-tag { font-family: var(--mono); font-size: 11px; background: var(--accent); color: var(--paper); padding: 3px 8px; letter-spacing: 0.08em; }
+
+  .prev-link { max-width: var(--w-wide); margin: 0 auto; padding: 14px 32px; border-bottom: 1px solid var(--rule); display: flex; align-items: center; gap: 12px; }
+  .prev-link-label { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); letter-spacing: 0.1em; }
+  .prev-link-title { font-size: 13px; color: var(--ink-mute); }
+
+  .hero { max-width: var(--w-wide); margin: 0 auto; padding: 64px 32px 52px; border-bottom: 1px solid var(--rule); }
+  .hero-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; flex-wrap: wrap; }
+  .issue-num { font-family: var(--mono); font-size: 11px; font-weight: 500; border: 1.5px solid var(--accent); color: var(--accent); padding: 4px 10px; letter-spacing: 0.1em; }
+  .final-badge { font-family: var(--mono); font-size: 10px; background: var(--accent); color: #fff; padding: 4px 10px; letter-spacing: 0.08em; }
+  .pub-date { font-family: var(--mono); font-size: 11px; color: var(--ink-mute); letter-spacing: 0.05em; }
+
+  h1 { font-family: var(--serif); font-size: clamp(22px, 4vw, 36px); font-weight: 700; line-height: 1.45; color: var(--ink); margin-bottom: 24px; }
+  h1 em { font-style: normal; color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 1px; }
+  .hero-sub { font-size: 15px; color: var(--ink-mid); max-width: 560px; line-height: 1.9; }
+
+  .opening-quote { max-width: var(--w-wide); margin: 0 auto; padding: 52px 32px 44px; border-bottom: 1px solid var(--rule); }
+  .big-quote { font-family: var(--serif); font-size: clamp(18px, 3.2vw, 28px); font-weight: 600; line-height: 1.65; color: var(--ink); position: relative; padding-left: 28px; margin-bottom: 20px; }
+  .big-quote::before { content: ''; position: absolute; left: 0; top: 4px; bottom: 4px; width: 4px; background: var(--accent); }
+  .quote-attr { font-family: var(--mono); font-size: 12px; color: var(--ink-mute); padding-left: 28px; }
+  .quote-note { margin-top: 24px; font-size: 14px; color: var(--ink-mid); line-height: 1.85; padding-left: 28px; border-left: 1px solid var(--rule); }
+
+  .article { max-width: var(--w-wide); margin: 0 auto; padding: 0 32px; }
+  section { padding: 48px 0; border-bottom: 1px solid var(--rule); }
+  section:last-child { border-bottom: none; }
+
+  h2 { font-family: var(--serif); font-size: 21px; font-weight: 700; color: var(--ink); margin-bottom: 24px; padding-bottom: 12px; border-bottom: 2px solid var(--ink); display: flex; align-items: baseline; gap: 12px; }
+  h2 .sec-num { font-family: var(--mono); font-size: 12px; color: var(--ink-mute); font-weight: 400; flex-shrink: 0; }
+  h3 { font-family: var(--sans); font-size: 16px; font-weight: 700; color: var(--ink); margin: 36px 0 14px; }
+
+  p { font-size: 15px; line-height: 1.95; color: var(--ink-mid); margin-bottom: 20px; max-width: var(--w-text); }
+  p strong { color: var(--ink); font-weight: 700; }
+
+  .chart-wrap { margin: 28px 0; background: var(--paper-warm); border: 1px solid var(--rule); padding: 24px; }
+  .chart-title { font-family: var(--mono); font-size: 11px; color: var(--ink-mute); letter-spacing: 0.08em; margin-bottom: 16px; }
+  .chart-note { font-size: 11px; color: var(--ink-faint); text-align: right; margin-top: 10px; font-family: var(--mono); }
+  .bar-row { display: grid; grid-template-columns: 220px 1fr 36px; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .bar-row-label { font-size: 11px; color: var(--ink-mid); text-align: right; line-height: 1.4; }
+  .bar-track { background: var(--rule); height: 20px; border-radius: 2px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 2px; }
+  .bar-count { font-family: var(--mono); font-size: 12px; color: var(--ink-mute); font-weight: 500; }
+
+  .voice-block { margin: 24px 0; padding: 22px 26px; border-left: 4px solid var(--blue); background: var(--blue-lt); }
+  .voice-block.red { background: var(--accent-lt); border-left-color: var(--accent); }
+  .voice-block.green { background: var(--green-lt); border-left-color: var(--green); }
+  .voice-block.dark { background: #f0ece4; border-left-color: var(--ink-mid); }
+  .voice-text { font-family: var(--serif); font-size: 15px; line-height: 1.85; color: var(--ink); margin-bottom: 12px; }
+  .voice-text::before { content: '「'; }
+  .voice-text::after { content: '」'; }
+  .voice-attr { font-family: var(--mono); font-size: 11px; color: var(--ink-mute); letter-spacing: 0.04em; }
+  .voice-comment { margin-top: 10px; font-size: 13px; color: var(--ink-mid); line-height: 1.7; padding-top: 10px; border-top: 1px solid rgba(0,0,0,0.08); }
+
+  .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+  .voice-grid .voice-block { margin: 0; }
+
+  .stats-row { display: flex; gap: 0; margin: 28px 0; border: 1px solid var(--rule); overflow: hidden; flex-wrap: wrap; }
+  .stat-item { flex: 1; min-width: 120px; padding: 18px 14px 16px; border-right: 1px solid var(--rule); text-align: center; }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-family: var(--mono); font-size: 28px; font-weight: 500; color: var(--ink); line-height: 1; margin-bottom: 6px; }
+  .stat-label { font-size: 11px; color: var(--ink-mute); line-height: 1.5; }
+  .stat-item.accent-stat .stat-num { color: var(--accent); }
+  .stat-item.blue-stat .stat-num { color: var(--blue); }
+
+  .highlight-box { margin: 32px 0; padding: 22px 26px; background: var(--ink); }
+  .highlight-box p { color: #e8e4dc; font-size: 15px; margin-bottom: 10px; max-width: 100%; }
+  .highlight-box p:last-child { margin-bottom: 0; }
+  .highlight-box strong { color: #fff; }
+
+  .analysis { margin: 28px 0; padding: 20px 24px; border: 1px solid var(--rule); background: var(--paper); }
+  .analysis-label { font-family: var(--mono); font-size: 10px; color: var(--accent); letter-spacing: 0.1em; font-weight: 500; margin-bottom: 10px; }
+  .analysis p { font-size: 14px; color: var(--ink-mid); margin-bottom: 0; max-width: 100%; }
+
+  .caution-box { margin: 32px 0; padding: 20px 24px; border: 1.5px solid var(--accent); background: var(--accent-lt); }
+  .caution-label { font-family: var(--mono); font-size: 10px; color: var(--accent); letter-spacing: 0.1em; font-weight: 500; margin-bottom: 10px; }
+  .caution-box p { font-size: 14px; color: var(--ink-mid); margin-bottom: 0; max-width: 100%; }
+
+  /* Series recap */
+  .series-recap { margin: 32px 0; border: 2px solid var(--ink); }
+  .recap-header { background: var(--ink); color: #fff; padding: 12px 20px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; }
+  .recap-row { display: grid; grid-template-columns: 80px 1fr auto; gap: 16px; align-items: baseline; padding: 14px 20px; border-bottom: 1px solid var(--rule); }
+  .recap-row:last-child { border-bottom: none; }
+  .recap-issue { font-family: var(--mono); font-size: 11px; color: var(--ink-mute); }
+  .recap-title { font-size: 14px; color: var(--ink-mid); }
+  .recap-key { font-family: var(--mono); font-size: 12px; color: var(--accent); font-weight: 500; white-space: nowrap; }
+
+  /* Policy proposals */
+  .proposal { margin: 20px 0; padding: 20px 24px; border-left: 4px solid var(--blue); background: var(--blue-lt); }
+  .proposal-num { font-family: var(--mono); font-size: 10px; color: var(--blue); letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 500; }
+  .proposal-title { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 10px; line-height: 1.5; }
+  .proposal-basis { font-size: 13px; color: var(--ink-mute); margin-bottom: 10px; font-style: italic; }
+  .proposal-items { list-style: none; }
+  .proposal-items li { font-size: 14px; color: var(--ink-mid); padding: 4px 0 4px 16px; position: relative; line-height: 1.7; }
+  .proposal-items li::before { content: '・'; position: absolute; left: 0; color: var(--blue); }
+
+  /* Closing */
+  .closing { background: var(--paper-warm); border-top: 3px solid var(--ink); border-bottom: 3px solid var(--ink); padding: 40px 32px; margin: 40px 0 0; max-width: var(--w-wide); margin-left: auto; margin-right: auto; }
+  .closing-title { font-family: var(--serif); font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 20px; }
+  .closing p { font-size: 15px; color: var(--ink-mid); line-height: 1.95; margin-bottom: 16px; max-width: var(--w-text); }
+  .closing p:last-child { margin-bottom: 0; }
+  .closing-sig { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: var(--mono); font-size: 12px; color: var(--ink-mute); text-align: right; }
+
+  .tags { padding: 32px 0 48px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; border-top: 1px solid var(--rule); }
+  .tag-label { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); margin-right: 4px; }
+  .tag { font-size: 12px; color: var(--ink-mid); border: 1px solid var(--rule); padding: 4px 10px; }
+
+  footer { border-top: 2px solid var(--ink); padding: 24px 32px; max-width: var(--w-wide); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .footer-name { font-family: var(--mono); font-size: 12px; color: var(--ink-mid); }
+  .footer-note { font-size: 11px; color: var(--ink-faint); }
+
+  @media (max-width: 640px) {
+    .site-header, .hero, .opening-quote, .article, .prev-link { padding-left: 20px; padding-right: 20px; }
+    .bar-row { grid-template-columns: 110px 1fr 28px; }
+    .bar-row-label { font-size: 10px; }
+    .voice-grid { grid-template-columns: 1fr; }
+    .recap-row { grid-template-columns: 1fr; gap: 4px; }
+    footer { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <span class="site-name">居酒屋氷河期世代コミュニティ × note</span>
+  <span class="series-tag">連載 最終回</span>
+</header>
+
+<div class="prev-link">
+  <span class="prev-link-label">PREV</span>
+  <span class="prev-link-title">第3回：居場所より生活費、老後より今――柱２・柱３への当事者評価</span>
+</div>
+
+<div class="hero">
+  <div class="hero-meta">
+    <span class="issue-num">ISSUE 04 / 04</span>
+    <span class="final-badge">FINAL ISSUE</span>
+    <span class="pub-date">2026年5月</span>
+  </div>
+  <h1>30年後の<em>請求書</em>が届いた<br>Q16〜Q19・総括と提言</h1>
+  <p class="hero-sub">
+    Q16（欠けている視点）・Q17（生活と将来への不安）・Q18・Q19（政治参加）——
+    4つの設問から届いた声を総括し、政策提言を届ける最終回だ。
+    老後・孤独・絶望・怒り・賠償要求。そして「社会的な困難としての認定」を求める83.3%の声。
+  </p>
+</div>
+
+<div class="opening-quote">
+  <p class="big-quote">この30年、ほとんど非正規でしか働くことができない状況のなか必死に働き続けてきたが、老後のための十分な資産形成がままならないまま気が付いたら50歳を超えてしまいました。</p>
+  <p class="quote-attr">1971年生まれ / 女性 / 非正規雇用（パート・アルバイト・契約社員・派遣）</p>
+  <p class="quote-note">
+    「必死に働き続けた」のに「気が付いたら」——この言葉が連載全体を貫くテーマを凝縮している。
+    30年間の努力が報われず、気づいたときには手遅れだった。
+    請求書は、この世代ではなく、放置し続けた社会に届いている。
+  </p>
+</div>
+
+<main class="article">
+
+  <!-- Section 1: Q17 overview -->
+  <section>
+    <h2><span class="sec-num">01</span>Q16：プログラムに「欠けている」もの——83.3%が「社会的な困難としての認定」を求めた</h2>
+
+    <p>
+      「今回のプログラムで最も欠けていると感じる視点・支援」（Q16・複数選択）では、
+      すべての施策への要望を超えた答えが返ってきた。
+    </p>
+
+    <div class="chart-wrap">
+      <div class="chart-title">Q16 プログラムに欠けていると感じる視点（複数選択 n=221）</div>
+      <div id="barChartQ16"></div>
+      <div class="chart-note">居酒屋氷河期世代コミュニティ アンケート 2026年4月実施</div>
+    </div>
+
+    <p>
+      最多は<strong>「就職氷河期を『社会的災害』として認定し責任を明確化すること」（184件、83.3%）</strong>。
+      個別施策への要望を差し置いて、10人中8人がこれを選んだ。
+    </p>
+    <p>
+      これはリスキリングでも居場所でもなく、
+      <strong>「この世代が経験してきた困難を社会全体として受け止めてほしい」</strong>を求めている。
+      施策の前に、この世代が経験した苦難を社会が認めることが必要だ——という声だ。
+    </p>
+
+    <div class="voice-block green">
+      <div class="voice-text">支援じゃねえ、補償だ！！現金でな！！！</div>
+      <div class="voice-attr">1978年 / 女性 / 正規雇用（正社員・公務員等）</div>
+      <div class="voice-comment">「支援」ではなく「補償」——この言葉の違いは大きい。支援は恩恵として与えられるものだが、補償は権利として求めるものだ。83.3%の「社会的な困難としての認定」要求は、この差異を正確に指している。</div>
+    </div>
+
+    <div class="analysis">
+      <div class="analysis-label">ANALYSIS</div>
+      <p>2位「年金・退職金格差への補償」（75.6%）、4位「緊急現金・現物給付」（50.2%）と合わせると、当事者が求めているのは「プログラム的介入（リスキリング・居場所）」ではなく「直接的な経済補償」だということが明確だ。現行プログラムの3本柱はいずれもプログラム的介入であり、補償の概念を含んでいない。ここに評価（平均1.68点）と要求（83.3%）の根本的なずれがある。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="sec-num">02</span>Q17 全体像——175件の声が示す分布</h2>
+
+    <div class="stats-row">
+      <div class="stat-item accent-stat">
+        <div class="stat-num">49</div>
+        <div class="stat-label">1位「その他」<br>（サブ分類8区分）</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">37</div>
+        <div class="stat-label">2位「老後・年金・<br>貯蓄の不安」</div>
+      </div>
+      <div class="stat-item accent-stat">
+        <div class="stat-num">16</div>
+        <div class="stat-label">4位「絶望・安楽死・<br>生きることへの言及」</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">175</div>
+        <div class="stat-label">自由記述<br>回答数（Q17）</div>
+      </div>
+    </div>
+
+    <div class="chart-wrap">
+      <div class="chart-title">Q17 自由記述 大カテゴリ・サブカテゴリ別分布（n=175）</div>
+      <div id="barChartQ17"></div>
+      <div class="chart-note">居酒屋氷河期世代コミュニティ アンケート 2026年4月実施</div>
+    </div>
+
+    <p>
+      Q17は設問設計の制約がない自由記述だ。当事者が「今言いたいこと」を率直に書いた。
+      最多は<strong>「S. その他（49件、28.0%）」</strong>で、さらに8つのサブカテゴリに分類される。
+      2位に「老後・年金・貯蓄の不安（37件、21.1%）」が続く。
+      「絶望・安楽死・生きることへの言及」は4位（16件、9.1%）——
+      設問の自由度が高いだけに、他の設問では届かなかった声が集まった。
+    </p>
+  </section>
+
+  <!-- Section 2: 老後・年金 -->
+  <section>
+    <h2><span class="sec-num">03</span>2位：37件が語る「老後の絵が描けない」</h2>
+
+    <p>
+      23.4%が老後・年金・貯蓄への不安を書いた。しかしその内容は、
+      単なる「将来が心配」ではない——<strong>「30年働いたのに、老後の設計ができない」</strong>という怒りだ。
+    </p>
+
+    <div class="voice-block">
+      <div class="voice-text">現在50代で何とか非正規の仕事はしているものの、年金受給年齢まで生活を支え、住宅を確保出来るほどの蓄えが出来るとは思えない。派遣の3年ルールは罰則がなく3年で直接雇用にならない人が多いのではないかと感じる。</div>
+      <div class="voice-attr">1975年 / 女性 / 非正規雇用（パート・アルバイト・契約社員・派遣）</div>
+      <div class="voice-comment">「年金受給年齢まで生活を支えられるか」——これは老後への不安ではなく、現在の問題だ。年金まで辿り着けるかどうかが今の課題になっている。</div>
+    </div>
+
+    <div class="voice-block">
+      <div class="voice-text">氷河期世代の夫は長年正社員で踏ん張ってきたが、昇給は頭打ち。一方で人手不足の若手世代は初任給から底上げされ、賃金上昇率で完全に取り残されている。私は50代でやっと正規雇用になれたが、退職金もなく老後の不安しかない。</div>
+      <div class="voice-attr">1972年 / 女性 / 正規雇用（正社員・公務員等）</div>
+      <div class="voice-comment">「賃金上昇率で完全に取り残されている」——正規雇用に就いていても、この世代は賃上げの恩恵を受けられていない。「正規 vs 非正規」だけでは捉えられない格差がある。</div>
+    </div>
+
+    <div class="voice-block">
+      <div class="voice-text">今、貧困老人になりきる前に浮上するための施策を本気で考えて欲しい。公務員など、公が正当な給料で大量に正職員として雇用するなどし、派遣労働制度を廃止して使い捨てでない安定した雇用形態に移行して欲しい。</div>
+      <div class="voice-attr">1975年 / 女性 / 非正規雇用（パート・アルバイト・契約社員・派遣）</div>
+      <div class="voice-comment">「貧困老人になりきる前に」という言葉が重い。老後への不安ではなく、今すでにそこへの坂道を転げ落ちている感覚だ。</div>
+    </div>
+  </section>
+
+  <!-- Section 3: 生活苦・政治不信 -->
+  <section>
+    <h2><span class="sec-num">04</span>各18件・15件：「今が苦しい」と「政治を信じられない」</h2>
+
+    <h3>低賃金・非正規・現在の生活苦（18件）</h3>
+    <div class="voice-block dark">
+      <div class="voice-text">こちらが悪いわけじゃないのに長年苦しんできたことの補償がほしい。今は非正規で平日フルタイム労働とパートで土日働いていて休みなしでしのいでいますが、これでも氷河期は怠け者と言われる。</div>
+      <div class="voice-attr">1982年 / 女性 / 非正規雇用（パート・アルバイト・契約社員・派遣）</div>
+      <div class="voice-comment">「休みなしでしのいでいますが、これでも怠け者と言われる」——この言葉は、自己責任論が当事者にどれだけ深く刺さってきたかを示している。</div>
+    </div>
+
+    <div class="voice-block dark">
+      <div class="voice-text">給料上がらないのに物価高。石油高騰。貯金も出来ない。将来不安。</div>
+      <div class="voice-attr">1977年 / 男性 / 正規雇用（正社員・公務員等）</div>
+    </div>
+
+    <h3>政治・行政への不信・批判（15件）</h3>
+    <div class="voice-block dark">
+      <div class="voice-text">人生は点でなく、線です。今までの積み重ねがあり、氷河期世代も家族や職歴などそれなりに積み重ねてきたものがあって、リスキリングでそれを捨てられるかというと、ほとんどの人はNoと言うでしょう。</div>
+      <div class="voice-attr">1980年 / 女性 / 自営業・フリーランス</div>
+      <div class="voice-comment">「人生は点でなく、線です」——この一言が柱１への批判の本質を言い表している。過去の積み重ねを無視した「学び直し」の設計への根本的な異議だ。</div>
+    </div>
+
+    <div class="voice-block dark">
+      <div class="voice-text">就職が決まらない。どんなにスキルがあって、どんなに経験があったとしても、年齢と地域的な制約とが重なればどんな就職支援も無意味だ。</div>
+      <div class="voice-attr">1975年 / 男性 / 無業（求職中）</div>
+    </div>
+
+    <div class="analysis">
+      <div class="analysis-label">ANALYSIS</div>
+      <p>「低賃金・生活苦」と「政治不信」がそれぞれ22件でまったく同数というのは象徴的だ。生活苦が政治不信を生み、政治不信が「どうせ変わらない」という無力感を強化する。この悪循環が、Q19の「送っても変わらないと思っている（47.5%）」という数字に表れている。</p>
+    </div>
+  </section>
+
+  <!-- Section 4: 絶望・安楽死 -->
+  <section>
+    <h2><span class="sec-num">05</span>17件の絶望——「死にたい」「安楽死を認めてほしい」</h2>
+
+    <div class="caution-box">
+      <div class="caution-label">この声をどう読むか</div>
+      <p>Q17では「安楽死を認めてほしい」「死にたい」「生きている意味がわからない」という言葉が16件届いた（9.1%）。Q15の4件と合わせると、この連載全体で20件の「死」に関わる言葉が届いた。個人の問題ではなく、30年間の構造的放置が生んだ集団的絶望として受け止めなければならない。</p>
+    </div>
+
+    <div class="voice-block red">
+      <div class="voice-text">不安と絶望しかありません。努力しても努力しても報われず、きっと生活保護も受けられずに安楽死を求める事しか考えられないです。</div>
+      <div class="voice-attr">1970年 / 女性 / 非正規雇用（パート・アルバイト・契約社員・派遣）</div>
+    </div>
+
+    <div class="voice-block red">
+      <div class="voice-text">新卒で社会から拒絶され、30年が経ちました。うち20年を引きこもったまま終えました。40歳からバイトで社会復帰しました。とてもつらかった。今もつらい。ダブルワーク。最低賃金。</div>
+      <div class="voice-attr">1975年 / 女性 / 非正規雇用（パート・アルバイト・契約社員・派遣）</div>
+      <div class="voice-comment">「新卒で社会から拒絶され、30年が経ちました」——これは個人の失敗の物語ではない。社会の入口で弾かれ、30年かけてようやく「最低賃金のダブルワーク」に辿り着いた構造の物語だ。</div>
+    </div>
+
+    <div class="voice-block red">
+      <div class="voice-text">死にたい</div>
+      <div class="voice-attr">1980年 / 女性 / 非正規雇用（パート・アルバイト・契約社員・派遣）</div>
+    </div>
+
+    <div class="highlight-box">
+      <p>
+        「死にたい」という三文字を、私たちはここに記す。
+        これは過激な表現ではない。誰かがこのアンケートに、正直にそう書いた。
+      </p>
+      <p>
+        <strong>この言葉に政策が応えなければ、支援プログラムとは何だったのか。</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 5: Q16 -->
+
+  <!-- Section 6: Q18/Q19 -->
+  <section>
+    <h2><span class="sec-num">06</span>「関心4.02点」なのに「送っても変わらない47.5%」</h2>
+
+    <p>
+      Q18（政策への関心度）とQ19（意見発信の実態）を並べると、
+      この世代の置かれた状況の矛盾が浮かび上がる。
+    </p>
+
+    <div class="stats-row">
+      <div class="stat-item blue-stat">
+        <div class="stat-num">4.02</div>
+        <div class="stat-label">Q18 政策関心度<br>平均スコア（5点満点）</div>
+      </div>
+      <div class="stat-item blue-stat">
+        <div class="stat-num">50.7<small style="font-size:13px">%</small></div>
+        <div class="stat-label">「非常に関心がある」<br>（5点）</div>
+      </div>
+      <div class="stat-item accent-stat">
+        <div class="stat-num">47.5<small style="font-size:13px">%</small></div>
+        <div class="stat-label">「送っても<br>変わらないと思う」</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">10.9<small style="font-size:13px">%</small></div>
+        <div class="stat-label">「送りたいが<br>方法がわからない」</div>
+      </div>
+    </div>
+
+    <p>
+      政策への関心度は5点満点中<strong>平均4.02点</strong>と非常に高い。
+      しかし意見発信では「送っても変わらないと思っている」が<strong>47.5%</strong>と最多だ。
+      これは無関心ではない——<strong>高い関心を持ちながら、変えられないという経験の積み重ねが
+      諦めを生んでいる</strong>。
+    </p>
+    <p>
+      「送りたいが方法がわからない」が10.9%存在する。
+      意欲はあっても入口が見えていない層に対して、
+      具体的な発信先・方法の案内が必要だ。
+    </p>
+
+    <div class="analysis">
+      <div class="analysis-label">ANALYSIS</div>
+      <p>プログラム全体評価の平均1.68点と、政策関心度の平均4.02点を並べると構図が見える。この世代は無関心から低く評価しているのではない。深く関心を持ち、自分の生活を通じて検証した結果として、厳しい評価を下している。この「高関心・低評価」こそが、今回の調査の最も重要な発見の一つだ。</p>
+    </div>
+  </section>
+
+  <!-- Section 7: Series recap -->
+  <section>
+    <h2><span class="sec-num">07</span>4回シリーズの総括</h2>
+
+    <div class="series-recap">
+      <div class="recap-header">SERIES SUMMARY — 4回を通じて届いた声の構造</div>
+      <div class="recap-row">
+        <div class="recap-issue">ISSUE 01</div>
+        <div class="recap-title">プログラム全体評価（Q8・185件）——「遅すぎる」「具体性がない」「現役就労中の低賃金層が置き去り」</div>
+        <div class="recap-key">平均1.68点</div>
+      </div>
+      <div class="recap-row">
+        <div class="recap-issue">ISSUE 02</div>
+        <div class="recap-title">柱１・就労支援（Q10・174件）——「スキルではなく採用側の構造が問題」「年齢差別に法規制がない」「ハローワーク求人の質が低い」</div>
+        <div class="recap-key">否定55.7%</div>
+      </div>
+      <div class="recap-row">
+        <div class="recap-issue">ISSUE 03</div>
+        <div class="recap-title">柱２・３（Q12・147件 / Q15・146件）——「居場所より生活費」「老後より今」「住宅・年金・生活保護が急務」</div>
+        <div class="recap-key">肯定11.3% / 35.3%</div>
+      </div>
+      <div class="recap-row">
+        <div class="recap-issue">ISSUE 04</div>
+        <div class="recap-title">欠けている視点（Q16）——「社会的な困難としての認定」83.3%、「年金格差補償」75.6%、「緊急給付」50.2%</div>
+        <div class="recap-key">社会的認定83.3%</div>
+      </div>
+      <div class="recap-row">
+        <div class="recap-issue">ISSUE 04</div>
+        <div class="recap-title">生活・将来への不安（Q17・175件）——「老後の絵が描けない」「政治を信じられない」「安楽死を求める（16件）」</div>
+        <div class="recap-key">絶望9.1%</div>
+      </div>
+      <div class="recap-row">
+        <div class="recap-issue">ISSUE 04</div>
+        <div class="recap-title">政治参加（Q18・Q19）——関心度4.02点と「送っても変わらない」47.5%の矛盾</div>
+        <div class="recap-key">高関心・低信頼</div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <p><strong>4回を通じて繰り返された3つの問い：</strong></p>
+      <p>① 「スキルより構造を変えよ」——採用慣行・雇用制度への法的介入なしに、支援策は機能しない。</p>
+      <p>② 「老後より今をどうにかしてほしい」——65歳以降の備えより、現在の生活苦への対処が先決だ。</p>
+      <p>③ 「支援ではなく補償を」——83.3%が「社会的な困難としての認定」を求めた。自己責任論の公式否定が、すべての施策の前提として必要だ。</p>
+    </div>
+  </section>
+
+  <!-- Section 8: Policy proposals -->
+  <section>
+    <h2><span class="sec-num">08</span>政策提言——当事者の声から導かれた7つの要請</h2>
+
+    <div class="proposal">
+      <div class="proposal-num">PROPOSAL 01</div>
+      <div class="proposal-title">就職氷河期が生んだ困難を社会的な問題として位置づけ、丁寧に向き合うこと</div>
+      <div class="proposal-basis">根拠：Q16にて83.3%（184人中184件）が「社会的な困難として認定し責任を明確化すること」を最も重要な課題の一つとして挙げました</div>
+      <ul class="proposal-items">
+        <li>1999年・2004年派遣法改正等が当事者に与えた構造的損害を政府が公式に認定すること</li>
+        <li>謝罪・認定・補償のプロセスなき支援策は「やった感」として受け取られることを認識すること</li>
+      </ul>
+    </div>
+
+    <div class="proposal">
+      <div class="proposal-num">PROPOSAL 02</div>
+      <div class="proposal-title">今すぐ届く緊急経済支援の導入</div>
+      <div class="proposal-basis">根拠：Q16「緊急現金・現物給付」50.2%、「プッシュ型アウトリーチ」52.0%</div>
+      <ul class="proposal-items">
+        <li>生活困窮状態にある当事者への緊急現金・現物給付の実施</li>
+        <li>申請主義からの脱却：マイナンバーを活用したプッシュ型給付の制度化</li>
+        <li>年収300万円未満層への所得税・住民税の特例減税措置</li>
+      </ul>
+    </div>
+
+    <div class="proposal">
+      <div class="proposal-num">PROPOSAL 03</div>
+      <div class="proposal-title">年金・老後所得保障の抜本的強化</div>
+      <div class="proposal-basis">根拠：Q14「低家賃住宅優先入居」72.4%、「生活保護簡素化」60.2%、「年金補填」46.6%</div>
+      <ul class="proposal-items">
+        <li>非正規・低収入期間が長かった氷河期世代への年金受給額の特別加算制度の創設</li>
+        <li>最低保障年金水準を生活保護基準以上に引き上げること</li>
+        <li>生活保護申請の水際対策を法的に禁止し、オンライン申請・簡素化を進めること</li>
+        <li>低家賃公営住宅への氷河期世代向け優先枠の創設（Q14最多72.4%）</li>
+      </ul>
+    </div>
+
+    <div class="proposal">
+      <div class="proposal-num">PROPOSAL 04</div>
+      <div class="proposal-title">採用時の年齢差別を禁止する法規制の整備</div>
+      <div class="proposal-basis">根拠：Q16「年齢差別禁止法規制」46.6%、Q10「年齢差別・採用の壁」37件</div>
+      <ul class="proposal-items">
+        <li>採用選考における年齢を理由とした不採用を禁じる法整備（努力義務から罰則付き禁止へ）</li>
+        <li>不採用理由の開示義務化による選考透明性の確保</li>
+        <li>氷河期世代採用に取り組む企業への特別法人税減税・助成金制度の拡充</li>
+      </ul>
+    </div>
+
+    <div class="proposal">
+      <div class="proposal-num">PROPOSAL 05</div>
+      <div class="proposal-title">非正規・派遣での長期就労が生んだ格差への補償</div>
+      <div class="proposal-basis">根拠：Q16「年金・退職金格差への補償」75.6%（2位）</div>
+      <ul class="proposal-items">
+        <li>1999年・2004年派遣法改正以降の非正規誘導世代への年金補填措置の創設</li>
+        <li>当事者参加の検討会議を設置し、特別給付金制度の設計を行うこと</li>
+        <li>非正規就労期間に応じた退職金相当の国による上乗せ給付の検討</li>
+      </ul>
+    </div>
+
+    <div class="proposal">
+      <div class="proposal-num">PROPOSAL 06</div>
+      <div class="proposal-title">メンタルヘルス支援と介護離職対策の拡充</div>
+      <div class="proposal-basis">根拠：Q16「メンタルヘルス支援」47.1%、「介護離職対策」43.0%</div>
+      <ul class="proposal-items">
+        <li>氷河期世代に特化したメンタルヘルス支援拠点（オンライン含む）の設置・無料化</li>
+        <li>就労継続と親の介護が重なる「ダブルケア」への先手の制度支援</li>
+        <li>複雑性トラウマへの対応ができる専門相談窓口の拡充</li>
+      </ul>
+    </div>
+
+    <div class="proposal">
+      <div class="proposal-num">PROPOSAL 07</div>
+      <div class="proposal-title">施策期間の延長と当事者参加型の継続的モニタリング</div>
+      <div class="proposal-basis">根拠：「3年で終わる施策で65歳以降を語るな」という批判が多数</div>
+      <ul class="proposal-items">
+        <li>氷河期世代が70歳を迎えるまでを視野に入れた中長期計画として位置づけること</li>
+        <li>KPIに「貧困率」「精神的健康指標」「孤立死件数」等を複合的に設定すること</li>
+        <li>当事者参加型の政策評価・見直し会議を年次で実施すること</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<!-- Closing -->
+<div class="closing">
+  <div class="article">
+    <div class="closing-title">おわりに——221件の回答が届けた「30年後の請求書」</div>
+    <p>
+      今回のアンケートに寄せられた221件の回答は、数字である以上に、一人ひとりの30年間の蓄積だ。
+    </p>
+    <p>
+      全体評価の平均1.68点という数字は、無関心から来ていない。
+      政策関心度4.02点という高い関心を持ちながら、
+      自分の生活を通じて検証した結果として「評価できない」という答えが返ってきた。
+    </p>
+    <p>
+      「安楽死を認めてほしい」「死にたい」——4回を通じて20件の「死」に関わる言葉が届いた。
+      これを個人の問題として処理することはできない。
+      30年間の構造的放置が積み重ねた末の言葉として、政策立案者は正面から受け止める必要がある。
+    </p>
+    <p>
+      私たちが求めているのはこの一点だ。
+      <strong>「支援を受ける立場ではなく、30年間社会を支えてきた世代として、
+      今度は社会から支えてもらう権利がある」</strong>——この認識を、施策の出発点に置いてほしい。
+    </p>
+    <p>
+      本レポートを、内閣官房就職氷河期世代支援推進室、厚生労働省、および関係議員・省庁に提出する。
+      221人の声が、一つでも多く政策に反映されることを願って。
+    </p>
+    <div class="closing-sig">
+      2026年5月　居酒屋氷河期世代コミュニティ<br>
+      X: @kami_sora_fly　note: note.com/kami_sora_fly
+    </div>
+  </div>
+</div>
+
+<div class="article" style="padding-top:0;">
+  <div class="tags">
+    <span class="tag-label">#</span>
+    <span class="tag">就職氷河期世代</span>
+    <span class="tag">氷河期支援プログラム</span>
+    <span class="tag">当事者の声</span>
+    <span class="tag">政策提言</span>
+    <span class="tag">社会的な困難としての認定</span>
+    <span class="tag">ロスジェネ</span>
+    <span class="tag">アンケート結果</span>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-name">居酒屋氷河期世代コミュニティ @kami_sora_fly</span>
+  <span class="footer-note">本記事の引用・転載は出典明記のうえお願いします</span>
+</footer>
+
+<script>
+// Q17 official data with S sub-categories
+const q17groups = [
+  {
+    label: 'S. その他（複合的指摘・生活実態・多様な声）', total: 49, color: '#7a756c', isTop: true,
+    subs: [
+      { label: 'S-1. 物価高・低賃金・生活苦・直接給付の要求', count: 16 },
+      { label: 'S-2. 過去の傷・社会不信・精神的絶望・自己否定', count: 11 },
+      { label: 'S-3. 対策が遅すぎる・今更感への怒り', count: 6 },
+      { label: 'S-4. 非正規・解雇・雇用制度への不安', count: 5 },
+      { label: 'S-5. 職場不満・世代間格差・他世代へのしわ寄せ', count: 4 },
+      { label: 'S-6. 孤独・老後・家族（介護・家の処分）の不安', count: 4 },
+      { label: 'S-7. 努力した人への不公平感・一律支援の要求', count: 2 },
+      { label: 'S-8. 次世代への懸念・社会への提言', count: 1 },
+    ]
+  },
+  { label: 'C. 老後・年金・貯蓄の不安', total: 37, color: '#c0392b', subs: [] },
+  { label: 'D. 低賃金・非正規・ワーキングプアの現実', total: 18, color: '#c0392b', subs: [] },
+  { label: 'A. 絶望・安楽死・生きることへの言及', total: 16, color: '#96241b', subs: [] },
+  { label: 'O. 政治・行政への不信・批判', total: 15, color: '#7a756c', subs: [] },
+  { label: 'B. 国への謝罪・賠償・補償要求', total: 13, color: '#1a4a7a', subs: [] },
+  { label: 'E. 健康・障害・精神的疲弊（労働環境による傷）', total: 7, color: '#7a4a1a', subs: [] },
+  { label: 'G. 生活保護・セーフティネットへの不安と要求', total: 3, color: '#1a6e4a', subs: [] },
+  { label: 'I. 子育て・教育費・世代間格差への不安', total: 3, color: '#1a4a7a', subs: [] },
+  { label: 'N. 孤独・孤立・将来への絶望感', total: 3, color: '#96241b', subs: [] },
+  { label: 'H. 年齢差別・採用・転職の壁', total: 2, color: '#b5b0a7', subs: [] },
+  { label: 'J. 税金・社会保険料・負担増への怒り', total: 2, color: '#b5b0a7', subs: [] },
+  { label: 'F/K/L/M/P/Q/R（各1件）', total: 7, color: '#d8d3cb', subs: [] },
+];
+const q17data = [];
+
+const q16data = [
+  { label: '就職氷河期を「社会的な困難」として認定', count: 184, color: '#c0392b' },
+  { label: '年金・退職金格差への補償',              count: 167, color: '#c0392b' },
+  { label: 'プッシュ型アウトリーチの制度化',        count: 115, color: '#1a4a7a' },
+  { label: '緊急的な現金・現物給付',                count: 111, color: '#1a4a7a' },
+  { label: 'メンタルヘルス支援',                    count: 104, color: '#7a4a1a' },
+  { label: '採用年齢差別禁止の法規制',              count: 103, color: '#1a4a7a' },
+  { label: '介護離職リスクへの先手対策',            count:  95, color: '#1a6e4a' },
+  { label: '老後の所得保障（最低保障年金等）',      count:  92, color: '#1a6e4a' },
+  { label: '訪問・伴走支援の拡充',                  count:  56, color: '#1a6e4a' },
+];
+
+function buildChart(containerId, data) {
+  const maxCount = Math.max(...data.map(d => d.count));
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  data.forEach(d => {
+    const pct = (d.count / maxCount * 100).toFixed(1);
+    const row = document.createElement('div');
+    row.className = 'bar-row';
+    row.innerHTML = `
+      <div class="bar-row-label">${d.label}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${d.color};"></div></div>
+      <div class="bar-count">${d.count}</div>`;
+    container.appendChild(row);
+  });
+}
+
+// Render hierarchical Q17 chart
+(function() {
+  const container = document.getElementById('barChartQ17');
+  if (!container) return;
+  const maxVal = Math.max(...q17groups.map(g => g.total));
+
+  q17groups.forEach(group => {
+    const pct = (group.total / maxVal * 100).toFixed(1);
+    const hrow = document.createElement('div');
+    hrow.className = 'bar-row';
+    hrow.style.marginBottom = group.subs.length ? '4px' : '8px';
+    hrow.innerHTML = `
+      <div class="bar-row-label" style="font-weight:700;color:var(--ink);">${group.label}</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:${pct}%;background:${group.color};"></div>
+      </div>
+      <div class="bar-count" style="font-weight:700;color:var(--ink);">${group.total}</div>`;
+    container.appendChild(hrow);
+
+    group.subs.forEach(sub => {
+      const spct = (sub.count / maxVal * 100).toFixed(1);
+      const srow = document.createElement('div');
+      srow.className = 'bar-row';
+      srow.style.marginBottom = '4px';
+      srow.innerHTML = `
+        <div class="bar-row-label" style="padding-left:12px;color:var(--ink-mute);font-size:10px;">${sub.label}</div>
+        <div class="bar-track" style="height:13px;">
+          <div class="bar-fill" style="width:${spct}%;background:${group.color};opacity:0.4;"></div>
+        </div>
+        <div class="bar-count" style="font-size:11px;color:var(--ink-mute);">${sub.count}</div>`;
+      container.appendChild(srow);
+    });
+
+    if (group.subs.length > 0) {
+      const spacer = document.createElement('div');
+      spacer.style.height = '8px';
+      container.appendChild(spacer);
+    }
+  });
+})();
+buildChart('barChartQ16', q16data);
+</script>
+</body>
+</html>
