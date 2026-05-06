@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>氷河期世代アンケート 自由記述カテゴリ別集計レポート</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@400;700&display=swap');
+:root{--bg:#0d1117;--surface:#161b22;--surface2:#1c2433;--border:#30363d;--text:#e6edf3;--text-muted:#7d8590;--accent:#e85d4a;--q8:#e85d4a;--q10:#f59e0b;--q12:#3b82f6;--q15:#10b981;--q17:#c084fc}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:14px;line-height:1.7}
+.site-header{background:var(--surface);border-bottom:1px solid var(--border);padding:40px 60px 32px;position:relative;overflow:hidden}
+.site-header::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(232,93,74,.15) 0%,transparent 70%);pointer-events:none}
+.header-label{font-size:11px;font-weight:700;letter-spacing:.15em;color:var(--accent);text-transform:uppercase;margin-bottom:10px}
+.header-title{font-family:'Noto Serif JP',serif;font-size:clamp(22px,3vw,30px);font-weight:700;line-height:1.4;margin-bottom:16px}
+.header-meta{display:flex;gap:32px;flex-wrap:wrap;color:var(--text-muted);font-size:13px}
+.header-meta strong{color:var(--text)}
+.nav-bar{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 60px;display:flex;gap:0;overflow-x:auto}
+.nav-btn{padding:14px 18px;font-size:12px;font-weight:500;color:var(--text-muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:color .2s,border-color .2s}
+.nav-btn:hover{color:var(--text)}
+.nav-btn.active{color:var(--text);border-bottom-color:var(--accent)}
+.summary-section{padding:48px 60px;border-bottom:1px solid var(--border)}
+.section-heading{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:24px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:36px}
+.kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px 24px;position:relative;overflow:hidden}
+.kpi-card::before{content:'';position:absolute;top:0;left:0;height:3px;width:100%}
+.kpi-card.q8::before{background:var(--q8)}.kpi-card.q10::before{background:var(--q10)}.kpi-card.q12::before{background:var(--q12)}.kpi-card.q15::before{background:var(--q15)}.kpi-card.q17::before{background:var(--q17)}
+.kpi-label{font-size:11px;color:var(--text-muted);margin-bottom:8px;font-weight:500}
+.kpi-num{font-size:32px;font-weight:900;letter-spacing:-.02em}
+.kpi-card.q8 .kpi-num{color:var(--q8)}.kpi-card.q10 .kpi-num{color:var(--q10)}.kpi-card.q12 .kpi-num{color:var(--q12)}.kpi-card.q15 .kpi-num{color:var(--q15)}.kpi-card.q17 .kpi-num{color:var(--q17)}
+.kpi-sub{font-size:12px;color:var(--text-muted);margin-top:4px}
+.q-section{padding:48px 60px;border-bottom:1px solid var(--border)}
+.q-header{display:flex;align-items:flex-start;gap:20px;margin-bottom:32px}
+.q-badge{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:8px;font-size:13px;font-weight:700;flex-shrink:0;margin-top:2px}
+.q8 .q-badge{background:rgba(232,93,74,.2);color:var(--q8)}.q10 .q-badge{background:rgba(245,158,11,.2);color:var(--q10)}.q12 .q-badge{background:rgba(59,130,246,.2);color:var(--q12)}.q15 .q-badge{background:rgba(16,185,129,.2);color:var(--q15)}.q17 .q-badge{background:rgba(192,132,252,.2);color:var(--q17)}
+.q-number{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px}
+.q-question{font-size:15px;font-weight:500;line-height:1.6;color:var(--text)}
+.q-meta{font-size:12px;color:var(--text-muted);margin-top:6px}
+.chart-wrap{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:28px 32px;margin-bottom:24px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead tr{border-bottom:1px solid var(--border)}
+thead th{text-align:left;padding:10px 14px;color:var(--text-muted);font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+tbody tr{border-bottom:1px solid var(--border);transition:background .15s}
+tbody tr:hover{background:var(--surface2)}
+tbody tr:last-child{border-bottom:none}
+td{padding:10px 14px}
+.td-rank{color:var(--text-muted);font-variant-numeric:tabular-nums;width:40px}
+.td-cat{font-weight:500;min-width:180px}
+.td-desc{color:var(--text-muted);font-size:12px}
+.td-count{font-weight:700;font-variant-numeric:tabular-nums;text-align:right;width:60px}
+.td-pct{color:var(--text-muted);text-align:right;width:60px;font-variant-numeric:tabular-nums}
+.td-bar{width:140px}
+.bar-track{background:var(--border);border-radius:2px;height:6px;overflow:hidden}
+.bar-fill{height:100%;border-radius:2px}
+footer{padding:32px 60px;color:var(--text-muted);font-size:12px;border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-label">居酒屋氷河期世代コミュニティ — アンケート分析レポート</div>
+  <h1 class="header-title">就職氷河期世代等支援プログラム<br>当事者評価アンケート 自由記述カテゴリ別集計レポート</h1>
+  <div class="header-meta">
+    <span>対象設問 <strong>Q8 / Q10 / Q12 / Q15 / Q17</strong></span>
+    <span>総回答数 <strong>827件（5設問合計）</strong></span>
+    <span>作成 <strong>2026年5月</strong></span>
+  </div>
+</header>
+<nav class="nav-bar">
+  <button class="nav-btn active" onclick="goTo('summary')">サマリー</button>
+  <button class="nav-btn" onclick="goTo('q8')">Q8 全体評価</button>
+  <button class="nav-btn" onclick="goTo('q10')">Q10 柱１（就労）</button>
+  <button class="nav-btn" onclick="goTo('q12')">Q12 柱２（社会参加）</button>
+  <button class="nav-btn" onclick="goTo('q15')">Q15 柱３（高齢期）</button>
+  <button class="nav-btn" onclick="goTo('q17')">Q17 生活・将来不安</button>
+</nav>
+<section class="summary-section" id="summary">
+  <div class="section-heading">サマリー — 5設問 全体概観</div>
+  <div class="kpi-grid">
+    <div class="kpi-card q8"><div class="kpi-label">Q8 プログラム全体評価</div><div class="kpi-num">185</div><div class="kpi-sub">件 / 18カテゴリ</div></div>
+    <div class="kpi-card q10"><div class="kpi-label">Q10 柱１（就労・処遇改善）</div><div class="kpi-num">174</div><div class="kpi-sub">件 / 16カテゴリ</div></div>
+    <div class="kpi-card q12"><div class="kpi-label">Q12 柱２（社会参加支援）</div><div class="kpi-num">147</div><div class="kpi-sub">件 / 18カテゴリ</div></div>
+    <div class="kpi-card q15"><div class="kpi-label">Q15 柱３（高齢期備え）</div><div class="kpi-num">146</div><div class="kpi-sub">件 / 16カテゴリ</div></div>
+    <div class="kpi-card q17"><div class="kpi-label">Q17 生活・将来の不安</div><div class="kpi-num">175</div><div class="kpi-sub">件 / 19カテゴリ</div></div>
+  </div>
+  <div class="chart-wrap"><canvas id="summaryChart" height="160"></canvas></div>
+</section>
+<section class="q-section q8" id="q8">
+  <div class="q-header"><div class="q-badge">Q8</div><div><div class="q-number">Question 8 — プログラム全体評価</div><div class="q-question">今回の就職氷河期世代等支援プログラム全体を見て、どのように感じましたか？</div><div class="q-meta">回答数：185件 ／ 18カテゴリ</div></div></div>
+  <div class="chart-wrap"><canvas id="q8Chart" height="420"></canvas></div>
+  <div class="table-wrap"><table id="q8Table"></table></div>
+  <div class="sub-section">
+    <div class="sub-heading">▼ R「その他」32件のサブ分類（詳細内訳）</div>
+    <div class="chart-wrap"><canvas id="q8SubChart" height="200"></canvas></div>
+    <div class="table-wrap"><table id="q8SubTable"></table></div>
+  </div>
+</section>
+<section class="q-section q10" id="q10">
+  <div class="q-header"><div class="q-badge">Q10</div><div><div class="q-number">Question 10 — 柱１（就労・処遇改善支援）</div><div class="q-question">柱１（就労・処遇改善支援）について、問題点・不足している点があれば教えてください。</div><div class="q-meta">回答数：174件 ／ 16カテゴリ</div></div></div>
+  <div class="chart-wrap"><canvas id="q10Chart" height="370"></canvas></div>
+  <div class="table-wrap"><table id="q10Table"></table></div>
+</section>
+<section class="q-section q12" id="q12">
+  <div class="q-header"><div class="q-badge">Q12</div><div><div class="q-number">Question 12 — 柱２（社会参加に向けた段階的支援）</div><div class="q-question">柱２（社会参加に向けた段階的支援）について、問題点・不足していると感じる点があれば教えてください。</div><div class="q-meta">回答数：147件 ／ 18カテゴリ</div></div></div>
+  <div class="chart-wrap"><canvas id="q12Chart" height="420"></canvas></div>
+  <div class="table-wrap"><table id="q12Table"></table></div>
+</section>
+<section class="q-section q15" id="q15">
+  <div class="q-header"><div class="q-badge">Q15</div><div><div class="q-number">Question 15 — 柱３（高齢期に備えた生活基盤の確保支援）</div><div class="q-question">柱３（高齢期に備えた生活基盤の確保支援）について、問題点・不足していると感じる点があれば教えてください。</div><div class="q-meta">回答数：146件 ／ 16カテゴリ</div></div></div>
+  <div class="chart-wrap"><canvas id="q15Chart" height="370"></canvas></div>
+  <div class="table-wrap"><table id="q15Table"></table></div>
+</section>
+<section class="q-section q17" id="q17">
+  <div class="q-header"><div class="q-badge">Q17</div><div><div class="q-number">Question 17 — 生活・将来の不安</div><div class="q-question">今のあなたの生活や将来に対する不安・思いを、率直に教えてください。</div><div class="q-meta">回答数：175件 ／ 19カテゴリ</div></div></div>
+  <div class="chart-wrap"><canvas id="q17Chart" height="440"></canvas></div>
+  <div class="table-wrap"><table id="q17Table"></table></div>
+  <div class="sub-section">
+    <div class="sub-heading">▼ S「その他」49件のサブ分類（詳細内訳）</div>
+    <div class="chart-wrap"><canvas id="q17SubChart" height="220"></canvas></div>
+    <div class="table-wrap"><table id="q17SubTable"></table></div>
+  </div>
+</section>
+<footer>
+  <span>© 2026 居酒屋氷河期世代コミュニティ @kami_sora_fly</span>
+  <span>note.com/kami_sora_fly/portal</span>
+</footer>
+<script>
+const DATA={
+  q8:{total:185,color:'#e85d4a',categories:[
+    {cat:'R',label:'その他',desc:'肯定的・中立・評価不能等',n:32},
+    {cat:'A',label:'遅すぎる・今更感',desc:'「今更」「手遅れ」「遅すぎる」が主語',n:30},
+    {cat:'D',label:'具体性・実効性の欠如・パフォーマンス批判',desc:'目標数値なし・やった感批判',n:18},
+    {cat:'J',label:'現役就労中・低賃金層への支援不足',desc:'就業しているが低賃金・非正規層への支援欠落',n:13},
+    {cat:'B',label:'リスキリング・就労サポートへの批判',desc:'就労支援策の手段的無効性',n:13},
+    {cat:'E',label:'生活困窮・直接給付・減税の要求',desc:'給付金・減税・BI等を求める声',n:10},
+    {cat:'G',label:'ハローワーク・実施機関への不信',desc:'ハロワ・ジョブカフェ等の質への不信',n:10},
+    {cat:'C',label:'年齢差別・採用の現実',desc:'採用現場での年齢バイアス・実務経験要件',n:9},
+    {cat:'F',label:'中間搾取・利権批判',desc:'NPO・支援業者への中抜き批判',n:8},
+    {cat:'K',label:'政府・制度への不信・政治批判',desc:'政府・自民党への不信',n:7},
+    {cat:'L',label:'施策の的外れ・大多数に届かない',desc:'本当に困っている層に届かないという指摘',n:7},
+    {cat:'H',label:'高齢期支援への部分的評価',desc:'柱３新設を評価しつつ現役支援の薄さを指摘',n:5},
+    {cat:'M',label:'謝罪・承認・構造的責任の要求',desc:'国の失敗への謝罪・自己責任論への反発',n:5},
+    {cat:'Q',label:'ジェンダー・介護・子育ての複合問題',desc:'育児・介護との矛盾・ジェンダー格差',n:5},
+    {cat:'I',label:'健康・体力の問題・精神的疲弊',desc:'年齢・体力・精神的疲弊により届かない現実',n:4},
+    {cat:'P',label:'外国人雇用・公務員採用との不公平感',desc:'外国人雇用補助金・公務員枠との対比',n:4},
+    {cat:'N',label:'情報・周知不足・内容不明',desc:'施策内容を知らない・わからない状況',n:3},
+    {cat:'O',label:'派遣・雇用制度の構造的問題',desc:'派遣法・無期雇用ルールなど雇用制度の問題',n:2},
+  ]},
+  q10:{total:174,color:'#f59e0b',categories:[
+    {cat:'B',label:'リスキリング無効論',desc:'スキルを取得しても採用されない構造への批判',n:46},
+    {cat:'A',label:'年齢差別・採用現場の壁',desc:'年齢を理由に採用されない・年齢バイアス',n:37},
+    {cat:'D',label:'ハローワーク・支援機関への批判と提案',desc:'ハロワ職員の質・伴走支援の実効性への批判',n:37},
+    {cat:'F',label:'給与・待遇・正規雇用条件の問題',desc:'リスキリング・就労後の給与・待遇の困難',n:14},
+    {cat:'P',label:'施策の実効性・具体性への疑問',desc:'目標・手法が曖昧でパフォーマンス批判',n:10},
+    {cat:'G',label:'企業側への義務化・インセンティブ要求',desc:'採用側企業への義務付け・ペナルティ要求',n:8},
+    {cat:'R',label:'その他',desc:'評価保留・複合的指摘等',n:7},
+    {cat:'O',label:'既存就労者・転職前提設計への不満',desc:'現役非正規・低賃金就労者が対象外になる問題',n:3},
+    {cat:'H',label:'移民・外国人労働者政策との矛盾',desc:'外国人受け入れ政策と氷河期支援の矛盾',n:2},
+    {cat:'J',label:'直接給付・減税要求',desc:'就労支援より直接的な金銭支援を求める声',n:2},
+    {cat:'N',label:'AI選考・デジタル格差',desc:'AI選考・デジタルスキル要件による新たな排除',n:2},
+    {cat:'C',label:'実務経験・職歴断絶の壁',desc:'経験者可求人・実務経験要件によるブランク層の締め出し',n:2},
+    {cat:'E',label:'中間搾取・利権批判',desc:'NPO・支援業者への予算の中抜き批判',n:1},
+    {cat:'I',label:'精神・健康・体力の限界',desc:'消耗による気力・体力的限界が就労支援を無効に',n:1},
+    {cat:'L',label:'公務員採用・特別雇用枠の活用提案',desc:'公務員枠・障害者雇用枠準じた特別採用制度提案',n:1},
+    {cat:'Q',label:'地方・地域格差の問題',desc:'地方では求人数が少なく柱１が機能しないという指摘',n:1},
+  ]},
+  q12:{total:147,color:'#3b82f6',categories:[
+    {cat:'D',label:'居場所づくり・社会参加支援の実効性への疑問',desc:'居場所の抽象性・「どこかに押し込むだけ」批判',n:28},
+    {cat:'A',label:'遅すぎる・今更感',desc:'支援の遅さ・タイミングへの絶望感',n:20},
+    {cat:'R',label:'その他',desc:'複合的指摘・評価保留・単純批判等',n:18},
+    {cat:'E',label:'経済的支援・生活保障の優先を求める声',desc:'居場所より生活費・年金等の経済支援が必要',n:12},
+    {cat:'F',label:'周知・情報アクセス・窓口の問題',desc:'支援情報の周知不足・オンライン対応要求',n:11},
+    {cat:'M',label:'施策の対象設定・現役就労者の除外への疑問',desc:'就労継続者・納税者が対象外になる設計への疑問',n:7},
+    {cat:'G',label:'低賃金・劣悪雇用への誘導批判',desc:'軽作業・介護・清掃への誘導・中間就労の低賃金問題批判',n:7},
+    {cat:'B',label:'引きこもり・能力不足イメージへの反発',desc:'「氷河期世代＝引きこもり」前提のスティグマ批判',n:6},
+    {cat:'K',label:'福祉・別機関との連携・委託を求める声',desc:'カウンセリング・精神疾患・発達障害との連携',n:6},
+    {cat:'I',label:'謝罪・承認・過去の不作為への言及要求',desc:'国の不作為への謝罪・世代の努力の承認要求',n:5},
+    {cat:'P',label:'参加へのハードル（時間・体力・外出困難）',desc:'仕事・介護・精神的疲弊により出向けない現実',n:5},
+    {cat:'H',label:'行政・制度への不信',desc:'「どうせ形だけ」「刺さらない」という諦め',n:4},
+    {cat:'J',label:'人間不信・対人困難（過去の傷・メンタル）',desc:'職場での傷つき・パワハラ経験による人間不信',n:4},
+    {cat:'L',label:'地域・地方格差の問題',desc:'地方では拠点へのアクセスコスト・求人数不足',n:4},
+    {cat:'C',label:'中間搾取・利権・公金批判',desc:'NPO・支援事業者による公金の中抜き批判',n:3},
+    {cat:'Q',label:'施策の先・出口ビジョン・具体性の欠如',desc:'中間就労の「その先」「何年保証か」の出口設計欠如',n:3},
+    {cat:'N',label:'ボランティア・無償労働への動員批判',desc:'支援名目で無償・地域奉仕活動に動員する意図への批判',n:2},
+    {cat:'O',label:'支援者・実施側の能力・理解不足',desc:'支援員・窓口スタッフの質・当事者理解不足への懸念',n:2},
+  ]},
+  q15:{total:146,color:'#10b981',categories:[
+    {cat:'B',label:'老後就労強制・生涯現役への反発',desc:'「死ぬまで働かせる」という強い反発',n:21},
+    {cat:'F',label:'直接給付・補填・賠償・賃金補償の要求',desc:'現金給付・生涯賃金差額の賠償を求める声',n:18},
+    {cat:'Q',label:'その他',desc:'複合的指摘・評価保留・制度提案等',n:17},
+    {cat:'D',label:'住宅支援の要求・実効性への疑問',desc:'低家賃住宅・公営住宅の優先入居を今すぐ求める声',n:17},
+    {cat:'G',label:'生活保護・セーフティネットの要求・改善',desc:'受給要件緩和・申請簡素化・水際対策廃止要求',n:16},
+    {cat:'E',label:'現役世代への優先支援要求（老後より今）',desc:'「65歳以降より今の生活をどうにか」という声',n:14},
+    {cat:'C',label:'年金の不足・不安・改革要求',desc:'国民年金の受取額不足・支給開始年齢後ろ倒し警戒',n:12},
+    {cat:'I',label:'遅すぎる・今更感・実現性への不信',desc:'「全部遅い」「どうせまた変えられる」という不信',n:12},
+    {cat:'A',label:'絶望・安楽死への言及',desc:'長年の放置への絶望・安楽死希望の声（政策立案者必読）',n:4},
+    {cat:'J',label:'対象設定の偏り・格差・公平性への疑問',desc:'努力した人に恩恵なし・格差の大きさの指摘',n:3},
+    {cat:'O',label:'孤独・おひとりさま老後・死後への対応',desc:'頼れる家族なし・末代での老後不安',n:3},
+    {cat:'H',label:'国の失策認定・謝罪・構造改善要求',desc:'「人生を破壊した政府が責任を持って補償すべき」',n:2},
+    {cat:'L',label:'子育て・介護・家族状況の多様性への対応',desc:'子育て状況・親の介護・家族構成の違いへの対応',n:2},
+    {cat:'M',label:'健康・体力・寿命の不安',desc:'65歳まで働き続けること自体が困難という現実',n:2},
+    {cat:'N',label:'移民・外国人労働者問題との関連',desc:'移民が氷河期支援を担う可能性への違和感',n:2},
+    {cat:'K',label:'施策の的外れ・パフォーマンス批判',desc:'根本解決にならない老人受けを狙ったパフォーマンス批判',n:1},
+  ]},
+  q17:{total:175,color:'#c084fc',categories:[
+    {cat:'S',label:'その他',desc:'複合的指摘・生活実態・多様な声',n:49},
+    {cat:'C',label:'老後・年金・貯蓄の不安',desc:'老後資金・年金受給・貯蓄不足への深刻な不安',n:37},
+    {cat:'D',label:'低賃金・非正規・ワーキングプアの現実',desc:'現役世代のワーキングプア化の直視要求',n:18},
+    {cat:'A',label:'絶望・安楽死・生きることへの言及',desc:'長年の放置への絶望・安楽死希望の声',n:16},
+    {cat:'O',label:'政治・行政への不信・批判',desc:'政府への不信・政策の動機・機能不全への批判',n:15},
+    {cat:'B',label:'国への謝罪・賠償・補償要求',desc:'政策の誤り認定・補償金支給の要求',n:13},
+    {cat:'E',label:'健康・障害・精神的疲弊（労働環境による傷）',desc:'労働環境による心身への傷・疾患',n:7},
+    {cat:'G',label:'生活保護・セーフティネットへの不安と要求',desc:'生活保護・水際対策への懸念と要求',n:3},
+    {cat:'I',label:'子育て・教育費・世代間格差への不安',desc:'子育て終了後に次世代への支援負担を問う声',n:3},
+    {cat:'N',label:'孤独・孤立・将来への絶望感',desc:'学習的無気力・社会への深刻な不信感',n:3},
+    {cat:'H',label:'年齢差別・採用・転職の壁',desc:'職歴多数が犯罪歴扱い・年齢で書類落ちの連続',n:2},
+    {cat:'J',label:'税金・社会保険料・負担増への怒り',desc:'重税・社会保険料増への怒り',n:2},
+    {cat:'F',label:'住宅・居住の不安',desc:'孤独死・死後の処理・持ち家の処分不安',n:1},
+    {cat:'K',label:'直接給付・現金支援の要求',desc:'氷河期採用事業者への給付要求',n:1},
+    {cat:'L',label:'雇用制度・派遣法の構造的問題',desc:'定年撤廃・高齢でも働きやすい環境整備要求',n:1},
+    {cat:'M',label:'企業への責任追及・採用インセンティブ要求',desc:'超氷河期を生み出した企業への責任追及',n:1},
+    {cat:'P',label:'承認・尊厳の回復要求（自己責任論への反発）',desc:'「無敵の人」増加リスクへの警鐘',n:1},
+    {cat:'Q',label:'女性・ジェンダー特有の困難',desc:'公務員試験の男女格差・女性への差別',n:1},
+    {cat:'R',label:'移民・外国人雇用政策との不公平感',desc:'外国人高待遇への疑問',n:1},
+  ]}
+};
+
+Chart.defaults.color='#7d8590';
+Chart.defaults.font.family="'Noto Sans JP', sans-serif";
+
+// Summary
+new Chart(document.getElementById('summaryChart'),{
+  type:'bar',
+  data:{
+    labels:['Q8 全体評価','Q10 柱１就労','Q12 柱２社会参加','Q15 柱３高齢期','Q17 生活不安'],
+    datasets:[{label:'自由記述件数',data:[185,174,147,146,175],
+      backgroundColor:['#e85d4acc','#f59e0bcc','#3b82f6cc','#10b981cc','#c084fccc'],
+      borderColor:['#e85d4a','#f59e0b','#3b82f6','#10b981','#c084fc'],
+      borderWidth:1.5,borderRadius:4}]
+  },
+  options:{responsive:true,plugins:{legend:{display:false}},
+    scales:{y:{grid:{color:'#30363d'},title:{display:true,text:'回答件数',color:'#7d8590'}},
+      x:{grid:{display:false}}}}
+});
+
+function renderQ(qkey){
+  const d=DATA[qkey];
+  const sorted=[...d.categories].sort((a,b)=>b.n-a.n);
+  const maxN=sorted[0].n;
+  new Chart(document.getElementById(qkey+'Chart'),{
+    type:'bar',
+    data:{labels:sorted.map(c=>c.label),datasets:[{label:'件数',
+      data:sorted.map(c=>c.n),
+      backgroundColor:d.color+'88',borderColor:d.color,borderWidth:1,borderRadius:3}]},
+    options:{indexAxis:'y',responsive:true,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${ctx.raw}件 (${(ctx.raw/d.total*100).toFixed(1)}%)`}}},
+      scales:{x:{grid:{color:'#30363d'},title:{display:true,text:'件数',color:'#7d8590'}},
+        y:{grid:{display:false},ticks:{color:'#c9d1d9',font:{size:12}}}}}
+  });
+  const tbl=document.getElementById(qkey+'Table');
+  const rows=sorted.map((c,i)=>{
+    const pct=(c.n/d.total*100).toFixed(1);
+    const bp=(c.n/maxN*100).toFixed(1);
+    return `<tr><td class="td-rank">${i+1}</td><td class="td-cat">${c.cat}. ${c.label}</td><td class="td-desc">${c.desc}</td><td class="td-count">${c.n}</td><td class="td-pct">${pct}%</td><td class="td-bar"><div class="bar-track"><div class="bar-fill" style="width:${bp}%;background:${d.color}"></div></div></td></tr>`;
+  }).join('');
+  tbl.innerHTML=`<thead><tr><th>#</th><th>カテゴリ</th><th>内容概要</th><th style="text-align:right">件数</th><th style="text-align:right">構成比</th><th>相対</th></tr></thead><tbody>${rows}</tbody>`;
+}
+['q8','q10','q12','q15','q17'].forEach(renderQ);
+
+function goTo(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+// ===== SUB-CATEGORIES =====
+const SUB={
+  q8:{color:'#e85d4a',total:32,parentLabel:'R「その他」Q8 — 32件の詳細内訳',categories:[
+    ['R-1','「やらないよりマシ」等の妥協的評価・様子見',10],
+    ['R-2','具体性・期日・中身が不明確という指摘',9],
+    ['R-3','現役世代・貧困層への直接的支援の欠如',6],
+    ['R-4','悪用への懸念・その他の批判',4],
+    ['R-5','肯定的な評価（改善されている等）',2],
+    ['R-6','無回答・不明',1],
+  ]},
+  q17:{color:'#c084fc',total:49,parentLabel:'S「その他」Q17 — 49件の詳細内訳',categories:[
+    ['S-1','物価高・低賃金・生活苦・直接給付の要求',16],
+    ['S-2','過去の傷・社会不信・精神的絶望・自己否定',11],
+    ['S-3','対策が遅すぎる・今更感への怒り',6],
+    ['S-4','非正規・解雇・雇用制度（年齢制限等）への不安',5],
+    ['S-5','職場での不満・世代間格差・他世代へのしわ寄せ',4],
+    ['S-6','孤独・老後・家族（介護・家の処分）の不安',4],
+    ['S-7','努力した人への不公平感・一律支援の要求',2],
+    ['S-8','次世代への懸念・社会への提言',1],
+  ]}
+};
+
+// Add sub-section CSS
+const style=document.createElement('style');
+style.textContent=`.sub-section{margin-top:32px;padding-top:24px;border-top:1px dashed #30363d}.sub-heading{font-size:12px;font-weight:600;letter-spacing:.08em;color:#7d8590;margin-bottom:20px;display:flex;align-items:center;gap:8px}.sub-heading::before{content:'';width:12px;height:12px;border-radius:2px;background:var(--border)}`;
+document.head.appendChild(style);
+
+function renderSub(qkey){
+  const d=SUB[qkey];
+  const sorted=[...d.categories].sort((a,b)=>b[2]-a[2]);
+  const maxN=sorted[0][2];
+  new Chart(document.getElementById(qkey+'SubChart'),{
+    type:'bar',
+    data:{labels:sorted.map(c=>c[1]),datasets:[{label:'件数',data:sorted.map(c=>c[2]),
+      backgroundColor:d.color+'66',borderColor:d.color,borderWidth:1,borderRadius:3}]},
+    options:{indexAxis:'y',responsive:true,
+      plugins:{legend:{display:false},
+        title:{display:true,text:d.parentLabel,color:'#aaaaaa',font:{size:12,weight:'normal'}},
+        tooltip:{callbacks:{label:ctx=>` ${ctx.raw}件 (${(ctx.raw/d.total*100).toFixed(1)}%)`}}},
+      scales:{x:{grid:{color:'#30363d'},ticks:{color:'#7d8590'}},
+        y:{grid:{display:false},ticks:{color:'#c9d1d9',font:{size:12}}}}}
+  });
+  const tbl=document.getElementById(qkey+'SubTable');
+  const rows=sorted.map((c,i)=>{
+    const pct=(c[2]/d.total*100).toFixed(1);
+    const bp=(c[2]/maxN*100).toFixed(1);
+    return `<tr><td class="td-rank">${i+1}</td><td class="td-cat">${c[0]}. ${c[1]}</td><td class="td-count">${c[2]}</td><td class="td-pct">${pct}%</td><td class="td-bar"><div class="bar-track"><div class="bar-fill" style="width:${bp}%;background:${d.color}"></div></div></td></tr>`;
+  }).join('');
+  tbl.innerHTML=`<thead><tr><th>#</th><th>サブカテゴリ</th><th style="text-align:right">件数</th><th style="text-align:right">内訳比</th><th>相対</th></tr></thead><tbody>${rows}</tbody>`;
+}
+renderSub('q8');
+renderSub('q17');
+</script>
+</body>
+</html>

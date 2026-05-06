@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自由記述以外の設問グラフ集｜就職氷河期世代等支援プログラム 当事者評価アンケート</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1814; --ink-mid: #3d3a35; --ink-mute: #7a756c; --ink-faint: #b5b0a7;
+    --paper: #faf8f4; --paper-warm: #f0ece4;
+    --accent: #c0392b; --rule: #d8d3cb;
+    --blue: #1a4a7a; --blue-lt: #e8eef6;
+    --green: #1a6e4a; --green-lt: #e6f4ed;
+    --sans: 'Noto Sans JP', sans-serif; --mono: 'IBM Plex Mono', monospace;
+  }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+  .header { background: var(--ink); color: #fff; padding: 24px 40px; }
+  .header h1 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .header p { font-family: var(--mono); font-size: 12px; color: #b5b0a7; }
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 32px; }
+  .toc { background: var(--paper-warm); border: 1px solid var(--rule); padding: 20px 24px; margin-bottom: 40px; }
+  .toc-title { font-family: var(--mono); font-size: 11px; color: var(--ink-mute); letter-spacing: 0.1em; margin-bottom: 12px; }
+  .toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 6px; }
+  .toc-item { font-size: 13px; color: var(--blue); text-decoration: none; }
+  .toc-item:hover { text-decoration: underline; }
+  .chart-section { margin-bottom: 48px; padding-bottom: 48px; border-bottom: 1px solid var(--rule); }
+  .chart-section:last-child { border-bottom: none; }
+  .q-label { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 6px; font-weight: 500; }
+  .q-title { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+  .q-sub { font-size: 13px; color: var(--ink-mute); margin-bottom: 20px; }
+  .chart-box { background: var(--paper-warm); border: 1px solid var(--rule); padding: 24px; }
+  .chart-note { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); text-align: right; margin-top: 12px; }
+  .bar-row { display: grid; grid-template-columns: 240px 1fr 90px; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .bar-label { font-size: 12px; color: var(--ink-mid); text-align: right; line-height: 1.4; }
+  .bar-track { background: var(--rule); height: 22px; border-radius: 2px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 2px; display: flex; align-items: center; padding-left: 8px; }
+  .bar-pct { font-family: var(--mono); font-size: 12px; color: var(--ink-mute); }
+  .bar-cnt { font-family: var(--mono); font-size: 12px; color: var(--ink-mute); }
+  .summary-row { display: flex; gap: 0; margin-bottom: 20px; border: 1px solid var(--rule); flex-wrap: wrap; }
+  .sum-item { flex: 1; min-width: 100px; padding: 14px 12px; border-right: 1px solid var(--rule); text-align: center; }
+  .sum-item:last-child { border-right: none; }
+  .sum-num { font-family: var(--mono); font-size: 24px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+  .sum-label { font-size: 11px; color: var(--ink-mute); line-height: 1.4; }
+  .sum-item.neg .sum-num { color: var(--accent); }
+  .sum-item.pos .sum-num { color: var(--green); }
+  .sum-item.neu .sum-num { color: var(--ink-mute); }
+  @media(max-width:600px){ .bar-row{grid-template-columns:130px 1fr 70px;} .bar-label{font-size:10px;} .container{padding:20px;} }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>自由記述以外の設問 グラフ集</h1>
+  <p>就職氷河期世代等支援プログラム 当事者評価アンケート　n=221件　2026年4月実施</p>
+</div>
+<div class="container">
+  <div class="toc">
+    <div class="toc-title">CONTENTS</div>
+    <div class="toc-grid">
+      <a href="#q1" class="toc-item">Q1 生まれた年</a>
+      <a href="#q2" class="toc-item">Q2 性別</a>
+      <a href="#q3" class="toc-item">Q3 雇用形態</a>
+      <a href="#q4" class="toc-item">Q4 世帯構成</a>
+      <a href="#q5" class="toc-item">Q5 住居形態</a>
+      <a href="#q6" class="toc-item">Q6 プログラム認知度</a>
+      <a href="#q7" class="toc-item">Q7 全体評価（5段階）</a>
+      <a href="#q9" class="toc-item">Q9 柱１有効性評価</a>
+      <a href="#q11" class="toc-item">Q11 柱２有効性評価</a>
+      <a href="#q13" class="toc-item">Q13 柱３有効性評価</a>
+      <a href="#q14" class="toc-item">Q14 柱３重要支援（複数選択）</a>
+      <a href="#q16" class="toc-item">Q16 欠けている視点（複数選択）</a>
+      <a href="#q18" class="toc-item">Q18 政策関心度</a>
+      <a href="#q19" class="toc-item">Q19 意見発信</a>
+      <a href="#q20" class="toc-item">Q20 参加経路</a>
+    </div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="chart-section" id="q1">
+    <div class="q-label">Q1 / 属性</div>
+    <div class="q-title">生まれた年（西暦）</div>
+    <div class="q-sub">単一選択　n=221</div>
+    <div class="chart-box">
+      <div id="chartQ1"></div>
+      <div class="chart-note">居酒屋氷河期世代コミュニティ アンケート 2026年4月実施</div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="chart-section" id="q2">
+    <div class="q-label">Q2 / 属性</div>
+    <div class="q-title">性別</div>
+    <div class="q-sub">単一選択　n=221</div>
+    <div class="chart-box">
+      <div id="chartQ2"></div>
+      <div class="chart-note">居酒屋氷河期世代コミュニティ アンケート 2026年4月実施</div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="chart-section" id="q3">
+    <div class="q-label">Q3 / 属性</div>
+    <div class="q-title">現在の主な雇用形態</div>
+    <div class="q-sub">単一選択　n=221</div>
+    <div class="chart-box">
+      <div id="chartQ3"></div>
+      <div class="chart-note">居酒屋氷河期世代コミュニティ アンケート 2026年4月実施</div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="chart-section" id="q4">
+    <div class="q-label">Q4 / 属性</div>
+    <div class="q-title">現在の世帯構成</div>
+    <div class="q-sub">単一選択　n=221</div>
+    <div class="chart-box">
+      <div id="chartQ4"></div>
+      <div class="chart-note">居酒屋氷河期世代コミュニティ アンケート 2026年4月実施</div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="chart-section" id="q5">
+    <div class="q-label">Q5 / 属性</div>
+    <div class="q-title">現在の住居形態</div>
+    <div class="q-sub">単一選択　n=221</div>
+    <div class="chart-box">
+      <div id="chartQ5"></div>
+      <div class="chart-note">居酒屋氷河期世代コミュニティ アンケート 2026年4月実施</div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="chart-section" id="q6">
+    <div class="q-label">Q6 / 認知度</div>
+    <div class="q-title">プログラムの認知状況</div>
+    <div class="q-sub">単一選択　n=221</div>
+    <div class="chart-box">
+      <div id="chartQ6"></div>
+      <div class="chart-note">居酒屋氷河期世代コミュニティ アンケート 2026年4月実施</div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="chart-section" id="q7">
+    <div class="q-label">Q7 / プログラム全体評価</div>
+    <div class="q-title">プログラム全体への評価（1〜5点）</div>
+    <div class="q-sub">5段階評価　n=221　平均スコア：1.68点</div>
+    <div class="summary-row">
+      <div class="sum-item neg"><div class="sum-num">80.1%</div><div class="sum-label">「評価しない」<br>（1〜2点）177件</div></div>
+      <div class="sum-item neu"><div class="sum-num">17.2%</div><div class="sum-label">「どちらとも」<br>（3点）38件</div></div>
+      <div class="sum-item pos"><div class="sum-num">2.7%</div><div class="sum-label">「評価する」<br>（4〜5点）6件</div></div>
+      <div class="sum-item"><div class="sum-num">1.68</div><div class="sum-label">平均スコア<br>（5点満点）</div></div>
+    </div>
+    <div class="chart-box">
+      <div id="chartQ7"></div>
+      <div class="chart-note">居酒屋氷河期世代コミュニティ アンケート 2026年4月実施</div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="chart-section" id="q9">
+    <div class="q-label">Q9 / 柱１評価</div>
+    <div class="q-title">柱１（就労・処遇改善）への有効性評価</div>
+    <div class="q-sub">単一選択　n=221</div>
+    <div class="summary-row">
+      <div class="sum-item neg"><div class="sum-num">55.7%</div><div class="sum-label">否定的評価<br>（123件）</div></div>
+      <div class="sum-item"><div class="sum-num">25.3%</div><div class="sum-label">自分には<br>該当しない（56件）</div></div>
+      <div class="sum-item neu"><div class="sum-num">10.4%</div><div class="sum-label">どちらとも<br>言えない（23件）</div></div>
+      <div class="sum-item pos"><div class="sum-num">8.6%</div><div class="sum-label">肯定的評価<br>（19件）</div></div>
+    </div>
+    <div class="chart-box">
+      <div id="chartQ9"></div>
+      <div class="chart-note">居酒屋氷河期世代コミュニティ アンケート 2026年4月実施</div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="chart-section" id="q11">
+    <div class="q-label">Q11 / 柱２評価</div>
+    <div class="q-title">柱２（社会参加・段階的支援）への有効性評価</div>
+    <div class="q-sub">単一選択　n=221</div>
+    <div class="summary-row">
+      <div class="sum-item neg"><div class="sum-num">43.0%</div><div class="sum-label">否定的評価<br>（95件）</div></div>
+      <div class="sum-item"><div class="sum-num">25.8%</div><div class="sum-label">自分には<br>該当しない（57件）</div></div>
+      <div class="sum-item neu"><div class="sum-num">19.9%</div><div class="sum-label">どちらとも<br>言えない（44件）</div></div>
+      <div class="sum-item pos"><div class="sum-num">11.3%</div><div class="sum-label">肯定的評価<br>（25件）</div></div>
+    </div>
+    <div class="chart-box">
+      <div id="chartQ11"></div>
+      <div class="chart-note">居酒屋氷河期世代コミュニティ アンケート 2026年4月実施</div>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="chart-section" id="q13">
+    <div class="q-label">Q13 / 柱３評価</div>
+    <div class="q-title">柱３（高齢期支援）への有効性評価</div>
+    <div class="q-sub">単一選択　n=221</div>
+    <div class="summary-row">
+      <div class="sum-item pos"><div class="sum-num">35.3%</div><div class="sum-label">肯定的評価<br>（78件）</div></div>
+      <div class="sum-item neg"><div class="sum-num">38.9%</div><div class="sum-label">否定的評価<br>（86件）</div></div>
+      <div class="sum-item neu"><div class="sum-num">18.1%</div><div class="sum-label">どちらとも<br>言えない（40件）</div></div>
+      <div class="sum-item"><div class="sum-num">7.7%</div><div class="sum-label">先のことで<br>判断できない（17件）</div></div>
+    </div>
+    <div class="chart-box">
+      <div id="chartQ13"></div>
+      <div class="chart-note">居酒屋氷河期世代コミュニティ アンケート 2026年4月実施</div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="chart-section" id="q14">
+    <div class="q-label">Q14 / 柱３重要支援（複数選択）</div>
+    <div class="q-title">柱３の中で特に重要だと思う支援</div>
+    <div class="q-sub">複数選択可　n=221（回答者ベース）</div>
+    <div class="chart-box">
+      <div id="chartQ14"></div>
+      <div class="chart-note">居酒屋氷河期世代コミュニティ アンケート 2026年4月実施</div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="chart-section" id="q16">
+    <div class="q-label">Q16 / 欠けている視点（複数選択）</div>
+    <div class="q-title">プログラムで最も欠けていると感じる視点・支援</div>
+    <div class="q-sub">複数選択可　n=221（回答者ベース）</div>
+    <div class="chart-box">
+      <div id="chartQ16"></div>
+      <div class="chart-note">居酒屋氷河期世代コミュニティ アンケート 2026年4月実施</div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="chart-section" id="q18">
+    <div class="q-label">Q18 / 政策関心度</div>
+    <div class="q-title">就職氷河期世代に関する政治・政策への関心度</div>
+    <div class="q-sub">5段階評価　n=221　平均スコア：4.02点</div>
+    <div class="chart-box">
+      <div id="chartQ18"></div>
+      <div class="chart-note">居酒屋氷河期世代コミュニティ アンケート 2026年4月実施</div>
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="chart-section" id="q19">
+    <div class="q-label">Q19 / 意見発信</div>
+    <div class="q-title">政府や政治家への意見発信について</div>
+    <div class="q-sub">単一選択　n=221</div>
+    <div class="chart-box">
+      <div id="chartQ19"></div>
+      <div class="chart-note">居酒屋氷河期世代コミュニティ アンケート 2026年4月実施</div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="chart-section" id="q20">
+    <div class="q-label">Q20 / 参加経路</div>
+    <div class="q-title">このアンケートへの参加経路</div>
+    <div class="q-sub">単一選択　n=221</div>
+    <div class="chart-box">
+      <div id="chartQ20"></div>
+      <div class="chart-note">居酒屋氷河期世代コミュニティ アンケート 2026年4月実施</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const N = 221;
+const COL = { blue: '#1a4a7a', red: '#c0392b', green: '#1a6e4a', amber: '#7a4a1a', gray: '#7a756c', lt: '#b5b0a7' };
+
+function buildBars(containerId, data, maxOverride) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const max = maxOverride || Math.max(...data.map(d => d.count));
+  data.forEach(d => {
+    const pct = (d.count / max * 100).toFixed(1);
+    const display = d.pct !== undefined ? d.pct.toFixed(1) + '%' : (d.count/N*100).toFixed(1) + '%';
+    const row = document.createElement('div');
+    row.className = 'bar-row';
+    row.innerHTML = `
+      <div class="bar-label">${d.label}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${d.color || COL.blue};"></div></div>
+      <div style="display:flex;gap:4px;align-items:center;">
+        <span class="bar-cnt">${d.count}件</span>
+        <span class="bar-pct" style="color:var(--ink-faint);">${display}</span>
+      </div>`;
+    container.appendChild(row);
+  });
+}
+
+// Q1
+buildBars('chartQ1', [
+  {label:'1975年', count:27, color:COL.red},{label:'1978年', count:22, color:COL.red},
+  {label:'1980年', count:21, color:COL.red},{label:'1977年', count:20, color:COL.red},
+  {label:'1979年', count:17, color:COL.red},{label:'1976年', count:14, color:COL.blue},
+  {label:'1982年', count:14, color:COL.blue},{label:'1971年', count:14, color:COL.blue},
+  {label:'1974年', count:13, color:COL.blue},{label:'1981年', count:12, color:COL.blue},
+  {label:'その他（1970年以前・1983〜）', count:34, color:COL.gray},
+], 27);
+
+// Q2
+buildBars('chartQ2', [
+  {label:'女性', count:143, color:COL.blue},{label:'男性', count:73, color:COL.amber},
+  {label:'回答しない・その他', count:5, color:COL.gray},
+]);
+
+// Q3
+buildBars('chartQ3', [
+  {label:'非正規雇用（パート・アルバイト・契約社員・派遣）', count:83, color:COL.red},
+  {label:'正規雇用（正社員・公務員等）', count:77, color:COL.blue},
+  {label:'無業（求職中）', count:24, color:COL.amber},
+  {label:'無業（求職していない）', count:18, color:COL.amber},
+  {label:'自営業・フリーランス', count:15, color:COL.green},
+  {label:'その他', count:4, color:COL.gray},
+]);
+
+// Q4
+buildBars('chartQ4', [
+  {label:'親・家族と同居', count:75, color:COL.amber},
+  {label:'単身（一人暮らし）', count:63, color:COL.blue},
+  {label:'配偶者・パートナーと同居', count:55, color:COL.green},
+  {label:'子どもと同居（ひとり親含む）', count:27, color:COL.blue},
+  {label:'その他', count:1, color:COL.gray},
+]);
+
+// Q5
+buildBars('chartQ5', [
+  {label:'親・家族の持ち家に同居', count:71, color:COL.amber},
+  {label:'賃貸（民間）', count:71, color:COL.blue},
+  {label:'持ち家（自己所有またはローン）', count:60, color:COL.green},
+  {label:'その他（シェアハウス・社宅・施設等）', count:10, color:COL.gray},
+  {label:'公営住宅・UR等', count:9, color:COL.lt},
+]);
+
+// Q6
+buildBars('chartQ6', [
+  {label:'知っていて内容まで確認した', count:77, color:COL.green},
+  {label:'発表されたのは知っているが内容は見ていない', count:76, color:COL.blue},
+  {label:'今回初めて知った', count:35, color:COL.amber},
+  {label:'発表されたのは知っているが内容に興味がない', count:33, color:COL.gray},
+]);
+
+// Q7
+buildBars('chartQ7', [
+  {label:'1点（まったく評価しない）', count:123, color:COL.red},
+  {label:'2点', count:54, color:'#e67e22'},
+  {label:'3点（どちらとも言えない）', count:38, color:COL.gray},
+  {label:'4点', count:4, color:COL.green},
+  {label:'5点（高く評価する）', count:2, color:'#27ae60'},
+]);
+
+// Q9
+buildBars('chartQ9', [
+  {label:'有効でない', count:89, color:COL.red},
+  {label:'自分には該当しない状況にある', count:56, color:COL.gray},
+  {label:'あまり有効でない', count:34, color:'#e67e22'},
+  {label:'どちらとも言えない', count:23, color:COL.lt},
+  {label:'やや有効だと思う', count:16, color:COL.green},
+  {label:'有効だと思う', count:3, color:'#27ae60'},
+]);
+
+// Q11
+buildBars('chartQ11', [
+  {label:'有効でない', count:69, color:COL.red},
+  {label:'自分には該当しない状況にある', count:57, color:COL.gray},
+  {label:'どちらとも言えない', count:44, color:COL.lt},
+  {label:'あまり有効でない', count:26, color:'#e67e22'},
+  {label:'やや有効だと思う', count:18, color:COL.green},
+  {label:'有効だと思う', count:7, color:'#27ae60'},
+]);
+
+// Q13
+buildBars('chartQ13', [
+  {label:'やや有効だと思う', count:61, color:COL.green},
+  {label:'有効でない', count:58, color:COL.red},
+  {label:'どちらとも言えない', count:40, color:COL.lt},
+  {label:'あまり有効でない', count:28, color:'#e67e22'},
+  {label:'まだ先のことで判断できない', count:17, color:COL.gray},
+  {label:'有効だと思う', count:17, color:'#27ae60'},
+]);
+
+// Q14 (multiple, use N as max)
+buildBars('chartQ14', [
+  {label:'低家賃住宅・公営住宅への優先入居', count:160, color:COL.red, pct:72.4},
+  {label:'生活保護申請への支援・簡素化', count:133, color:COL.red, pct:60.2},
+  {label:'国民年金の追納・受給額補填', count:103, color:COL.amber, pct:46.6},
+  {label:'孤立防止・見守りネットワーク', count:84, color:COL.blue, pct:38.0},
+  {label:'65歳以降の就労支援', count:75, color:COL.green, pct:33.9},
+  {label:'その他', count:29, color:COL.gray, pct:13.1},
+], N);
+
+// Q16 (multiple)
+buildBars('chartQ16', [
+  {label:'就職氷河期を「社会的な困難」として認定し責任を明確化すること', count:184, color:COL.red, pct:83.3},
+  {label:'非正規・派遣での長期就労が招いた年金・退職金格差への対応', count:167, color:COL.red, pct:75.6},
+  {label:'申請しなくても支援が届く「プッシュ型」アウトリーチの制度化', count:115, color:COL.amber, pct:52.0},
+  {label:'今すでに生活困窮状態にある人への緊急的な現金・現物給付', count:111, color:COL.amber, pct:50.2},
+  {label:'メンタルヘルス支援（長期にわたる精神的負荷への対応）', count:104, color:COL.blue, pct:47.1},
+  {label:'採用時の年齢制限・年齢差別を禁止する法規制', count:103, color:COL.blue, pct:46.6},
+  {label:'介護離職リスクへの先手対策（親の介護と自身の老後が重なる問題）', count:95, color:COL.green, pct:43.0},
+  {label:'国民年金のみの人への老後の所得保障（最低保障年金等）', count:92, color:COL.green, pct:41.6},
+  {label:'孤立・ひきこもり状態の人への訪問・伴走支援の拡充', count:56, color:COL.gray, pct:25.3},
+], N);
+
+// Q18
+buildBars('chartQ18', [
+  {label:'5点（非常に関心がある）', count:112, color:COL.green},
+  {label:'4点', count:47, color:'#27ae60'},
+  {label:'3点', count:33, color:COL.lt},
+  {label:'1点（まったく関心がない）', count:16, color:COL.red},
+  {label:'2点', count:13, color:'#e67e22'},
+]);
+
+// Q19
+buildBars('chartQ19', [
+  {label:'送っても変わらないと思っている', count:105, color:COL.amber},
+  {label:'実際に意見を送ったことがある', count:58, color:COL.green},
+  {label:'特に意見を送ろうと思ったことはない', count:34, color:COL.gray},
+  {label:'送りたいが方法がわからない', count:24, color:COL.blue},
+]);
+
+// Q20
+buildBars('chartQ20', [
+  {label:'X（旧Twitter）の投稿', count:213, color:COL.blue},
+  {label:'note記事', count:5, color:COL.amber},
+  {label:'知人・コミュニティからの紹介', count:2, color:COL.green},
+  {label:'その他', count:1, color:COL.gray},
+]);
+</script>
+</body>
+</html>
