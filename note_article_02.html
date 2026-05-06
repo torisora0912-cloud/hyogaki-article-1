@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スキルより先に、採用する側を変えよ｜柱１への当事者評価 第2回</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:       #1a1814;
+    --ink-mid:   #3d3a35;
+    --ink-mute:  #7a756c;
+    --ink-faint: #b5b0a7;
+    --paper:     #faf8f4;
+    --paper-warm:#f0ece4;
+    --accent:    #c0392b;
+    --accent-dk: #96241b;
+    --accent-lt: #f5e6e4;
+    --rule:      #d8d3cb;
+    --blue:      #1a4a7a;
+    --blue-lt:   #e8eef6;
+    --green:     #1a6e4a;
+    --green-lt:  #e6f4ed;
+
+    --serif: 'Noto Serif JP', 'Georgia', serif;
+    --sans:  'Noto Sans JP', 'Helvetica Neue', sans-serif;
+    --mono:  'IBM Plex Mono', monospace;
+
+    --w-text: 680px;
+    --w-wide: 860px;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    border-bottom: 2px solid var(--ink);
+    padding: 18px 32px;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    position: sticky; top: 0;
+    background: var(--paper);
+    z-index: 100;
+  }
+  .site-name { font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0.06em; color: var(--ink-mid); }
+  .series-tag { font-family: var(--mono); font-size: 11px; background: var(--ink); color: var(--paper); padding: 3px 8px; letter-spacing: 0.08em; }
+
+  /* ── Prev article link ── */
+  .prev-link {
+    max-width: var(--w-wide);
+    margin: 0 auto;
+    padding: 16px 32px;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .prev-link-label { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); letter-spacing: 0.1em; }
+  .prev-link-title { font-size: 13px; color: var(--ink-mute); }
+
+  /* ── Hero ── */
+  .hero {
+    max-width: var(--w-wide);
+    margin: 0 auto;
+    padding: 64px 32px 52px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; flex-wrap: wrap; }
+  .issue-num { font-family: var(--mono); font-size: 11px; font-weight: 500; border: 1.5px solid var(--accent); color: var(--accent); padding: 4px 10px; letter-spacing: 0.1em; }
+  .pub-date { font-family: var(--mono); font-size: 11px; color: var(--ink-mute); letter-spacing: 0.05em; }
+  .pillar-badge { font-family: var(--mono); font-size: 10px; background: var(--blue); color: #fff; padding: 4px 10px; letter-spacing: 0.08em; }
+
+  h1 { font-family: var(--serif); font-size: clamp(22px, 4vw, 36px); font-weight: 700; line-height: 1.45; letter-spacing: 0.01em; color: var(--ink); margin-bottom: 24px; }
+  h1 em { font-style: normal; color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 1px; }
+
+  .hero-sub { font-size: 15px; color: var(--ink-mid); max-width: 560px; line-height: 1.9; }
+
+  /* ── Opening quote ── */
+  .opening-quote {
+    max-width: var(--w-wide); margin: 0 auto;
+    padding: 52px 32px 44px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .big-quote {
+    font-family: var(--serif); font-size: clamp(18px, 3.2vw, 28px); font-weight: 600;
+    line-height: 1.65; color: var(--ink);
+    position: relative; padding-left: 28px; margin-bottom: 20px;
+  }
+  .big-quote::before {
+    content: ''; position: absolute; left: 0; top: 4px; bottom: 4px;
+    width: 4px; background: var(--accent);
+  }
+  .quote-attr { font-family: var(--mono); font-size: 12px; color: var(--ink-mute); padding-left: 28px; letter-spacing: 0.03em; }
+  .quote-note { margin-top: 24px; font-size: 14px; color: var(--ink-mid); line-height: 1.85; padding-left: 28px; border-left: 1px solid var(--rule); }
+
+  /* ── Article ── */
+  .article { max-width: var(--w-wide); margin: 0 auto; padding: 0 32px; }
+  section { padding: 48px 0; border-bottom: 1px solid var(--rule); }
+  section:last-child { border-bottom: none; }
+
+  h2 {
+    font-family: var(--serif); font-size: 21px; font-weight: 700; color: var(--ink);
+    margin-bottom: 24px; padding-bottom: 12px; border-bottom: 2px solid var(--ink);
+    display: flex; align-items: baseline; gap: 12px;
+  }
+  h2 .sec-num { font-family: var(--mono); font-size: 12px; color: var(--ink-mute); font-weight: 400; flex-shrink: 0; }
+  h3 { font-family: var(--sans); font-size: 16px; font-weight: 700; color: var(--ink); margin: 36px 0 14px; }
+
+  p { font-size: 15px; line-height: 1.95; color: var(--ink-mid); margin-bottom: 20px; max-width: var(--w-text); }
+  p strong { color: var(--ink); font-weight: 700; }
+
+  /* Summary stats row */
+  .stats-row { display: flex; gap: 0; margin: 32px 0; border: 1px solid var(--rule); overflow: hidden; flex-wrap: wrap; }
+  .stat-item { flex: 1; min-width: 120px; padding: 20px 16px 18px; border-right: 1px solid var(--rule); text-align: center; }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-family: var(--mono); font-size: 30px; font-weight: 500; color: var(--ink); line-height: 1; margin-bottom: 6px; }
+  .stat-label { font-size: 11px; color: var(--ink-mute); line-height: 1.5; }
+  .stat-item.accent-stat { background: var(--accent-lt); }
+  .stat-item.accent-stat .stat-num { color: var(--accent); }
+
+  /* Donut / bar charts */
+  .chart-wrap { margin: 28px 0; background: var(--paper-warm); border: 1px solid var(--rule); padding: 24px; }
+  .chart-title { font-family: var(--mono); font-size: 11px; color: var(--ink-mute); letter-spacing: 0.08em; margin-bottom: 16px; }
+  .chart-note { font-size: 11px; color: var(--ink-faint); text-align: right; margin-top: 10px; font-family: var(--mono); }
+
+  .bar-row { display: grid; grid-template-columns: 190px 1fr 36px; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .bar-row-label { font-size: 11px; color: var(--ink-mid); text-align: right; line-height: 1.4; }
+  .bar-track { background: var(--rule); height: 20px; position: relative; border-radius: 2px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 2px; }
+  .bar-count { font-family: var(--mono); font-size: 12px; color: var(--ink-mute); font-weight: 500; }
+
+  /* Voice blocks */
+  .voice-block { margin: 24px 0; padding: 22px 26px; background: var(--blue-lt); border-left: 4px solid var(--blue); }
+  .voice-text { font-family: var(--serif); font-size: 15px; line-height: 1.85; color: var(--ink); margin-bottom: 12px; }
+  .voice-text::before { content: '「'; }
+  .voice-text::after  { content: '」'; }
+  .voice-attr { font-family: var(--mono); font-size: 11px; color: var(--ink-mute); letter-spacing: 0.04em; }
+  .voice-comment { margin-top: 10px; font-size: 13px; color: var(--ink-mid); line-height: 1.7; padding-top: 10px; border-top: 1px solid rgba(26,74,122,0.15); }
+
+  .voice-block.red { background: var(--accent-lt); border-left-color: var(--accent); }
+  .voice-block.red .voice-comment { border-top-color: rgba(192,57,43,0.15); }
+  .voice-block.green { background: var(--green-lt); border-left-color: var(--green); }
+  .voice-block.green .voice-comment { border-top-color: rgba(26,110,74,0.15); }
+
+  /* Voice grid */
+  .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+  .voice-grid .voice-block { margin: 0; }
+
+  /* Highlight box */
+  .highlight-box { margin: 32px 0; padding: 22px 26px; background: var(--ink); color: var(--paper); }
+  .highlight-box p { color: var(--paper-warm); font-size: 15px; margin-bottom: 0; max-width: 100%; }
+  .highlight-box strong { color: #fff; }
+
+  /* Analysis box */
+  .analysis { margin: 28px 0; padding: 20px 24px; border: 1px solid var(--rule); background: var(--paper); }
+  .analysis-label { font-family: var(--mono); font-size: 10px; color: var(--accent); letter-spacing: 0.1em; font-weight: 500; margin-bottom: 10px; }
+  .analysis p { font-size: 14px; color: var(--ink-mid); margin-bottom: 0; max-width: 100%; }
+
+  /* Structure diagram */
+  .structure-box {
+    margin: 32px 0; padding: 28px 32px;
+    border: 2px solid var(--ink);
+    position: relative;
+  }
+  .structure-title {
+    font-family: var(--mono); font-size: 11px; background: var(--ink); color: var(--paper);
+    padding: 4px 10px; position: absolute; top: -13px; left: 20px;
+    letter-spacing: 0.08em;
+  }
+  .structure-row {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 14px; flex-wrap: wrap;
+  }
+  .structure-row:last-child { margin-bottom: 0; }
+  .s-box {
+    padding: 10px 16px; font-size: 13px; font-weight: 700; line-height: 1.4;
+    text-align: center; flex-shrink: 0;
+  }
+  .s-box.left  { background: var(--blue-lt); border: 1.5px solid var(--blue); color: var(--blue); min-width: 160px; }
+  .s-box.arrow { background: none; border: none; color: var(--ink-mute); font-size: 18px; padding: 0 4px; }
+  .s-box.right { background: var(--accent-lt); border: 1.5px solid var(--accent); color: var(--accent); flex: 1; min-width: 200px; }
+  .s-box.right-ok { background: var(--green-lt); border: 1.5px solid var(--green); color: var(--green); flex: 1; min-width: 200px; }
+  .s-note { font-size: 12px; color: var(--ink-mute); flex: 1; min-width: 200px; line-height: 1.6; }
+
+  /* Survey result band */
+  .result-band {
+    margin: 28px 0;
+    border: 1px solid var(--rule);
+    overflow: hidden;
+  }
+  .rb-header {
+    background: var(--blue); color: #fff;
+    padding: 10px 20px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+  }
+  .rb-body { padding: 20px; }
+  .rb-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 10px; }
+  .rb-row:last-child { margin-bottom: 0; }
+  .rb-pct { font-family: var(--mono); font-size: 22px; font-weight: 500; color: var(--blue); flex-shrink: 0; width: 64px; }
+  .rb-text { font-size: 14px; color: var(--ink-mid); line-height: 1.7; }
+
+  /* Summary box */
+  .summary-box { margin: 32px 0; background: var(--paper-warm); border: 1px solid var(--rule); padding: 24px 28px; }
+  .summary-title { font-family: var(--mono); font-size: 11px; color: var(--ink-mute); letter-spacing: 0.1em; margin-bottom: 16px; }
+  .summary-item { display: flex; gap: 14px; margin-bottom: 12px; align-items: flex-start; }
+  .summary-item:last-child { margin-bottom: 0; }
+  .summary-num { font-family: var(--mono); font-size: 20px; font-weight: 500; color: var(--accent); line-height: 1; flex-shrink: 0; width: 32px; }
+  .summary-text { font-size: 14px; color: var(--ink-mid); line-height: 1.75; }
+
+  /* Next issue */
+  .next-issue { background: var(--paper-warm); border: 1px solid var(--rule); padding: 28px 32px; display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: start; }
+  .next-label { font-family: var(--mono); font-size: 10px; color: var(--ink-mute); letter-spacing: 0.12em; writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); align-self: center; }
+  .next-num { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 6px; }
+  .next-title { font-family: var(--serif); font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 10px; line-height: 1.5; }
+  .next-desc { font-size: 13px; color: var(--ink-mid); line-height: 1.8; }
+  .next-stats { display: flex; gap: 12px; margin-top: 14px; flex-wrap: wrap; }
+  .next-stat { font-family: var(--mono); font-size: 12px; color: var(--ink-mute); background: var(--paper); border: 1px solid var(--rule); padding: 4px 10px; }
+
+  /* Tags & footer */
+  .tags { padding: 32px 0 48px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; border-top: 1px solid var(--rule); }
+  .tag-label { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); margin-right: 4px; }
+  .tag { font-size: 12px; color: var(--ink-mid); border: 1px solid var(--rule); padding: 4px 10px; }
+
+  footer { border-top: 2px solid var(--ink); padding: 24px 32px; max-width: var(--w-wide); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .footer-name { font-family: var(--mono); font-size: 12px; color: var(--ink-mid); }
+  .footer-note { font-size: 11px; color: var(--ink-faint); }
+
+  @media (max-width: 640px) {
+    .site-header, .hero, .opening-quote, .article, .prev-link { padding-left: 20px; padding-right: 20px; }
+    .bar-row { grid-template-columns: 110px 1fr 28px; }
+    .bar-row-label { font-size: 10px; }
+    .voice-grid { grid-template-columns: 1fr; }
+    .structure-row { flex-direction: column; gap: 8px; }
+    .s-box.arrow { transform: rotate(90deg); }
+    footer { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <span class="site-name">居酒屋氷河期世代コミュニティ × note</span>
+  <span class="series-tag">連載 第2回</span>
+</header>
+
+<div class="prev-link">
+  <span class="prev-link-label">PREV</span>
+  <span class="prev-link-title">第1回：診断は正確、処方は的外れ――就職氷河期世代221人が突きつけた現実</span>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-meta">
+    <span class="issue-num">ISSUE 02 / 04</span>
+    <span class="pillar-badge">PILLAR 01 就労・処遇改善支援</span>
+    <span class="pub-date">2026年5月</span>
+  </div>
+  <h1>スキルより先に、<em>採用する側を変えよ</em><br>柱１「就労・処遇改善支援」への当事者評価</h1>
+  <p class="hero-sub">
+    リスキリング46件の批判、ハローワーク批判37件、年齢差別37件——。
+    柱１への自由記述174件が指し示す問いは一致している。
+    「スキルを磨いても、年齢で選考外にする企業が変わらない限り何も変わらない」。
+  </p>
+</div>
+
+<!-- Opening quote -->
+<div class="opening-quote">
+  <p class="big-quote">リスキリングをしても同じ資格持ちなら若い人が採用される構造は変わらないのでは。</p>
+  <p class="quote-attr">1978年生まれ / 女性 / 非正規雇用（パート・アルバイト・契約社員・派遣）</p>
+  <p class="quote-note">
+    一言で問題の核心を突いた言葉だ。スキルの問題ではなく、構造の問題——この認識が
+    174件の自由記述のうちに何度も繰り返される。
+    当事者はリスキリングを否定しているのではない。
+    「リスキリングだけでは足りない」と言っている。
+  </p>
+</div>
+
+<main class="article">
+
+  <!-- Section 1: Overview -->
+  <section>
+    <h2><span class="sec-num">01</span>柱１への評価：「有効でない」が55.7%</h2>
+
+    <div class="stats-row">
+      <div class="stat-item accent-stat">
+        <div class="stat-num">55.7<small style="font-size:14px">%</small></div>
+        <div class="stat-label">「有効でない」<br>+「あまり有効でない」</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">25.3<small style="font-size:14px">%</small></div>
+        <div class="stat-label">「自分には<br>該当しない」</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">10.4<small style="font-size:14px">%</small></div>
+        <div class="stat-label">「どちらとも<br>言えない」</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">8.6<small style="font-size:14px">%</small></div>
+        <div class="stat-label">肯定的評価<br>（やや有効＋有効）</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">174</div>
+        <div class="stat-label">自由記述<br>回答数（Q10）</div>
+      </div>
+    </div>
+
+    <p>
+      「有効でない」と「あまり有効でない」を合わせると55.7%。「どちらとも言えない」が10.4%、「自分には該当しない」が25.3%と続く。
+      肯定的評価（「やや有効」＋「有効」）はわずか<strong>8.6%</strong>にとどまる。
+    </p>
+    <p>
+      なぜこれほど評価が低いのか。自由記述174件を分類すると、3つの大きな塊が見えてくる。
+    </p>
+
+    <div class="chart-wrap">
+      <div class="chart-title">Q10 自由記述 カテゴリ別分布（n=174）</div>
+      <div id="barChart"></div>
+      <div class="chart-note">居酒屋氷河期世代コミュニティ アンケート 2026年4月実施</div>
+    </div>
+  </section>
+
+  <!-- Section 2: Reskilling -->
+  <section>
+    <h2><span class="sec-num">02</span>最多カテゴリ「リスキリング無効論」——46件が語る構造</h2>
+
+    <p>
+      174件中最多の<strong>46件（26.4%）</strong>が「リスキリング無効論」に分類された。
+      「無効論」と名付けたが、リスキリングそのものを否定する声ではない。
+      構造的な問いだ——<strong>「スキルを得ても、採用する側が変わらなければ意味がない」</strong>。
+    </p>
+
+    <div class="structure-box">
+      <div class="structure-title">ISSUE — リスキリングが機能しない構造</div>
+      <div class="structure-row">
+        <div class="s-box left">スキル取得</div>
+        <div class="s-box arrow">→</div>
+        <div class="s-box right">「実務経験なし」で門前払い</div>
+      </div>
+      <div class="structure-row">
+        <div class="s-box left">資格・学び直し</div>
+        <div class="s-box arrow">→</div>
+        <div class="s-box right">同じ資格なら「若い人」を選ぶ採用慣行</div>
+      </div>
+      <div class="structure-row">
+        <div class="s-box left">ハローワーク求人</div>
+        <div class="s-box arrow">→</div>
+        <div class="s-box right">「低賃金・低待遇」求人への誘導</div>
+      </div>
+      <div class="structure-row">
+        <div class="s-box left">転職活動</div>
+        <div class="s-box arrow">→</div>
+        <div class="s-box right">AIによる書類選考で年齢フィルター</div>
+      </div>
+    </div>
+
+    <div class="voice-block">
+      <div class="voice-text">リスキリングで学び直しても経験者可の求人しかなく、氷河期世代で未経験を雇用しようという企業の求人がない。派遣の場合はAIによる社内選考で落とされる。</div>
+      <div class="voice-attr">1982年 / 女性 / 非正規雇用（パート・アルバイト・契約社員・派遣）</div>
+      <div class="voice-comment">AIによる書類選考という新しい壁も加わっている。年齢・ブランク期間がデータとして処理される時代に、「学び直し」だけでは届かない現実がある。</div>
+    </div>
+
+    <div class="voice-block">
+      <div class="voice-text">リスキリングや資格を取得しても、実務経験がなければ門前払いされるから。</div>
+      <div class="voice-attr">1979年 / 女性 / 無業（求職中）</div>
+    </div>
+
+    <div class="voice-block">
+      <div class="voice-text">これまでさんざん自力でスキルを身につけてきたため、リスキリングといまさら言われてももう気力と体力がない人が多いのではないか。またリスキリングしたところで年齢によって就業機会をブロックされるので焼け石に水。</div>
+      <div class="voice-attr">1971年 / 女性 / 非正規雇用（パート・アルバイト・契約社員・派遣）</div>
+      <div class="voice-comment">「自力でスキルを積み続けてきた」という経験を持つ人から見ると、今更「リスキリング」と言われることへの疲弊感がにじむ。問題はスキルではなかったのだという実感だ。</div>
+    </div>
+
+    <div class="analysis">
+      <div class="analysis-label">ANALYSIS</div>
+      <p>柱１の設計は「スキルを上げれば就労機会が増える」という前提に立っている。しかし当事者が経験で積み上げてきた認識は逆だ——「スキルは既にある。採用する側の慣行が変わらないと意味がない」。この認識のずれが、55.7%という評価数字に表れている。</p>
+    </div>
+  </section>
+
+  <!-- Section 3: Age discrimination -->
+  <section>
+    <h2><span class="sec-num">03</span>37件が証言する「年齢差別」の現実</h2>
+
+    <p>
+      「年齢差別・採用現場の壁」カテゴリに37件が分類された。
+      法律で禁止されていない年齢を理由とした採用慣行が、
+      支援策の効果を根本から打ち消しているという指摘だ。
+    </p>
+
+    <div class="voice-grid">
+      <div class="voice-block red">
+        <div class="voice-text">年齢差別解消されなければ意味ない</div>
+        <div class="voice-attr">1974年 / 女性 / 無業（求職中）</div>
+      </div>
+      <div class="voice-block red">
+        <div class="voice-text">スキルを身につけたところで年齢で採ってもらえないだろ</div>
+        <div class="voice-attr">1975年 / 女性 / 非正規雇用</div>
+      </div>
+    </div>
+
+    <div class="voice-block red">
+      <div class="voice-text">企業は当然年齢で区切るので、リスキリングはほぼ無意味だしハローワーク尽力程度では解消されない。障害者雇用枠並の優遇措置でも無い限りは民間は厳しい。前回の公務員での氷河期採用の方がまだ効果があった。</div>
+      <div class="voice-attr">1982年 / 男性 / 正規雇用（正社員・公務員等）</div>
+      <div class="voice-comment">「前回の公務員氷河期採用の方がまだ効果があった」という比較は鋭い。採用する側の意思決定に直接働きかける政策（公務員採用・企業への義務付け）の方が効果的だという提案として読める。</div>
+    </div>
+
+    <div class="highlight-box">
+      <p>
+        日本では採用時の年齢差別を明示的に禁じる法律が整備されていない。
+        「募集・採用における年齢制限禁止（努力義務）」はあるが、
+        <strong>違反への実効的な罰則がなく</strong>、企業の慣行を変える力は弱い。
+        当事者が求めているのは「努力義務」ではなく「実効ある法規制」だ。
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 4: Hello Work -->
+  <section>
+    <h2><span class="sec-num">04</span>ハローワーク批判37件——「求人の質」と「職員の質」</h2>
+
+    <p>
+      「ハローワーク・支援機関への批判と提案」は37件。
+      柱１の目玉である「ハローワーク伴走支援」への期待が高いだけに、批判の内容も具体的だ。
+    </p>
+
+    <h3>批判の主な軸</h3>
+
+    <div class="result-band">
+      <div class="rb-header">Q10 — ハローワーク批判の主な内容（37件から抽出）</div>
+      <div class="rb-body">
+        <div class="rb-row">
+          <div class="rb-pct">①</div>
+          <div class="rb-text"><strong>求人の質</strong>——「低賃金・低待遇・パートのみ」の求人が大半で、氷河期世代の状況改善に結びつかないという指摘</div>
+        </div>
+        <div class="rb-row">
+          <div class="rb-pct">②</div>
+          <div class="rb-text"><strong>職員の質・ばらつき</strong>——「担当者によって対応が全く異なる」「実質的なガチャ状態」という声が複数</div>
+        </div>
+        <div class="rb-row">
+          <div class="rb-pct">③</div>
+          <div class="rb-text"><strong>職業訓練の選考</strong>——「訓練の面接自体に落とされた」「訓練を受けても活かせる就職先がない」</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="voice-block">
+      <div class="voice-text">ハローワークでは非正規のフルタイムパートという意味不明な雇用しかない。自分は清掃バイトをしているが、何を学び直せというのか？</div>
+      <div class="voice-attr">1975年 / 女性 / 非正規雇用（パート・アルバイト・契約社員・派遣）</div>
+      <div class="voice-comment">「何を学び直せというのか」——この問いかけは辛辣だが正確だ。支援の入口（ハローワーク）で提示される出口（求人）が低質であれば、どれだけリスキリングを積んでも意味をなさない。</div>
+    </div>
+
+    <div class="voice-block">
+      <div class="voice-text">別に働きたくない訳ではなく、ハローワークで提供される仕事の質が良くない。また、同じ歳の従姉妹は職業訓練の面接にすら落とされたらしい。仕事ができないのも問題だけど、そもそも今から就けるまともな仕事があるとは思えない。</div>
+      <div class="voice-attr">1974年 / 女性 / 正規雇用（正社員・公務員等）</div>
+    </div>
+
+    <div class="analysis">
+      <div class="analysis-label">ANALYSIS</div>
+      <p>「伴走支援の強化」は人員・予算の面では評価できる方向性だ。しかし伴走する先（求人票の質・選考後の待遇）が変わらなければ、「丁寧に低賃金求人に誘導する仕組み」になりかねないという懸念が当事者には根強い。</p>
+    </div>
+  </section>
+
+  <!-- Section 5: Wages -->
+  <section>
+    <h2><span class="sec-num">05</span>「就労できた」その先——給与・処遇の問題14件</h2>
+
+    <p>
+      柱１の名称は「就労・<strong>処遇改善</strong>支援」だ。就労後の賃金・待遇も射程に入るはずだが、
+      当事者の声は「就労できた後の処遇改善の見通しが見えない」という方向に向かう。
+    </p>
+
+    <div class="voice-block green">
+      <div class="voice-text">介護や福祉など、低賃金で人手不足な業界を押し付けられそう。</div>
+      <div class="voice-attr">1975年 / 女性 / 非正規雇用（パート・アルバイト・契約社員・派遣）</div>
+      <div class="voice-comment">実際、ハローワークで氷河期世代に提示される求人に介護・清掃・警備が多いという声は複数の回答に共通して登場する。社会的に必要な職種だが、「就労支援」が低賃金業種への誘導になっていないか、という問いだ。</div>
+    </div>
+
+    <div class="voice-block green">
+      <div class="voice-text">リスキリングしてもそもそもの給与体系が追いついてない。</div>
+      <div class="voice-attr">1975年 / 女性 / 非正規雇用（パート・アルバイト・契約社員・派遣）</div>
+    </div>
+
+    <p>
+      第1回でも触れた「現役就労中・低賃金層への支援不足」の声は、
+      この給与・処遇の問題と表裏一体だ。
+      就労の有無だけでなく、<strong>就労の質（賃金・待遇・雇用形態）</strong>まで
+      射程に入れた支援設計が求められている。
+    </p>
+  </section>
+
+  <!-- Section 6: What needs to change -->
+  <section>
+    <h2><span class="sec-num">06</span>当事者が求めているもの——企業を変える7つの声</h2>
+
+    <p>
+      「企業側への義務化・インセンティブ要求」カテゴリは8件と少ないが、
+      内容は具体的な政策提案になっている。
+      リスキリングより先に、採用する側を変えることを求める声だ。
+    </p>
+
+    <div class="summary-box">
+      <div class="summary-title">PROPOSALS FROM RESPONDENTS — 当事者発の政策提案（7件）</div>
+      <div class="summary-item">
+        <div class="summary-num">①</div>
+        <div class="summary-text">氷河期世代の採用1人につき法人税〇%を減税する（採用インセンティブ）</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-num">②</div>
+        <div class="summary-text">外国人を雇用すると補助金が出る制度と同様に、氷河期世代採用にも補助金を</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-num">③</div>
+        <div class="summary-text">採用しない企業にペナルティを設けても採用控えになるだけなので、正のインセンティブが有効</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-num">④</div>
+        <div class="summary-text">障害者雇用枠に準じた「氷河期世代雇用枠」の制度化</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-num">⑤</div>
+        <div class="summary-text">前回（2019〜）の公務員氷河期採用の枠を再度拡大する</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-num">⑥</div>
+        <div class="summary-text">不採用時に理由の開示を義務化し、年齢差別が隠れた理由になっていないか透明化する</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-num">⑦</div>
+        <div class="summary-text">企業が「ホワイトな履歴しか採用しない」慣行を変えなければすべて無駄という指摘</div>
+      </div>
+    </div>
+
+    <div class="analysis">
+      <div class="analysis-label">ANALYSIS</div>
+      <p>
+        いずれも「当事者のスキル・意欲の問題」ではなく「採用する側の構造を変える」アプローチだ。
+        リスキリング支援と企業への働きかけを同時に行わなければ、前者の効果は後者の壁に阻まれる——
+        これが174件の自由記述を通じて見えてきた最大の問いだ。
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 7: What works -->
+  <section>
+    <h2><span class="sec-num">07</span>効果があると感じる声も——条件付きの肯定</h2>
+
+    <p>
+      批判一色ではない。「こういう条件なら有効」という構成的な声も届いている。
+    </p>
+
+    <div class="voice-block green">
+      <div class="voice-text">自力で頑張れない（もしくは思考が狭くなってる）方には、リスキリング含め、提案して伴走してもらえるのは有効な人もいるかと思います。あとはメンタルケアをセットにしたうえで支援できる体制があれば。</div>
+      <div class="voice-attr">1981年 / 女性 / 正規雇用（正社員・公務員等）</div>
+      <div class="voice-comment">「メンタルケアをセットに」という条件は、この世代が長期にわたる消耗によって意欲・自己肯定感を削られてきた実態を踏まえた指摘だ。スキル支援だけでなく、心理的なサポートとの組み合わせが有効という提案として読める。</div>
+    </div>
+
+    <div class="voice-block green">
+      <div class="voice-text">専門寄りのスキルと職種経験があり、企業側の社員に穴のある年齢層のカバーとして現状は仕事がある。身体が動くうちは自分ができて求められる仕事で役立ちたい。</div>
+      <div class="voice-attr">1975年 / 女性 / 非正規雇用（パート・アルバイト・契約社員・派遣）</div>
+      <div class="voice-comment">「穴のある年齢層のカバー」という表現が鋭い。氷河期世代の採用が薄かった企業では、その世代のスキルが組織の弱点になっている。これをマッチングに活かす逆転の発想も可能性として存在する。</div>
+    </div>
+  </section>
+
+  <!-- Section 8: Summary -->
+  <section style="border-bottom: none; padding-bottom: 0;">
+    <h2><span class="sec-num">08</span>第2回のまとめ</h2>
+
+    <p>柱１への174件の声が浮かび上がらせた構図はシンプルだ。</p>
+
+    <div class="structure-box">
+      <div class="structure-title">FINDING — 柱１分析の要点</div>
+      <div class="structure-row">
+        <div class="s-box left">柱１の前提</div>
+        <div class="s-box arrow">→</div>
+        <div class="s-note">「スキルを上げれば就労機会が増える」</div>
+      </div>
+      <div class="structure-row">
+        <div class="s-box left">当事者の経験則</div>
+        <div class="s-box arrow">→</div>
+        <div class="s-note">「スキルは既にある。採用する側が年齢で弾く構造が問題」</div>
+      </div>
+      <div class="structure-row">
+        <div class="s-box left">求められる追加施策</div>
+        <div class="s-box arrow">→</div>
+        <div class="s-note">採用インセンティブ・年齢差別規制・ハローワーク求人の質改善・低賃金誘導の回避</div>
+      </div>
+    </div>
+
+    <p>
+      スキルを磨く支援と、採用する側の構造を変える働きかけを並行させなければ、
+      柱１は「丁寧に低賃金求人に誘導する仕組み」になってしまうリスクがある。
+      174件の声は、その警告として読める。
+    </p>
+
+    <div class="next-issue" style="margin-top: 40px;">
+      <div class="next-label">COMING NEXT</div>
+      <div>
+        <div class="next-num">ISSUE 03 / 04</div>
+        <div class="next-title">「居場所より生活費、老後より今」<br>——柱２・柱３への当事者評価</div>
+        <div class="next-desc">
+          社会参加支援（柱２）と高齢期の生活基盤確保（柱３）に対するQ12・Q15の計293件を分析する。
+          「引きこもりイメージへの反発」「遅すぎる老後対策」「年金・住宅という生活基盤の不安」——
+          2本の柱が当事者にどう受け取られているかを深掘りする。
+        </div>
+        <div class="next-stats">
+          <span class="next-stat">Q12 自由記述 147件</span>
+          <span class="next-stat">Q15 自由記述 146件</span>
+          <span class="next-stat">合計 293件</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="article" style="padding-top:0;">
+  <div class="tags">
+    <span class="tag-label">#</span>
+    <span class="tag">就職氷河期世代</span>
+    <span class="tag">リスキリング</span>
+    <span class="tag">年齢差別</span>
+    <span class="tag">ハローワーク</span>
+    <span class="tag">氷河期支援プログラム</span>
+    <span class="tag">柱１</span>
+    <span class="tag">当事者の声</span>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-name">居酒屋氷河期世代コミュニティ @kami_sora_fly</span>
+  <span class="footer-note">本記事の引用・転載は出典明記のうえお願いします</span>
+</footer>
+
+<script>
+const chartData = [
+  { label: 'B. リスキリング無効論',       count: 46, color: '#c0392b' },
+  { label: 'A. 年齢差別・採用の壁',        count: 37, color: '#c0392b' },
+  { label: 'D. ハローワーク批判と提案',    count: 37, color: '#1a4a7a' },
+  { label: 'F. 給与・待遇・正規転換の問題',count: 14, color: '#1a4a7a' },
+  { label: 'P. 施策の実効性への疑問',      count: 10, color: '#1a4a7a' },
+  { label: 'G. 企業への義務化・要求',      count:  8, color: '#1a6e4a' },
+  { label: 'R. その他',                    count:  7, color: '#b5b0a7' },
+  { label: 'C. 実務経験・職歴断絶の壁',   count:  2, color: '#1a4a7a' },
+  { label: 'H. 移民・外国人政策との矛盾', count:  2, color: '#b5b0a7' },
+  { label: 'N. AI選考・デジタル格差',     count:  2, color: '#1a4a7a' },
+  { label: 'O. 既存就労者への不満',        count:  3, color: '#1a4a7a' },
+  { label: 'J. 直接給付・減税要求',        count:  2, color: '#b5b0a7' },
+  { label: 'その他（計）',                 count:  4, color: '#b5b0a7' },
+];
+
+const maxCount = Math.max(...chartData.map(d => d.count));
+const container = document.getElementById('barChart');
+
+chartData.forEach(d => {
+  const pct = (d.count / maxCount * 100).toFixed(1);
+  const row = document.createElement('div');
+  row.className = 'bar-row';
+  row.innerHTML = `
+    <div class="bar-row-label">${d.label}</div>
+    <div class="bar-track">
+      <div class="bar-fill" style="width:${pct}%; background:${d.color};"></div>
+    </div>
+    <div class="bar-count">${d.count}</div>
+  `;
+  container.appendChild(row);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>居場所より生活費、老後より今｜柱２・柱３への当事者評価 第3回</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1814; --ink-mid: #3d3a35; --ink-mute: #7a756c; --ink-faint: #b5b0a7;
+    --paper: #faf8f4; --paper-warm: #f0ece4;
+    --accent: #c0392b; --accent-lt: #f5e6e4;
+    --rule: #d8d3cb;
+    --blue: #1a4a7a; --blue-lt: #e8eef6;
+    --green: #1a6e4a; --green-lt: #e6f4ed;
+    --amber: #7a4a1a; --amber-lt: #f7f0e6;
+    --serif: 'Noto Serif JP', serif;
+    --sans: 'Noto Sans JP', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+    --w-text: 680px; --w-wide: 860px;
+  }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+
+  .site-header { border-bottom: 2px solid var(--ink); padding: 18px 32px; display: flex; align-items: baseline; gap: 16px; position: sticky; top: 0; background: var(--paper); z-index: 100; }
+  .site-name { font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0.06em; color: var(--ink-mid); }
+  .series-tag { font-family: var(--mono); font-size: 11px; background: var(--ink); color: var(--paper); padding: 3px 8px; letter-spacing: 0.08em; }
+
+  .prev-link { max-width: var(--w-wide); margin: 0 auto; padding: 14px 32px; border-bottom: 1px solid var(--rule); display: flex; align-items: center; gap: 12px; }
+  .prev-link-label { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); letter-spacing: 0.1em; }
+  .prev-link-title { font-size: 13px; color: var(--ink-mute); }
+
+  .hero { max-width: var(--w-wide); margin: 0 auto; padding: 64px 32px 52px; border-bottom: 1px solid var(--rule); }
+  .hero-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; flex-wrap: wrap; }
+  .issue-num { font-family: var(--mono); font-size: 11px; font-weight: 500; border: 1.5px solid var(--accent); color: var(--accent); padding: 4px 10px; letter-spacing: 0.1em; }
+  .pub-date { font-family: var(--mono); font-size: 11px; color: var(--ink-mute); letter-spacing: 0.05em; }
+  .pillar-badge { font-family: var(--mono); font-size: 10px; padding: 4px 10px; letter-spacing: 0.08em; }
+  .pillar-badge.p2 { background: var(--amber); color: #fff; }
+  .pillar-badge.p3 { background: var(--green); color: #fff; }
+
+  h1 { font-family: var(--serif); font-size: clamp(22px, 4vw, 36px); font-weight: 700; line-height: 1.45; color: var(--ink); margin-bottom: 24px; }
+  h1 em { font-style: normal; color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 1px; }
+  .hero-sub { font-size: 15px; color: var(--ink-mid); max-width: 560px; line-height: 1.9; }
+
+  .opening-quote { max-width: var(--w-wide); margin: 0 auto; padding: 52px 32px 44px; border-bottom: 1px solid var(--rule); }
+  .big-quote { font-family: var(--serif); font-size: clamp(18px, 3.2vw, 28px); font-weight: 600; line-height: 1.65; color: var(--ink); position: relative; padding-left: 28px; margin-bottom: 20px; }
+  .big-quote::before { content: ''; position: absolute; left: 0; top: 4px; bottom: 4px; width: 4px; background: var(--accent); }
+  .quote-attr { font-family: var(--mono); font-size: 12px; color: var(--ink-mute); padding-left: 28px; }
+  .quote-note { margin-top: 24px; font-size: 14px; color: var(--ink-mid); line-height: 1.85; padding-left: 28px; border-left: 1px solid var(--rule); }
+
+  .article { max-width: var(--w-wide); margin: 0 auto; padding: 0 32px; }
+  section { padding: 48px 0; border-bottom: 1px solid var(--rule); }
+  section:last-child { border-bottom: none; }
+
+  h2 { font-family: var(--serif); font-size: 21px; font-weight: 700; color: var(--ink); margin-bottom: 24px; padding-bottom: 12px; border-bottom: 2px solid var(--ink); display: flex; align-items: baseline; gap: 12px; }
+  h2 .sec-num { font-family: var(--mono); font-size: 12px; color: var(--ink-mute); font-weight: 400; flex-shrink: 0; }
+  h2 .pillar-tag { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 2px; }
+  h2 .pillar-tag.p2 { background: var(--amber-lt); color: var(--amber); border: 1px solid var(--amber); }
+  h2 .pillar-tag.p3 { background: var(--green-lt); color: var(--green); border: 1px solid var(--green); }
+  h3 { font-family: var(--sans); font-size: 16px; font-weight: 700; color: var(--ink); margin: 36px 0 14px; }
+
+  p { font-size: 15px; line-height: 1.95; color: var(--ink-mid); margin-bottom: 20px; max-width: var(--w-text); }
+  p strong { color: var(--ink); font-weight: 700; }
+
+  .chart-wrap { margin: 28px 0; background: var(--paper-warm); border: 1px solid var(--rule); padding: 24px; }
+  .chart-title { font-family: var(--mono); font-size: 11px; color: var(--ink-mute); letter-spacing: 0.08em; margin-bottom: 16px; }
+  .chart-note { font-size: 11px; color: var(--ink-faint); text-align: right; margin-top: 10px; font-family: var(--mono); }
+  .bar-row { display: grid; grid-template-columns: 210px 1fr 36px; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .bar-row-label { font-size: 11px; color: var(--ink-mid); text-align: right; line-height: 1.4; }
+  .bar-track { background: var(--rule); height: 20px; border-radius: 2px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 2px; }
+  .bar-count { font-family: var(--mono); font-size: 12px; color: var(--ink-mute); font-weight: 500; }
+
+  .voice-block { margin: 24px 0; padding: 22px 26px; border-left: 4px solid var(--blue); background: var(--blue-lt); }
+  .voice-block.amber { background: var(--amber-lt); border-left-color: var(--amber); }
+  .voice-block.green { background: var(--green-lt); border-left-color: var(--green); }
+  .voice-block.red { background: var(--accent-lt); border-left-color: var(--accent); }
+  .voice-text { font-family: var(--serif); font-size: 15px; line-height: 1.85; color: var(--ink); margin-bottom: 12px; }
+  .voice-text::before { content: '「'; }
+  .voice-text::after { content: '」'; }
+  .voice-attr { font-family: var(--mono); font-size: 11px; color: var(--ink-mute); letter-spacing: 0.04em; }
+  .voice-comment { margin-top: 10px; font-size: 13px; color: var(--ink-mid); line-height: 1.7; padding-top: 10px; border-top: 1px solid rgba(0,0,0,0.08); }
+
+  .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+  .voice-grid .voice-block { margin: 0; }
+
+  .highlight-box { margin: 32px 0; padding: 22px 26px; background: var(--ink); }
+  .highlight-box p { color: #e8e4dc; font-size: 15px; margin-bottom: 0; max-width: 100%; }
+  .highlight-box strong { color: #fff; }
+
+  .analysis { margin: 28px 0; padding: 20px 24px; border: 1px solid var(--rule); background: var(--paper); }
+  .analysis-label { font-family: var(--mono); font-size: 10px; color: var(--accent); letter-spacing: 0.1em; font-weight: 500; margin-bottom: 10px; }
+  .analysis p { font-size: 14px; color: var(--ink-mid); margin-bottom: 0; max-width: 100%; }
+
+  .stats-row { display: flex; gap: 0; margin: 32px 0; border: 1px solid var(--rule); overflow: hidden; flex-wrap: wrap; }
+  .stat-item { flex: 1; min-width: 120px; padding: 18px 14px 16px; border-right: 1px solid var(--rule); text-align: center; }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-family: var(--mono); font-size: 28px; font-weight: 500; color: var(--ink); line-height: 1; margin-bottom: 6px; }
+  .stat-label { font-size: 11px; color: var(--ink-mute); line-height: 1.5; }
+  .stat-item.accent-stat .stat-num { color: var(--accent); }
+
+  .divider { border: none; border-top: 3px solid var(--ink); margin: 0; }
+
+  .pillar-header { padding: 20px 0 0; margin-bottom: 0; }
+  .pillar-label-big { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; font-weight: 500; display: inline-block; padding: 6px 14px; margin-bottom: 12px; }
+  .pillar-label-big.p2 { background: var(--amber); color: #fff; }
+  .pillar-label-big.p3 { background: var(--green); color: #fff; }
+
+  .caution-box { margin: 32px 0; padding: 20px 24px; border: 1.5px solid var(--accent); background: var(--accent-lt); }
+  .caution-label { font-family: var(--mono); font-size: 10px; color: var(--accent); letter-spacing: 0.1em; font-weight: 500; margin-bottom: 10px; }
+  .caution-box p { font-size: 14px; color: var(--ink-mid); margin-bottom: 0; max-width: 100%; }
+
+  .next-issue { background: var(--paper-warm); border: 1px solid var(--rule); padding: 28px 32px; display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: start; margin-top: 40px; }
+  .next-label { font-family: var(--mono); font-size: 10px; color: var(--ink-mute); letter-spacing: 0.12em; writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); align-self: center; }
+  .next-num { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 6px; }
+  .next-title { font-family: var(--serif); font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 10px; line-height: 1.5; }
+  .next-desc { font-size: 13px; color: var(--ink-mid); line-height: 1.8; }
+  .next-stats { display: flex; gap: 12px; margin-top: 14px; flex-wrap: wrap; }
+  .next-stat { font-family: var(--mono); font-size: 12px; color: var(--ink-mute); background: var(--paper); border: 1px solid var(--rule); padding: 4px 10px; }
+
+  .tags { padding: 32px 0 48px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; border-top: 1px solid var(--rule); }
+  .tag-label { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); margin-right: 4px; }
+  .tag { font-size: 12px; color: var(--ink-mid); border: 1px solid var(--rule); padding: 4px 10px; }
+
+  footer { border-top: 2px solid var(--ink); padding: 24px 32px; max-width: var(--w-wide); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .footer-name { font-family: var(--mono); font-size: 12px; color: var(--ink-mid); }
+  .footer-note { font-size: 11px; color: var(--ink-faint); }
+
+  @media (max-width: 640px) {
+    .site-header, .hero, .opening-quote, .article, .prev-link { padding-left: 20px; padding-right: 20px; }
+    .bar-row { grid-template-columns: 110px 1fr 28px; }
+    .bar-row-label { font-size: 10px; }
+    .voice-grid { grid-template-columns: 1fr; }
+    footer { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <span class="site-name">居酒屋氷河期世代コミュニティ × note</span>
+  <span class="series-tag">連載 第3回</span>
+</header>
+
+<div class="prev-link">
+  <span class="prev-link-label">PREV</span>
+  <span class="prev-link-title">第2回：スキルより先に、採用する側を変えよ――柱１「就労・処遇改善支援」への当事者評価</span>
+</div>
+
+<div class="hero">
+  <div class="hero-meta">
+    <span class="issue-num">ISSUE 03 / 04</span>
+    <span class="pillar-badge p2">PILLAR 02 社会参加支援</span>
+    <span class="pillar-badge p3">PILLAR 03 高齢期の生活基盤確保</span>
+    <span class="pub-date">2026年5月</span>
+  </div>
+  <h1>居場所より生活費、<em>老後より今</em><br>柱２・柱３への当事者評価</h1>
+  <p class="hero-sub">
+    Q12（柱２）147件、Q15（柱３）146件——計293件の声が突きつける問いは二つだ。
+    「段階的支援の前に、今の生活を支えてほしい」。
+    「65歳以降の話の前に、今をどう生きるかを考えさせてほしい」。
+  </p>
+</div>
+
+<div class="opening-quote">
+  <p class="big-quote">今を生き延びれるかどうかの瀬戸際に高齢期の話をされても無意味。</p>
+  <p class="quote-attr">1980年生まれ / 男性 / 無業（求職中）</p>
+  <p class="quote-note">
+    Q15（柱３）に寄せられた一言だ。言葉は短いが、この世代の多くが抱える切迫感が凝縮されている。
+    「将来の備え」より「今の生存」——この優先順位のずれが、
+    柱２・柱３への評価を読み解く鍵になる。
+  </p>
+</div>
+
+<main class="article">
+
+  <!-- 柱２ Overview -->
+  <section>
+    <div class="pillar-label-big p2">PILLAR 02 — 社会参加に向けた段階的支援</div>
+    <h2><span class="sec-num">01</span>柱２の全体像——「実効性への疑問」が最多</h2>
+
+    <div class="stats-row">
+      <div class="stat-item accent-stat">
+        <div class="stat-num">43.0<small style="font-size:13px">%</small></div>
+        <div class="stat-label">否定的評価<br>（有効でない＋あまり有効でない）</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">25.8<small style="font-size:13px">%</small></div>
+        <div class="stat-label">「自分には<br>該当しない」</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">19.9<small style="font-size:13px">%</small></div>
+        <div class="stat-label">「どちらとも<br>言えない」</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">11.3<small style="font-size:13px">%</small></div>
+        <div class="stat-label">肯定的評価<br>（やや有効＋有効）</div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--ink-faint);font-family:var(--mono);margin-bottom:20px;">Q11「柱２は有効だと思いますか」n=221　3本柱の中で肯定的評価が最も低い</p>
+    <div class="stats-row" style="margin-top:0;">
+      <div class="stat-item">
+        <div class="stat-num">147</div>
+        <div class="stat-label">自由記述<br>回答数（Q12）</div>
+      </div>
+      <div class="stat-item accent-stat">
+        <div class="stat-num">28</div>
+        <div class="stat-label">最多カテゴリ<br>「居場所の実効性への疑問」</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">20</div>
+        <div class="stat-label">「遅すぎる・<br>今更感」</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">12</div>
+        <div class="stat-label">「居場所より<br>生活費」</div>
+      </div>
+    </div>
+
+    <div class="chart-wrap">
+      <div class="chart-title">Q12 自由記述 カテゴリ別分布（n=147）</div>
+      <div id="barChartQ12"></div>
+      <div class="chart-note">居酒屋氷河期世代コミュニティ アンケート 2026年4月実施</div>
+    </div>
+
+    <p>
+      147件の回答を分類すると、最多は<strong>「居場所づくり・社会参加支援の実効性への疑問（28件、19.0%）」</strong>だった。
+      「遅すぎる・今更感（20件）」がそれに続く。
+      注目すべきは「経済的支援・生活保障の優先を求める声（12件）」だ。
+      これは柱２への設計批判ではなく、「居場所より先に生活費をどうにかしてほしい」という
+      優先順位の問い直しだ。
+    </p>
+  </section>
+
+  <!-- 柱２ Section 2 -->
+  <section>
+    <h2><span class="sec-num">02</span>「本当に必要な人が来られるのか」——実効性への28件の疑問</h2>
+
+    <p>
+      柱２のコアである「居場所づくり・段階的支援」に対して、19.0%が実効性への疑問を訴えた。
+      批判の軸は3つだ。
+    </p>
+
+    <h3>① 支援が届かない問題——孤立しているからこそ来られない</h3>
+    <div class="voice-block amber">
+      <div class="voice-text">本当に必要としている人が居場所にたどり着けると思えない。</div>
+      <div class="voice-attr">1978年 / 女性 / 非正規雇用（パート・アルバイト・契約社員・派遣）</div>
+      <div class="voice-comment">居場所を必要としている人ほど、情報収集や外出のハードルが高い。支援を「用意する」だけでは届かないという、実体験に基づく指摘だ。</div>
+    </div>
+
+    <div class="voice-block amber">
+      <div class="voice-text">居場所に関する周知がまだまだなのか、どのような居場所があるのか分からない。地域のコミュニティカフェやNPOの支援だと顔が知られてしまうので逆に居づらい。</div>
+      <div class="voice-attr">1982年 / 女性 / 非正規雇用（パート・アルバイト・契約社員・派遣）</div>
+      <div class="voice-comment">「顔が知られてしまう」という指摘はこの世代固有のプライバシー問題だ。地域密着型の支援が、逆に参加の壁になるケースがある。オンラインや匿名参加の選択肢が求められている。</div>
+    </div>
+
+    <h3>② 成果の見えにくさ——前回も「効果があったか把握できていない」</h3>
+    <div class="voice-block amber">
+      <div class="voice-text">前回もあったと思うが、成果があったかどうか把握できてない。就労支援はまだしも、居場所づくりはどの程度成果を期待できるのか？</div>
+      <div class="voice-attr">1982年 / 男性 / 正規雇用（正社員・公務員等）</div>
+      <div class="voice-comment">2019〜2022年のプログラムでも居場所づくりは実施された。その結果がどう評価・検証されたかが不明なまま、同様の施策が繰り返されることへの疑問だ。PDCAを可視化する必要がある。</div>
+    </div>
+
+    <h3>③ 外に出ること自体がハードル</h3>
+    <div class="voice-block amber">
+      <div class="voice-text">そもそも自発的に外に出るのか疑問。</div>
+      <div class="voice-attr">1974年 / 女性 / 無業（求職中）</div>
+    </div>
+    <div class="voice-block amber">
+      <div class="voice-text">今更過ぎてメンタルボロボロ、人と関わるのが辛い。</div>
+      <div class="voice-attr">1976年 / 女性 / 非正規雇用（パート・アルバイト・契約社員・派遣）</div>
+      <div class="voice-comment">長年の消耗と対人関係での傷が、「居場所に行く」という最初の一歩を難しくしている。物理的な居場所の整備と並行して、精神的・心理的なアプローチが不可欠だ。</div>
+    </div>
+  </section>
+
+  <!-- 柱２ Section 3 スティグマ -->
+  <section>
+    <h2><span class="sec-num">03</span>「引きこもりイメージ」への反発——柱２設計への根本的な疑問</h2>
+
+    <p>
+      6件と少ないが内容が鋭いのが「引きこもり・能力不足イメージへの反発」だ。
+      柱２の設計そのものへの根本的な問いを含んでいる。
+    </p>
+
+    <div class="voice-block red">
+      <div class="voice-text">「社会参加に向けた段階的支援」という柱が、氷河期世代＝引きこもりや能力が無い人、というイメージを植え付ける悪質な印象操作だと思う。氷河期世代で長期無業になってしまう人がいるのは、職能があっても年齢バイアスや派遣社員など非正規雇用者への差別観によって雇用が阻まれているのであり、個人の能力不足の問題ではない。</div>
+      <div class="voice-attr">1977年 / 女性 / 無業（求職中）</div>
+      <div class="voice-comment">この一文は、柱２への批判の核心を衝いている。「社会参加ができていない」のは意欲や能力の問題ではなく、受け入れる側の構造の問題だ——という認識が、この世代に共通して根づいている。</div>
+    </div>
+
+    <div class="highlight-box">
+      <p>
+        柱２が「段階的に社会参加を促す」設計を取ることで、
+        <strong>「この世代は段階的なリハビリが必要な状態にある」という前提</strong>が暗示される。
+        しかし当事者の多くは、能力でも意欲でもなく、
+        構造的な排除によってその状態に置かれた——という認識を持っている。
+        設計の前提と当事者の自己認識のずれが、柱２への不信感の根底にある。
+      </p>
+    </div>
+  </section>
+
+  <!-- 柱２ Section 4 生活費 -->
+  <section>
+    <h2><span class="sec-num">04</span>「居場所より先に生活費を」——経済的支援の優先を求める12件</h2>
+
+    <div class="voice-block amber">
+      <div class="voice-text">まず生きていける環境を整えて欲しい。税金や年金が支払えないのだから。</div>
+      <div class="voice-attr">1971年 / 女性 / 無業（求職中）</div>
+    </div>
+
+    <div class="voice-block amber">
+      <div class="voice-text">そもそもこのご時世で金銭負担がかかる形でその場所への誘導は少ないおかねでやりくりするような人には荷が重いのでは？交通費負担ありならまだわかりますけど、就労できない状態の人。</div>
+      <div class="voice-attr">1984年 / 女性 / 無業（求職していない）</div>
+      <div class="voice-comment">居場所への参加に交通費・時間・心理的コストがかかる。経済的に余裕がない状態では、支援の場に出向くこと自体が困難だという指摘だ。</div>
+    </div>
+
+    <div class="analysis">
+      <div class="analysis-label">ANALYSIS</div>
+      <p>マズローの欲求階層に照らすと当然の話だが、生活の安定がない状態で「居場所づくり」「社会とのつながり」を提供しても、それを受け取る余力がない。まず経済的なセーフティネットを整えることが、柱２の効果を引き出す前提条件だ。</p>
+    </div>
+  </section>
+
+  <!-- 柱２ Section 5 低賃金 -->
+  <section>
+    <h2><span class="sec-num">05</span>「土木と介護しかない」——低賃金誘導批判7件</h2>
+
+    <p>
+      「中間的就労」「軽作業」として提示される仕事の質への批判が7件寄せられた。
+    </p>
+
+    <div class="voice-block amber">
+      <div class="voice-text">近場の求人なんて土木と介護しかないのに？何が軽い作業だよ。何が地域清掃だよ。何が物品整理だよ。しかも土木と介護は要資格要経験でどこでその資格と経験得るんだよ。マジでふざけんな。</div>
+      <div class="voice-attr">1975年 / 男性 / 無業（求職中）</div>
+    </div>
+
+    <div class="voice-block amber">
+      <div class="voice-text">中間的労働は超低賃金である事が予想され、親や生活保護などの補助がなければ成り立たなそう。</div>
+      <div class="voice-attr">1979年 / 女性 / 正規雇用（正社員・公務員等）</div>
+      <div class="voice-comment">「中間的就労」が名目上は「段階的な就労支援」であっても、実態として生活費を賄えない低賃金労働への誘導になるなら、それは支援ではなく消耗だという指摘だ。</div>
+    </div>
+  </section>
+
+  <!-- 区切り -->
+  <hr class="divider">
+
+  <!-- 柱３ Overview -->
+  <section>
+    <div class="pillar-label-big p3">PILLAR 03 — 高齢期に備えた生活基盤の確保支援</div>
+    <h2><span class="sec-num">06</span>柱３の全体像——「老後より今」という問い</h2>
+
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-num">35.3<small style="font-size:13px">%</small></div>
+        <div class="stat-label">肯定的評価<br>（やや有効＋有効）</div>
+      </div>
+      <div class="stat-item accent-stat">
+        <div class="stat-num">38.9<small style="font-size:13px">%</small></div>
+        <div class="stat-label">否定的評価<br>（有効でない＋あまり有効でない）</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">18.1<small style="font-size:13px">%</small></div>
+        <div class="stat-label">「どちらとも<br>言えない」</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">7.7<small style="font-size:13px">%</small></div>
+        <div class="stat-label">「まだ先のことで<br>判断できない」</div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--ink-faint);font-family:var(--mono);margin-bottom:20px;">Q13「柱３は有効だと思いますか」n=221　3本柱の中で肯定的評価が最も高い</p>
+    <div class="stats-row" style="margin-top:0;">
+      <div class="stat-item">
+        <div class="stat-num">146</div>
+        <div class="stat-label">自由記述<br>回答数（Q15）</div>
+      </div>
+      <div class="stat-item accent-stat">
+        <div class="stat-num">21</div>
+        <div class="stat-label">最多「老後就労強制・<br>生涯現役への反発」</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">18</div>
+        <div class="stat-label">「直接給付・<br>賠償要求」</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">17</div>
+        <div class="stat-label">「住宅支援<br>の要求」</div>
+      </div>
+    </div>
+
+    <p>
+      Q13（柱３への評価）では、肯定的評価（「やや有効」＋「有効」）が<strong>35.3%</strong>と
+      3本柱の中で最も高かった。高齢期支援が新設されたこと自体は評価されている。
+      一方で否定的評価も38.9%あり、「まだ先のことで判断できない」が7.7%と柱固有の回答も見られる。
+    </p>
+    <p>
+      続くQ14（柱３の中で特に重要だと思う支援・複数選択）では、当事者が何を最も必要としているかが明確に示された。
+    </p>
+
+    <div class="chart-wrap">
+      <div class="chart-title">Q14 柱３の中で特に重要だと思う支援（複数選択 n=221）</div>
+      <div id="barChartQ14"></div>
+      <div class="chart-note">居酒屋氷河期世代コミュニティ アンケート 2026年4月実施</div>
+    </div>
+
+    <p>
+      「低家賃住宅・公営住宅への優先入居」が<strong>72.4%（160件）</strong>と突出して高い。
+      「生活保護申請への支援・簡素化」（60.2%）、「国民年金の追納・受給額補填」（46.6%）が続く。
+      上位3項目はいずれも<strong>「今すぐ生き延びるための生活基盤」</strong>に関わるものだ。
+      一方、「65歳以降の就労支援」は33.9%と最下位。
+      「高齢期支援」という柱名にもかかわらず、求められているのは老後の整備ではなく今の底支えだ。
+    </p>
+    <p>
+      Q15（自由記述）の146件を読むと、その数字が実感としての言葉に変わる。
+      <strong>「老後より今の生活をどうにかしてほしい」（14件、9.6%）</strong>という声が多く、
+      65歳以降を前提にした設計への違和感が続く。
+    </p>
+
+    <div class="chart-wrap">
+      <div class="chart-title">Q15 自由記述 カテゴリ別分布（n=146）</div>
+      <div id="barChartQ15"></div>
+      <div class="chart-note">居酒屋氷河期世代コミュニティ アンケート 2026年4月実施</div>
+    </div>
+  </section>
+
+  <!-- 柱３ Section 7 生涯現役 -->
+  <section>
+    <h2><span class="sec-num">07</span>最多カテゴリ：「死ぬまで働けということか」——21件の反発</h2>
+
+    <p>
+      146件中最多の<strong>21件（14.4%）</strong>が「老後就労強制・生涯現役への反発」だった。
+      65歳以上の就労支援が「支援」ではなく「強制」として受け取られている。
+    </p>
+
+    <div class="voice-grid">
+      <div class="voice-block green">
+        <div class="voice-text">現在50代で、そもそも65歳までまともに仕事をしているか想像出来ない。</div>
+        <div class="voice-attr">1975年 / 女性 / 非正規雇用</div>
+      </div>
+      <div class="voice-block green">
+        <div class="voice-text">生涯現役（死ぬまで生きるために働く）事にはなるんだろうな、と。仕方ないのかもですが。</div>
+        <div class="voice-attr">1982年 / 男性 / 正規雇用</div>
+      </div>
+    </div>
+
+    <div class="voice-block green">
+      <div class="voice-text">老後も一生働き続けないと安心して生活できないのかと思うと不安。働きたい場合はその選択肢を持てることは重要だと思うけど。年金の支給開始年齢を後ろ倒しにしないで欲しい。</div>
+      <div class="voice-attr">1972年 / 女性 / 正規雇用（正社員・公務員等）</div>
+      <div class="voice-comment">「働きたい人が働ける」選択肢は支持されている。問題は「働かざるを得ない」構造を前提にした設計だ。年金支給開始年齢の後ろ倒しへの不安と組み合わさり、「生涯現役」が強制に見える。</div>
+    </div>
+
+    <div class="analysis">
+      <div class="analysis-label">ANALYSIS</div>
+      <p>「65歳以降の就労支援」は、選択肢の拡充として設計されたはずだ。しかし年金制度への不信・受給額への不安と組み合わさると、「働かなければ生きられない」という強制として受け取られる。設計の意図と受け取られ方のギャップを埋める説明が必要だ。</p>
+    </div>
+  </section>
+
+  <!-- 柱３ Section 8 今より今 -->
+  <section>
+    <h2><span class="sec-num">08</span>「老後より今」——現役優先を求める14件</h2>
+
+    <div class="voice-block green">
+      <div class="voice-text">今を生き延びれるかどうかの瀬戸際に高齢期の話をされても無意味。</div>
+      <div class="voice-attr">1980年 / 男性 / 無業（求職中）</div>
+    </div>
+
+    <div class="voice-block green">
+      <div class="voice-text">とりあえず今の生活をどうにかして欲しい。皆が高齢者になれる訳ではない。</div>
+      <div class="voice-attr">1971年 / 女性 / 無業（求職中）</div>
+    </div>
+
+    <div class="voice-block green">
+      <div class="voice-text">遺族年金、第三号被保険者の年金剥奪を狙っておいて何を言う？住まいの提供？現役世代にこそ必要なのにそこ放ったらかし？順番が違う。</div>
+      <div class="voice-attr">1985年以降 / 女性 / 無業（求職していない）</div>
+      <div class="voice-comment">「順番が違う」——この言葉が14件の声の共通点だ。老後の備えより現在の生活基盤を整えることが先決という優先順位の問い直しは、連載を通じて繰り返し登場するテーマだ。</div>
+    </div>
+  </section>
+
+  <!-- 柱３ Section 9 住宅・年金・生活保護 -->
+  <section>
+    <h2><span class="sec-num">09</span>住宅・年金・生活保護——3つの生活基盤への声</h2>
+
+    <h3>住宅支援（17件）——「今すぐ必要」</h3>
+    <div class="voice-grid">
+      <div class="voice-block green">
+        <div class="voice-text">住宅支援は今すぐ必要である。</div>
+        <div class="voice-attr">1974年 / 女性 / 無業（求職中）</div>
+      </div>
+      <div class="voice-block green">
+        <div class="voice-text">低家賃住宅・公営住宅への優先入居は、いますぐ行ってほしい。</div>
+        <div class="voice-attr">1979年 / 女性 / 無業（求職中）</div>
+      </div>
+    </div>
+    <p>
+      Q14では「低家賃住宅・公営住宅への優先入居」が<strong>160件（72.4%）</strong>と最多だった。
+      住宅支援は65歳以降ではなく「今すぐ」求められている。
+    </p>
+
+    <h3>年金（12件）——「年金だけでは生活できない」</h3>
+    <div class="voice-block green">
+      <div class="voice-text">年金だけでは、生活費がどう考えても足りなくなると思う。特に国民年金の人。</div>
+      <div class="voice-attr">1975年 / 女性 / 非正規雇用（パート・アルバイト・契約社員・派遣）</div>
+    </div>
+    <div class="voice-block green">
+      <div class="voice-text">現状、年金生活無理という状態で介護福祉？？？となります。年金生活となった時低額住宅になった時、生きていける生活のできるお金があるのか，まずそこが心配です。</div>
+      <div class="voice-attr">1984年 / 女性 / 無業（求職していない）</div>
+    </div>
+
+    <h3>生活保護（16件）——「申請しても受理されない」</h3>
+    <div class="voice-block green">
+      <div class="voice-text">生活保護を申請しても受理しない自治体があると聞く。手続きを簡素化しても受理されなければ意味がない。</div>
+      <div class="voice-attr">1975年 / 女性 / 非正規雇用（パート・アルバイト・契約社員・派遣）</div>
+      <div class="voice-comment">「申請の簡素化」はプログラムにも盛り込まれているが、実態として「水際対策」が続く現場では意味をなさないという指摘だ。制度設計と運用現場の乖離を是正する必要がある。</div>
+    </div>
+  </section>
+
+  <!-- 柱３ Section 10 安楽死 -->
+  <section>
+    <h2><span class="sec-num">10</span>「安楽死」という言葉が4件届いた</h2>
+
+    <div class="caution-box">
+      <div class="caution-label">NOTE — この声をどう読むか</div>
+      <p>「安楽死させてほしい」「60歳で安楽死できるよう法整備を」という言葉が4件届いた。これを極端な意見として処理することはできない。30年にわたる構造的な放置が生んだ絶望の声として、政策立案者は正面から受け止める必要がある。</p>
+    </div>
+
+    <div class="voice-block red">
+      <div class="voice-text">60歳で安楽死できるよう法整備にしてもらえれば、後の世代の負担をなるべく減らしてあげることができる。自己責任と言われ見捨てられ続けた世代だから最期も見捨ててくれて構わない。</div>
+      <div class="voice-attr">1976年 / 女性 / 非正規雇用（パート・アルバイト・契約社員・派遣）</div>
+    </div>
+
+    <div class="voice-block red">
+      <div class="voice-text">全部65歳から。絶望しかない。生活保護支援の要件が緩和されるのなら嬉しいが、口うるさい自称支援者に説教されるくらいなら安楽死の方が助かる。</div>
+      <div class="voice-attr">1971年 / 女性 / 無業（求職していない）</div>
+      <div class="voice-comment">「自己責任と言われ見捨てられ続けた」「全部65歳から。絶望しかない」——これらの言葉は、支援が届かない怒りと、30年間の放置への深い傷を映している。「安楽死」という言葉を選ばざるを得なかった文脈を、政策立案者は直視すべきだ。</div>
+    </div>
+
+    <p>
+      この声は連載を通じて届いた最も重い言葉だ。
+      第4回（総括・Q17）ではさらに多くの同様の声が登場する。
+      私たちコミュニティとして、これらの声をどう提言に組み込むか——
+      最終回に向けて、その言語化にも取り組んでいく。
+    </p>
+  </section>
+
+  <!-- Section 11 まとめ -->
+  <section style="border-bottom: none; padding-bottom: 0;">
+    <h2><span class="sec-num">11</span>第3回のまとめ</h2>
+
+    <p>柱２・柱３への293件の声が共通して示した構図はこうだ。</p>
+
+    <div class="highlight-box">
+      <p>
+        <strong>柱２：</strong>「段階的支援」の設計が「この世代は段階的リハビリが必要」という前提を内包しており、
+        当事者の自己認識（構造的排除の被害者）と根本的にずれている。
+        加えて、生活基盤が安定していない状態では「居場所」を受け取る余力がない。<br><br>
+        <strong>柱３：</strong>高齢期への備えという方向性は評価される。しかし今の生活が切迫している当事者にとって、
+        65歳以降の話は「遠すぎる未来」だ。住宅・年金・生活保護という生活基盤の今すぐの強化が求められている。
+      </p>
+    </div>
+
+    <div class="next-issue">
+      <div class="next-label">COMING NEXT</div>
+      <div>
+        <div class="next-num">ISSUE 04 / 04</div>
+        <div class="next-title">「30年後の請求書が届いた」<br>——Q17・総括と提言</div>
+        <div class="next-desc">
+          「今の生活と将来への不安を率直に教えてください」（Q17・175件）を中心に、
+          4回にわたる当事者評価の総括と政策提言を行う。
+          老後・孤独・絶望・怒り——この連載で最も重い声が集まった設問だ。
+        </div>
+        <div class="next-stats">
+          <span class="next-stat">Q17 自由記述 175件</span>
+          <span class="next-stat">4回シリーズ総括</span>
+          <span class="next-stat">政策提言まとめ</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="article" style="padding-top:0;">
+  <div class="tags">
+    <span class="tag-label">#</span>
+    <span class="tag">就職氷河期世代</span>
+    <span class="tag">氷河期支援プログラム</span>
+    <span class="tag">柱２</span>
+    <span class="tag">柱３</span>
+    <span class="tag">社会参加支援</span>
+    <span class="tag">高齢期支援</span>
+    <span class="tag">当事者の声</span>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-name">居酒屋氷河期世代コミュニティ @kami_sora_fly</span>
+  <span class="footer-note">本記事の引用・転載は出典明記のうえお願いします</span>
+</footer>
+
+<script>
+const maxVal = 28;
+
+const q12data = [
+  { label: 'D. 居場所の実効性への疑問',   count: 28, color: '#7a4a1a' },
+  { label: 'A. 遅すぎる・今更感',         count: 20, color: '#7a4a1a' },
+  { label: 'R. その他',                   count: 18, color: '#b5b0a7' },
+  { label: 'E. 経済的支援の優先',         count: 12, color: '#7a4a1a' },
+  { label: 'F. 周知・情報アクセス',       count: 11, color: '#7a4a1a' },
+  { label: 'M. 現役就労者の除外への疑問', count:  7, color: '#7a4a1a' },
+  { label: 'G. 低賃金誘導批判',           count:  7, color: '#c0392b' },
+  { label: 'K. 福祉・別機関との連携',     count:  6, color: '#1a6e4a' },
+  { label: 'B. 引きこもりイメージへの反発', count: 6, color: '#c0392b' },
+  { label: 'P. 参加へのハードル',         count:  5, color: '#7a4a1a' },
+  { label: 'I. 謝罪・承認要求',           count:  5, color: '#1a4a7a' },
+  { label: 'その他（計）',                count: 10, color: '#b5b0a7' },
+];
+
+const q15data = [
+  { label: 'B. 老後就労強制への反発',     count: 21, color: '#1a6e4a' },
+  { label: 'F. 直接給付・賠償要求',       count: 18, color: '#c0392b' },
+  { label: 'D. 住宅支援の要求',           count: 17, color: '#1a6e4a' },
+  { label: 'Q. その他',                   count: 17, color: '#b5b0a7' },
+  { label: 'G. 生活保護・セーフティネット', count: 16, color: '#1a6e4a' },
+  { label: 'E. 現役優先・老後より今',     count: 14, color: '#1a6e4a' },
+  { label: 'I. 遅すぎる・実現性不信',     count: 12, color: '#7a4a1a' },
+  { label: 'C. 年金の不足・不安',         count: 12, color: '#1a6e4a' },
+  { label: 'A. 絶望・安楽死への言及',     count:  4, color: '#c0392b' },
+  { label: 'その他（計）',                count: 15, color: '#b5b0a7' },
+];
+
+function buildChart(containerId, data) {
+  const maxCount = Math.max(...data.map(d => d.count));
+  const container = document.getElementById(containerId);
+  data.forEach(d => {
+    const pct = (d.count / maxCount * 100).toFixed(1);
+    const row = document.createElement('div');
+    row.className = 'bar-row';
+    row.innerHTML = `
+      <div class="bar-row-label">${d.label}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${d.color};"></div></div>
+      <div class="bar-count">${d.count}</div>`;
+    container.appendChild(row);
+  });
+}
+
+const q14data = [
+  { label: '低家賃住宅・公営住宅への優先入居',  count: 160, color: '#1a6e4a' },
+  { label: '生活保護申請への支援・簡素化',       count: 133, color: '#1a6e4a' },
+  { label: '国民年金の追納・受給額補填',         count: 103, color: '#1a6e4a' },
+  { label: '孤立防止・見守りネットワーク',       count:  84, color: '#1a4a7a' },
+  { label: '65歳以降の就労支援',                count:  75, color: '#b5b0a7' },
+];
+
+buildChart('barChartQ12', q12data);
+buildChart('barChartQ14', q14data);
+buildChart('barChartQ15', q15data);
+</script>
+</body>
+</html>
