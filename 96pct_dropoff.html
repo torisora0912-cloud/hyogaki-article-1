@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>申込から就業まで｜ファネル分析 第3回</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+  :root {
+    --bg:     #f7f5f0;
+    --surface:#ffffff;
+    --border: #e2ddd5;
+    --ink:    #1a1814;
+    --ink2:   #5a5650;
+    --gold:   #b8860b;
+    --gold-l: #f5e9c0;
+    --red:    #c0392b;
+    --red-l:  #fdecea;
+    --blue:   #1a5276;
+    --blue-l: #d6eaf8;
+    --green:  #1e8449;
+    --teal:   #148f77;
+    --gray:   #7f8c8d;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    padding: 28px 16px 64px;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+
+  .hdr { margin-bottom: 36px; padding-bottom: 18px; border-bottom: 2.5px solid var(--ink); }
+  .hdr .series { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--gold); text-transform:uppercase; margin-bottom:6px; }
+  .hdr h1 { font-family:'Noto Serif JP',serif; font-size:18px; font-weight:900; line-height:1.5; margin-bottom:5px; }
+  .hdr .meta { font-size:11px; color:var(--ink2); }
+
+  .stitle { font-size:12px; font-weight:700; color:var(--ink); margin-bottom:4px; padding-left:10px; border-left:3px solid var(--gold); }
+  .ssub   { font-size:11px; color:var(--ink2); margin-bottom:14px; padding-left:13px; }
+  .section { margin-bottom:44px; }
+
+  .note-box {
+    background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--gold);
+    border-radius:3px; padding:10px 14px; margin-top:12px; font-size:11px; color:var(--ink2); line-height:1.7;
+  }
+
+  /* ======= 図1 ファネル ======= */
+  .funnel { display:flex; flex-direction:column; }
+
+  .f-band {
+    display:flex;
+    align-items:stretch;
+    margin-bottom:0;
+    position:relative;
+  }
+
+  .f-label-col {
+    width:110px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    padding-right:10px;
+    font-size:11px;
+    color:var(--ink2);
+    text-align:right;
+  }
+
+  .f-bar-area { flex:1; position:relative; padding:3px 0; }
+
+  .f-bar {
+    height:30px;
+    border-radius:3px;
+    display:flex;
+    align-items:center;
+    padding-left:10px;
+    transition:width .5s;
+  }
+  .f-bar .f-num {
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    font-weight:700;
+    color:#fff;
+    white-space:nowrap;
+  }
+  .f-pct-col {
+    width:50px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--ink2);
+  }
+
+  .f-drop-row {
+    display:flex;
+    align-items:center;
+    padding:3px 0 3px 120px;
+    font-size:10px;
+    color:var(--red);
+    gap:5px;
+  }
+  .f-drop-row::before { content:"↓"; font-size:13px; }
+
+  /* ======= 図2 年度別比較 ======= */
+  .yr-compare { display:flex; flex-direction:column; gap:18px; }
+  .yr-block { background:var(--surface); border:1px solid var(--border); border-radius:6px; overflow:hidden; }
+  .yr-head { background:#ede9e0; padding:7px 14px; font-size:11px; font-weight:700; color:var(--ink2); display:flex; justify-content:space-between; }
+  .yr-rows { display:flex; flex-direction:column; gap:4px; padding:10px 14px; }
+  .yr-row { display:flex; align-items:center; gap:8px; }
+  .yr-row-label { font-size:11px; color:var(--ink2); width:80px; flex-shrink:0; text-align:right; }
+  .yr-track { flex:1; background:var(--border); border-radius:2px; height:20px; }
+  .yr-fill { height:100%; border-radius:2px; display:flex; align-items:center; padding-left:8px; }
+  .yr-fill .yn { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; color:#fff; }
+  .yr-num { font-family:'JetBrains Mono',monospace; font-size:11px; width:54px; text-align:right; flex-shrink:0; }
+
+  /* ======= 図3 申込推移 ======= */
+  .apply-bars { display:flex; flex-direction:column; gap:8px; }
+  .ab-row { display:flex; align-items:center; gap:8px; }
+  .ab-yr { font-size:11px; color:var(--ink2); width:90px; flex-shrink:0; text-align:right; }
+  .ab-track { flex:1; background:var(--border); border-radius:2px; height:26px; }
+  .ab-fill { height:100%; border-radius:2px; display:flex; align-items:center; padding-left:10px; }
+  .ab-fill .an { font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; color:#fff; }
+  .ab-pct { font-family:'JetBrains Mono',monospace; font-size:11px; width:52px; text-align:right; flex-shrink:0; }
+
+  /* ======= 図4 採用予定 vs 合格 ======= */
+  .gap-chart { display:flex; flex-direction:column; gap:16px; }
+  .gap-block {}
+  .gap-yr { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink2); margin-bottom:6px; }
+  .gap-rows { display:flex; flex-direction:column; gap:4px; }
+  .gap-row { display:flex; align-items:center; gap:8px; }
+  .gap-label { font-size:11px; color:var(--ink2); width:70px; flex-shrink:0; text-align:right; }
+  .gap-track { flex:1; background:var(--border); border-radius:2px; height:22px; }
+  .gap-fill { height:100%; border-radius:2px; display:flex; align-items:center; padding-left:8px; }
+  .gap-fill .gn { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; color:#fff; }
+  .gap-diff { font-family:'JetBrains Mono',monospace; font-size:11px; width:50px; text-align:right; flex-shrink:0; }
+
+  /* 出典 */
+  .src { margin-top:36px; padding-top:18px; border-top:1px solid var(--border); font-size:11px; color:var(--ink2); }
+  .src ul { list-style:none; display:flex; flex-direction:column; gap:5px; margin-top:8px; }
+  .src li::before { content:"— "; color:var(--gold); }
+  .src a { color:var(--blue); word-break:break-all; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hdr">
+    <div class="series">居酒屋氷河期世代コミュニティ｜データで読む支援の実態 第3回</div>
+    <h1>申し込んでも採用されない96%の話<br>ファネルデータで読む「見えない脱落」</h1>
+    <div class="meta">作成：2026年5月17日｜出典：人事院（一次資料）｜X: @kami_sora_fly</div>
+  </div>
+
+  <!-- 図1：令和6年度ファネル -->
+  <div class="section">
+    <div class="stitle">図1｜令和6年度（2024）申込から採用までの全段階</div>
+    <div class="ssub">申込者3,909名のうち最終合格は151名（3.9%）</div>
+
+    <div class="funnel">
+
+      <div class="f-band">
+        <div class="f-label-col">申込者数</div>
+        <div class="f-bar-area">
+          <div class="f-bar" style="width:100%;background:#1a5276">
+            <span class="f-num">3,909名</span>
+          </div>
+        </div>
+        <div class="f-pct-col" style="color:var(--blue)">100%</div>
+      </div>
+      <div class="f-drop-row">1,539名（39.4%）が欠席・棄権　→　第1次選考を受けず</div>
+
+      <div class="f-band">
+        <div class="f-label-col">第1次選考<br>受験者数</div>
+        <div class="f-bar-area">
+          <div class="f-bar" style="width:60.6%;background:#2980b9">
+            <span class="f-num">2,370名</span>
+          </div>
+        </div>
+        <div class="f-pct-col">60.6%</div>
+      </div>
+      <div class="f-drop-row">1,377名（35.2%）が第1次選考（筆記）で不合格</div>
+
+      <div class="f-band">
+        <div class="f-label-col">第1次<br>通過者数</div>
+        <div class="f-bar-area">
+          <div class="f-bar" style="width:25.4%;background:var(--teal)">
+            <span class="f-num">993名</span>
+          </div>
+        </div>
+        <div class="f-pct-col">25.4%</div>
+      </div>
+      <div class="f-drop-row">842名（21.5%）が第2次選考（各省面接）で不合格</div>
+
+      <div class="f-band">
+        <div class="f-label-col" style="color:var(--gold)">最終合格者数</div>
+        <div class="f-bar-area">
+          <div class="f-bar" style="width:3.9%;background:var(--gold)">
+            <span class="f-num">151名</span>
+          </div>
+        </div>
+        <div class="f-pct-col" style="color:var(--gold);font-weight:700">3.9%</div>
+      </div>
+
+      <!-- 採用予定との差 -->
+      <div style="margin-top:10px;padding:10px 14px;background:var(--red-l);border:1px solid #f5c6c2;border-radius:4px;font-size:11px;color:var(--red)">
+        ⚠ 採用予定174名に対し合格151名 →
+        <strong>23名分の「枠」が埋まらなかった</strong>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>「倍率15.7倍」はどこの数字か</strong><br>
+      受験者2,370名 ÷ 合格151名 = 15.7倍（令和6年度・全区分）。よく引用される「31.3倍」は事務区分・関東甲信越の受験者ベースの数字。申込者ベースで計算すると3,909 ÷ 151 = 25.9倍となる。脱落は試験だけではなく「当日来ない段階」から始まっている。
+    </div>
+  </div>
+
+  <!-- 図2：年度別段階比較 -->
+  <div class="section">
+    <div class="stitle">図2｜年度別 段階別脱落の比較（令和4〜6年度）</div>
+    <div class="ssub">すべての年度で「第2次選考（省庁面接）」の通過率が最低（14〜15%）</div>
+
+    <div class="yr-compare">
+
+      <!-- 令和4年度 -->
+      <div class="yr-block">
+        <div class="yr-head">
+          <span>令和4年度（2022）　申込5,532名 → 合格160名</span>
+          <span style="color:var(--gold)">採用率2.9%</span>
+        </div>
+        <div class="yr-rows">
+          <div class="yr-row">
+            <div class="yr-row-label">申込</div>
+            <div class="yr-track"><div class="yr-fill" style="width:100%;background:#1a5276"><span class="yn">5,532名</span></div></div>
+            <div class="yr-num">100%</div>
+          </div>
+          <div class="yr-row">
+            <div class="yr-row-label" style="color:var(--red)">欠席</div>
+            <div class="yr-track"><div class="yr-fill" style="width:40.5%;background:var(--red)"><span class="yn">▲2,238名</span></div></div>
+            <div class="yr-num" style="color:var(--red)">40.5%</div>
+          </div>
+          <div class="yr-row">
+            <div class="yr-row-label">受験</div>
+            <div class="yr-track"><div class="yr-fill" style="width:59.5%;background:#2980b9"><span class="yn">3,294名</span></div></div>
+            <div class="yr-num">59.5%</div>
+          </div>
+          <div class="yr-row">
+            <div class="yr-row-label" style="color:var(--red)">1次落ち</div>
+            <div class="yr-track"><div class="yr-fill" style="width:40.8%;background:#e57373"><span class="yn">▲2,254名</span></div></div>
+            <div class="yr-num" style="color:var(--red)">68.4%</div>
+          </div>
+          <div class="yr-row">
+            <div class="yr-row-label">1次通過</div>
+            <div class="yr-track"><div class="yr-fill" style="width:18.8%;background:var(--teal)"><span class="yn">1,040名</span></div></div>
+            <div class="yr-num">18.8%</div>
+          </div>
+          <div class="yr-row">
+            <div class="yr-row-label" style="color:var(--red)">2次落ち</div>
+            <div class="yr-track"><div class="yr-fill" style="width:15.9%;background:#e57373"><span class="yn">▲880名</span></div></div>
+            <div class="yr-num" style="color:var(--red)">84.6%</div>
+          </div>
+          <div class="yr-row">
+            <div class="yr-row-label" style="color:var(--gold);font-weight:700">最終合格</div>
+            <div class="yr-track"><div class="yr-fill" style="width:2.9%;background:var(--gold)"><span class="yn">160名</span></div></div>
+            <div class="yr-num" style="color:var(--gold);font-weight:700">2.9%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 令和5年度 -->
+      <div class="yr-block">
+        <div class="yr-head">
+          <span>令和5年度（2023）　申込6,039名 → 合格165名</span>
+          <span style="color:var(--gold)">採用率2.7%</span>
+        </div>
+        <div class="yr-rows">
+          <div class="yr-row">
+            <div class="yr-row-label">申込</div>
+            <div class="yr-track"><div class="yr-fill" style="width:100%;background:#1a5276"><span class="yn">6,039名</span></div></div>
+            <div class="yr-num">100%</div>
+          </div>
+          <div class="yr-row">
+            <div class="yr-row-label" style="color:var(--red)">欠席</div>
+            <div class="yr-track"><div class="yr-fill" style="width:44.6%;background:var(--red)"><span class="yn">▲2,694名</span></div></div>
+            <div class="yr-num" style="color:var(--red)">44.6%</div>
+          </div>
+          <div class="yr-row">
+            <div class="yr-row-label">受験</div>
+            <div class="yr-track"><div class="yr-fill" style="width:55.4%;background:#2980b9"><span class="yn">3,345名</span></div></div>
+            <div class="yr-num">55.4%</div>
+          </div>
+          <div class="yr-row">
+            <div class="yr-row-label" style="color:var(--red)">1次落ち</div>
+            <div class="yr-track"><div class="yr-fill" style="width:36.8%;background:#e57373"><span class="yn">▲2,221名</span></div></div>
+            <div class="yr-num" style="color:var(--red)">66.4%</div>
+          </div>
+          <div class="yr-row">
+            <div class="yr-row-label">1次通過</div>
+            <div class="yr-track"><div class="yr-fill" style="width:18.6%;background:var(--teal)"><span class="yn">1,124名</span></div></div>
+            <div class="yr-num">18.6%</div>
+          </div>
+          <div class="yr-row">
+            <div class="yr-row-label" style="color:var(--red)">2次落ち</div>
+            <div class="yr-track"><div class="yr-fill" style="width:15.9%;background:#e57373"><span class="yn">▲959名</span></div></div>
+            <div class="yr-num" style="color:var(--red)">85.3%</div>
+          </div>
+          <div class="yr-row">
+            <div class="yr-row-label" style="color:var(--gold);font-weight:700">最終合格</div>
+            <div class="yr-track"><div class="yr-fill" style="width:2.7%;background:var(--gold)"><span class="yn">165名</span></div></div>
+            <div class="yr-num" style="color:var(--gold);font-weight:700">2.7%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 令和6年度 -->
+      <div class="yr-block">
+        <div class="yr-head">
+          <span>令和6年度（2024）　申込3,909名 → 合格151名</span>
+          <span style="color:var(--gold)">採用率3.9%</span>
+        </div>
+        <div class="yr-rows">
+          <div class="yr-row">
+            <div class="yr-row-label">申込</div>
+            <div class="yr-track"><div class="yr-fill" style="width:100%;background:#1a5276"><span class="yn">3,909名</span></div></div>
+            <div class="yr-num">100%</div>
+          </div>
+          <div class="yr-row">
+            <div class="yr-row-label" style="color:var(--red)">欠席</div>
+            <div class="yr-track"><div class="yr-fill" style="width:39.4%;background:var(--red)"><span class="yn">▲1,539名</span></div></div>
+            <div class="yr-num" style="color:var(--red)">39.4%</div>
+          </div>
+          <div class="yr-row">
+            <div class="yr-row-label">受験</div>
+            <div class="yr-track"><div class="yr-fill" style="width:60.6%;background:#2980b9"><span class="yn">2,370名</span></div></div>
+            <div class="yr-num">60.6%</div>
+          </div>
+          <div class="yr-row">
+            <div class="yr-row-label" style="color:var(--red)">1次落ち</div>
+            <div class="yr-track"><div class="yr-fill" style="width:35.2%;background:#e57373"><span class="yn">▲1,377名</span></div></div>
+            <div class="yr-num" style="color:var(--red)">58.1%</div>
+          </div>
+          <div class="yr-row">
+            <div class="yr-row-label">1次通過</div>
+            <div class="yr-track"><div class="yr-fill" style="width:25.4%;background:var(--teal)"><span class="yn">993名</span></div></div>
+            <div class="yr-num">25.4%</div>
+          </div>
+          <div class="yr-row">
+            <div class="yr-row-label" style="color:var(--red)">2次落ち</div>
+            <div class="yr-track"><div class="yr-fill" style="width:21.5%;background:#e57373"><span class="yn">▲842名</span></div></div>
+            <div class="yr-num" style="color:var(--red)">84.8%</div>
+          </div>
+          <div class="yr-row">
+            <div class="yr-row-label" style="color:var(--gold);font-weight:700">最終合格</div>
+            <div class="yr-track"><div class="yr-fill" style="width:3.9%;background:var(--gold)"><span class="yn">151名</span></div></div>
+            <div class="yr-num" style="color:var(--gold);font-weight:700">3.9%</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="note-box">
+      <strong>3年間で一貫している構造：</strong>
+      欠席率39〜45%、2次通過率14〜15%。これは年度によって変わらない。
+      最も「謎の多い」段階は第2次選考（省庁面接）：1次通過者1,000名超が各省に振り分けられ、その約85%が面接で落とされる。人事院は2次の受験者数を集計・公表していないため、外部から内訳を確認できない。
+    </div>
+  </div>
+
+  <!-- 図3：申込者数推移 -->
+  <div class="section">
+    <div class="stitle">図3｜申込者数の推移（令和4〜8年度）</div>
+    <div class="ssub">令和5→6年度で35%急減。令和7年度は試験なし。</div>
+
+    <div class="apply-bars">
+
+      <div class="ab-row">
+        <div class="ab-yr">令和4年度<br>2022</div>
+        <div class="ab-track">
+          <div class="ab-fill" style="width:91.6%;background:var(--blue)">
+            <span class="an">5,532名</span>
+          </div>
+        </div>
+        <div class="ab-pct">—</div>
+      </div>
+
+      <div class="ab-row">
+        <div class="ab-yr">令和5年度<br>2023</div>
+        <div class="ab-track">
+          <div class="ab-fill" style="width:100%;background:var(--blue)">
+            <span class="an">6,039名（最多）</span>
+          </div>
+        </div>
+        <div class="ab-pct">+9.2%</div>
+      </div>
+
+      <div class="ab-row">
+        <div class="ab-yr" style="color:var(--red)">令和6年度<br>2024</div>
+        <div class="ab-track">
+          <div class="ab-fill" style="width:64.7%;background:var(--red)">
+            <span class="an">3,909名</span>
+          </div>
+        </div>
+        <div class="ab-pct" style="color:var(--red)">▲35.3%</div>
+      </div>
+
+      <div class="ab-row">
+        <div class="ab-yr" style="color:var(--gray)">令和7年度<br>2025</div>
+        <div class="ab-track">
+          <div class="ab-fill" style="width:25%;background:#ccc">
+            <span class="an" style="color:var(--ink2)">試験なし（空白年）</span>
+          </div>
+        </div>
+        <div class="ab-pct" style="color:var(--gray)">—</div>
+      </div>
+
+      <div class="ab-row">
+        <div class="ab-yr" style="color:var(--teal)">令和8年度<br>2026（予定）</div>
+        <div class="ab-track" style="background:rgba(20,143,119,0.15);border:1px dashed var(--teal)">
+          <div style="height:100%;display:flex;align-items:center;padding-left:10px;font-size:11px;color:var(--teal)">
+            申込受付中（5/27〜6/5）→ 結果は2026年12月公表予定
+          </div>
+        </div>
+        <div class="ab-pct" style="color:var(--teal)">?</div>
+      </div>
+
+    </div>
+
+    <div class="note-box">
+      <strong>35%減の意味</strong><br>
+      年齢上限に変更はない。申込者の急減は、試験に関する情報（狭き門・職種・勤務地）の浸透によって、応募を断念する層が増えたことを示している可能性がある。令和8年度の申込者数が増加するか減少するかは、新プログラムへの期待感を測る重要な指標になる。
+    </div>
+  </div>
+
+  <!-- 図4：採用予定 vs 合格（枠の未充足） -->
+  <div class="section">
+    <div class="stitle">図4｜採用予定数 vs 最終合格者数（令和4〜6年度）</div>
+    <div class="ssub">「倍率が高い」のに「枠が埋まらない」という逆説</div>
+
+    <div class="gap-chart">
+
+      <div class="gap-block">
+        <div class="gap-yr">令和4年度（2022）</div>
+        <div class="gap-rows">
+          <div class="gap-row">
+            <div class="gap-label">採用予定</div>
+            <div class="gap-track"><div class="gap-fill" style="width:87.4%;background:#2980b9"><span class="gn">159名</span></div></div>
+            <div class="gap-diff" style="color:var(--green)">+1</div>
+          </div>
+          <div class="gap-row">
+            <div class="gap-label">最終合格</div>
+            <div class="gap-track"><div class="gap-fill" style="width:88.0%;background:var(--gold)"><span class="gn">160名</span></div></div>
+            <div class="gap-diff" style="color:var(--green)">充足</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap-block">
+        <div class="gap-yr">令和5年度（2023）</div>
+        <div class="gap-rows">
+          <div class="gap-row">
+            <div class="gap-label">採用予定</div>
+            <div class="gap-track"><div class="gap-fill" style="width:100%;background:#2980b9"><span class="gn">182名</span></div></div>
+            <div class="gap-diff" style="color:var(--red)">▲17</div>
+          </div>
+          <div class="gap-row">
+            <div class="gap-label">最終合格</div>
+            <div class="gap-track"><div class="gap-fill" style="width:90.7%;background:var(--gold)"><span class="gn">165名</span></div></div>
+            <div class="gap-diff" style="color:var(--red)">未充足</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap-block">
+        <div class="gap-yr">令和6年度（2024）</div>
+        <div class="gap-rows">
+          <div class="gap-row">
+            <div class="gap-label">採用予定</div>
+            <div class="gap-track"><div class="gap-fill" style="width:95.6%;background:#2980b9"><span class="gn">174名</span></div></div>
+            <div class="gap-diff" style="color:var(--red)">▲23</div>
+          </div>
+          <div class="gap-row">
+            <div class="gap-label">最終合格</div>
+            <div class="gap-track"><div class="gap-fill" style="width:83.0%;background:var(--gold)"><span class="gn">151名</span></div></div>
+            <div class="gap-diff" style="color:var(--red)">未充足</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="note-box" style="border-left-color:var(--red)">
+      <strong style="color:var(--red)">逆説の構造</strong><br>
+      令和5・6年度は採用予定を下回る合格者しか出なかった。「受験者数÷合格者数」の倍率は高くても、「採用予定機関×職種×地域」の組み合わせで、特定の枠でミスマッチが発生し合格させられない状況が生じていると推測される。刑務官区分の体力検査不合格もその一因として考えられる。
+    </div>
+  </div>
+
+  <!-- 出典 -->
+  <div class="src">
+    <strong>出典・参照資料</strong>
+    <ul>
+      <li>人事院「令和6年度 国家公務員中途採用者選考試験（就職氷河期世代）実施状況」PDF<br>
+        <a href="https://www.jinji.go.jp/content/000007169.pdf">https://www.jinji.go.jp/content/000007169.pdf</a></li>
+      <li>人事院「令和5年度 同実施状況」PDF<br>
+        <a href="https://www.jinji.go.jp/content/900035288.pdf">https://www.jinji.go.jp/content/900035288.pdf</a></li>
+      <li>人事院「令和4年度 同実施状況」PDF<br>
+        <a href="https://www.jinji.go.jp/content/900035263.pdf">https://www.jinji.go.jp/content/900035263.pdf</a></li>
+      <li>人事院「2026年度 国家公務員中途採用者選考試験（就職氷河期世代）」（令和8年度・新フェーズ）<br>
+        <a href="https://www.jinji.go.jp/saiyo/siken/senkou/hyougaki.html">https://www.jinji.go.jp/saiyo/siken/senkou/hyougaki.html</a></li>
+    </ul>
+    <div style="margin-top:12px">
+      居酒屋氷河期世代コミュニティ｜X: @kami_sora_fly｜note: note.com/kami_sora_fly/portal<br>
+      ※数値はすべて人事院の一次資料に基づく。解釈・論評は筆者による。<br>
+      ※令和2〜3年度の申込者数・受験者数は原PDFへのアクセスが困難なため本資料では対象外。
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
