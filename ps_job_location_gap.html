@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>氷河期世代 国家公務員採用の内訳｜第2回</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+  :root {
+    --bg: #f7f5f0;
+    --surface: #ffffff;
+    --border: #e2ddd5;
+    --ink: #1a1814;
+    --ink2: #5a5650;
+    --gold: #b8860b;
+    --gold-l: #f5e9c0;
+    --red: #c0392b;
+    --red-l: #fdecea;
+    --blue: #1a5276;
+    --blue-l: #d6eaf8;
+    --green: #1e8449;
+    --teal: #148f77;
+    --gray: #95a5a6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    padding: 28px 16px 60px;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+
+  /* ヘッダー */
+  .hdr {
+    margin-bottom: 36px;
+    padding-bottom: 18px;
+    border-bottom: 2.5px solid var(--ink);
+  }
+  .hdr .series {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .hdr h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 1.5;
+    margin-bottom: 5px;
+  }
+  .hdr .meta { font-size: 11px; color: var(--ink2); }
+
+  /* セクションタイトル */
+  .stitle {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+    padding-left: 10px;
+    border-left: 3px solid var(--gold);
+  }
+  .ssub {
+    font-size: 11px;
+    color: var(--ink2);
+    margin-bottom: 14px;
+    padding-left: 13px;
+  }
+  .section { margin-bottom: 44px; }
+
+  /* 凡例 */
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; }
+  .leg { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--ink2); }
+  .leg-box { width: 13px; height: 13px; border-radius: 2px; flex-shrink: 0; }
+
+  /* ========== 図1：区分別ドーナツ的横棒 ========== */
+  .donut-bar {
+    display: flex;
+    height: 36px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+  }
+  .donut-seg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: width 0.5s;
+  }
+  .donut-seg .seg-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+  }
+  .donut-seg .seg-pct {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .seg-detail { display: flex; gap: 12px; margin-top: 6px; flex-wrap: wrap; }
+  .seg-card {
+    flex: 1;
+    min-width: 120px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 10px 12px;
+  }
+  .seg-card .sc-label { font-size: 10px; color: var(--ink2); margin-bottom: 2px; }
+  .seg-card .sc-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .seg-card .sc-desc { font-size: 10px; color: var(--ink2); line-height: 1.5; }
+
+  /* ========== 図2：省庁別横棒 ========== */
+  .ministry-list { display: flex; flex-direction: column; gap: 5px; }
+  .m-row { display: flex; align-items: center; gap: 8px; }
+  .m-name {
+    font-size: 12px;
+    width: 116px;
+    flex-shrink: 0;
+    text-align: right;
+    color: var(--ink);
+  }
+  .m-track {
+    flex: 1;
+    background: var(--border);
+    border-radius: 2px;
+    height: 22px;
+    position: relative;
+  }
+  .m-fill {
+    height: 100%;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+  }
+  .m-fill .mn { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: #fff; }
+  .m-pct { font-family: 'JetBrains Mono', monospace; font-size: 10px; width: 36px; text-align: right; flex-shrink: 0; color: var(--ink2); }
+
+  .m-divider { border: none; border-top: 1px dashed var(--border); margin: 6px 0; }
+
+  .one-each {
+    background: var(--red-l);
+    border: 1px solid #f5c6c2;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--red);
+    line-height: 1.7;
+  }
+
+  /* ========== 図3：地域別 ========== */
+  .region-list { display: flex; flex-direction: column; gap: 5px; }
+  .r-row { display: flex; align-items: center; gap: 8px; }
+  .r-name { font-size: 12px; width: 90px; flex-shrink: 0; text-align: right; color: var(--ink); }
+  .r-track { flex: 1; background: var(--border); border-radius: 2px; height: 22px; }
+  .r-fill {
+    height: 100%;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+  }
+  .r-fill .rn { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: #fff; }
+  .r-pct { font-family: 'JetBrains Mono', monospace; font-size: 10px; width: 36px; text-align: right; color: var(--ink2); flex-shrink: 0; }
+
+  /* 注釈 */
+  .note-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: 3px;
+    padding: 10px 14px;
+    margin-top: 12px;
+    font-size: 11px;
+    color: var(--ink2);
+    line-height: 1.7;
+  }
+  .note-box strong { color: var(--ink); }
+
+  /* ポイントボックス */
+  .point-box {
+    background: var(--gold-l);
+    border: 1px solid #d4a01a;
+    border-radius: 4px;
+    padding: 12px 16px;
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  /* 出典 */
+  .src {
+    margin-top: 36px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--ink2);
+  }
+  .src ul { list-style: none; display: flex; flex-direction: column; gap: 5px; margin-top: 8px; }
+  .src li::before { content: "— "; color: var(--gold); }
+  .src a { color: var(--blue); word-break: break-all; }
+
+  .gap { margin-bottom: 40px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hdr">
+    <div class="series">居酒屋氷河期世代コミュニティ｜データで読む支援の実態 第2回</div>
+    <h1>「国家公務員」という言葉の罠<br>職種・勤務地・省庁間格差の実態</h1>
+    <div class="meta">作成：2026年5月17日｜出典：人事院（一次資料）｜X: @kami_sora_fly</div>
+  </div>
+
+  <!-- 図1：区分別 -->
+  <div class="section">
+    <div class="stitle">図1｜採用予定数の区分別内訳（令和8〜10年度・177名）</div>
+    <div class="ssub">試験区分によって職務内容・第2次選考の内容がまったく異なる</div>
+
+    <div class="donut-bar">
+      <div class="donut-seg" style="width:73.4%;background:#1a5276;">
+        <span class="seg-label">事務</span>
+        <span class="seg-pct">130名 / 73.4%</span>
+      </div>
+      <div class="donut-seg" style="width:17.5%;background:#148f77;">
+        <span class="seg-label">技術</span>
+        <span class="seg-pct">31名</span>
+      </div>
+      <div class="donut-seg" style="width:9.0%;background:#922b21;">
+        <span class="seg-label" style="font-size:10px">刑務官</span>
+        <span class="seg-pct">16名</span>
+      </div>
+    </div>
+
+    <div class="seg-detail">
+      <div class="seg-card">
+        <div class="sc-label">事務（氷河期）</div>
+        <div class="sc-num" style="color:var(--blue)">130名</div>
+        <div class="sc-desc">一般行政事務。採用先は各府省の地方局・出先機関が中心。「政策立案」とは限らない。</div>
+      </div>
+      <div class="seg-card">
+        <div class="sc-label">技術（氷河期）</div>
+        <div class="sc-num" style="color:var(--teal)">31名</div>
+        <div class="sc-desc">河川・道路・施設管理等の技術職。地方出先機関での現業業務が主体。</div>
+      </div>
+      <div class="seg-card">
+        <div class="sc-label">刑務官（氷河期）</div>
+        <div class="sc-num" style="color:var(--red)">16名</div>
+        <div class="sc-desc">刑務所・拘置所での勤務。<strong style="color:var(--red)">第2次選考で身体検査・体力検査あり</strong>（立ち幅跳び・反復横跳び・上体起こし）。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 図2：省庁別 -->
+  <div class="section gap">
+    <div class="stitle">図2｜府省庁別 採用予定数（令和8〜10年度・4月22日別表ベース）</div>
+    <div class="ssub">上位4省（国交・法務・厚労・財務）で全体の約77%を占める</div>
+
+    <div class="ministry-list">
+
+      <div class="m-row">
+        <div class="m-name" style="color:var(--blue);font-weight:700">国土交通省</div>
+        <div class="m-track">
+          <div class="m-fill" style="width:100%;background:var(--blue)"><span class="mn">45名</span></div>
+        </div>
+        <div class="m-pct">26.3%</div>
+      </div>
+      <div style="padding-left:124px;font-size:10px;color:var(--ink2);margin-bottom:4px">→ 技術職中心・河川/道路事務所など地方出先機関</div>
+
+      <div class="m-row">
+        <div class="m-name" style="color:var(--red);font-weight:700">法務省</div>
+        <div class="m-track">
+          <div class="m-fill" style="width:88.9%;background:var(--red)"><span class="mn">40名</span></div>
+        </div>
+        <div class="m-pct">23.4%</div>
+      </div>
+      <div style="padding-left:124px;font-size:10px;color:var(--ink2);margin-bottom:4px">→ 刑務官中心・全国の刑務所・少年刑務所・拘置所</div>
+
+      <div class="m-row">
+        <div class="m-name" style="color:var(--teal);font-weight:700">厚生労働省</div>
+        <div class="m-track">
+          <div class="m-fill" style="width:68.9%;background:var(--teal)"><span class="mn">31名</span></div>
+        </div>
+        <div class="m-pct">18.1%</div>
+      </div>
+      <div style="padding-left:124px;font-size:10px;color:var(--ink2);margin-bottom:4px">→ 事務職・都道府県労働局・ハローワーク等</div>
+
+      <div class="m-row">
+        <div class="m-name" style="font-weight:700">財務省</div>
+        <div class="m-track">
+          <div class="m-fill" style="width:44.4%;background:#5d6d7e"><span class="mn">20名</span></div>
+        </div>
+        <div class="m-pct">11.7%</div>
+      </div>
+      <div style="padding-left:124px;font-size:10px;color:var(--ink2);margin-bottom:8px">→ 事務職・税関・財務局など地方機関</div>
+
+      <div class="m-divider"></div>
+
+      <div class="m-row">
+        <div class="m-name">外務省</div>
+        <div class="m-track">
+          <div class="m-fill" style="width:15.6%;background:#7f8c8d"><span class="mn">7名</span></div>
+        </div>
+        <div class="m-pct">4.1%</div>
+      </div>
+
+      <div class="m-row">
+        <div class="m-name">デジタル庁</div>
+        <div class="m-track">
+          <div class="m-fill" style="width:11.1%;background:#7f8c8d"><span class="mn">5名</span></div>
+        </div>
+        <div class="m-pct">2.9%</div>
+      </div>
+
+      <div class="m-row">
+        <div class="m-name">農林水産省</div>
+        <div class="m-track">
+          <div class="m-fill" style="width:8.9%;background:#7f8c8d"><span class="mn">4名</span></div>
+        </div>
+        <div class="m-pct">2.3%</div>
+      </div>
+
+      <div class="m-row">
+        <div class="m-name">警察庁・内閣府</div>
+        <div class="m-track">
+          <div class="m-fill" style="width:6.7%;background:#aab"><span class="mn">各3名</span></div>
+        </div>
+        <div class="m-pct">各1.8%</div>
+      </div>
+
+      <div class="m-row">
+        <div class="m-name">経済産業省・防衛省</div>
+        <div class="m-track">
+          <div class="m-fill" style="width:4.4%;background:#bbb"><span class="mn">各2名</span></div>
+        </div>
+        <div class="m-pct">各1.2%</div>
+      </div>
+
+      <div class="m-divider"></div>
+
+      <div class="m-row">
+        <div class="m-name" style="color:var(--red)">9府省庁</div>
+        <div class="m-track">
+          <div class="m-fill" style="width:2.2%;background:var(--red)"><span class="mn" style="font-size:9px">各1名</span></div>
+        </div>
+        <div class="m-pct" style="color:var(--red)">各0.6%</div>
+      </div>
+    </div>
+
+    <div class="one-each">
+      ⚠ <strong>各1名：</strong>会計検査院 / 人事院 / 公正取引委員会 / 金融庁 / 消費者庁 / こども家庭庁 / 総務省 / 文部科学省 / 環境省<br>
+      9府省庁合計9名 = 全体の約5%
+    </div>
+
+    <div class="point-box">
+      <strong>注目点：</strong>上位4省（国交・法務・厚労・財務）で136名、全体の約77%。<br>
+      これら4省の採用先の大半は「霞が関の本省」ではなく、全国各地の地方機関・現業職場。<br>
+      ※省庁別データは4月22日時点の別表（171名ベース）。人事院確定版（2026年5月11日）の総数は177名。
+    </div>
+  </div>
+
+  <!-- 図3：地域別 -->
+  <div class="section gap">
+    <div class="stitle">図3｜地域別 採用予定数（令和8年度・人事院確定版・177名ベース）</div>
+    <div class="ssub">関東甲信越だけで全体の39%、残り8地域合計108名</div>
+
+    <div class="region-list">
+
+      <div class="r-row">
+        <div class="r-name" style="color:var(--blue);font-weight:700">関東甲信越</div>
+        <div class="r-track">
+          <div class="r-fill" style="width:100%;background:var(--blue)"><span class="rn">69名</span></div>
+        </div>
+        <div class="r-pct" style="color:var(--blue)">39.0%</div>
+      </div>
+      <div style="padding-left:98px;font-size:10px;color:var(--blue);margin-bottom:6px">（事務54・技術10・刑務官5）</div>
+
+      <div class="r-row">
+        <div class="r-name">九州</div>
+        <div class="r-track">
+          <div class="r-fill" style="width:27.5%;background:var(--teal)"><span class="rn">19名</span></div>
+        </div>
+        <div class="r-pct">10.7%</div>
+      </div>
+
+      <div class="r-row">
+        <div class="r-name">近畿</div>
+        <div class="r-track">
+          <div class="r-fill" style="width:24.6%;background:var(--teal)"><span class="rn">17名</span></div>
+        </div>
+        <div class="r-pct">9.6%</div>
+      </div>
+
+      <div class="r-row">
+        <div class="r-name">東海北陸</div>
+        <div class="r-track">
+          <div class="r-fill" style="width:23.2%;background:#5d6d7e"><span class="rn">16名</span></div>
+        </div>
+        <div class="r-pct">9.0%</div>
+      </div>
+
+      <div class="r-row">
+        <div class="r-name">東北</div>
+        <div class="r-track">
+          <div class="r-fill" style="width:21.7%;background:#5d6d7e"><span class="rn">15名</span></div>
+        </div>
+        <div class="r-pct">8.5%</div>
+      </div>
+
+      <div class="r-row">
+        <div class="r-name">北海道</div>
+        <div class="r-track">
+          <div class="r-fill" style="width:20.3%;background:#7f8c8d"><span class="rn">14名</span></div>
+        </div>
+        <div class="r-pct">7.9%</div>
+      </div>
+
+      <div class="r-row">
+        <div class="r-name">中国</div>
+        <div class="r-track">
+          <div class="r-fill" style="width:20.3%;background:#7f8c8d"><span class="rn">14名</span></div>
+        </div>
+        <div class="r-pct">7.9%</div>
+      </div>
+
+      <div class="r-row">
+        <div class="r-name">四国</div>
+        <div class="r-track">
+          <div class="r-fill" style="width:14.5%;background:#aaa"><span class="rn">10名</span></div>
+        </div>
+        <div class="r-pct">5.6%</div>
+      </div>
+
+      <div class="r-row">
+        <div class="r-name" style="color:var(--red)">沖縄</div>
+        <div class="r-track">
+          <div class="r-fill" style="width:4.3%;background:var(--red)"><span class="rn">3名</span></div>
+        </div>
+        <div class="r-pct" style="color:var(--red)">1.7%</div>
+      </div>
+
+    </div>
+
+    <div class="note-box">
+      <strong>第1次選考試験地（全国9都市）と採用後の勤務地は別物。</strong><br>
+      試験は大阪で受けられても、採用後の勤務地が遠方になるケースがある。応募前に採用予定機関一覧（地域別PDF・Excel）で実際の勤務先を確認することが不可欠。
+    </div>
+  </div>
+
+  <!-- ========== 図4：採用数 vs 人口比 ========== -->
+  <div class="section gap">
+    <div class="stitle">図4｜地域別 採用比率 vs 人口比率の乖離</div>
+    <div class="ssub">採用数の地域配分は人口分布と一致しているか（令和2年国勢調査ベース概算）</div>
+
+    <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:12px">
+        <thead>
+          <tr style="background:#e8e4dc;text-align:right">
+            <th style="text-align:left;padding:8px 12px;font-size:11px;color:var(--ink2)">地域</th>
+            <th style="padding:8px 12px;font-size:11px;color:var(--ink2)">採用数</th>
+            <th style="padding:8px 12px;font-size:11px;color:var(--ink2)">採用比率</th>
+            <th style="padding:8px 12px;font-size:11px;color:var(--ink2)">人口比率<br><span style="font-weight:400">(概算)</span></th>
+            <th style="padding:8px 12px;font-size:11px;color:var(--ink2)">乖離</th>
+            <th style="padding:8px 12px;font-size:11px;color:var(--ink2)">評価</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:8px 12px;font-weight:700;color:var(--blue)">関東甲信越</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">69名</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace;color:var(--blue);font-weight:700">39.0%</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">34.0%</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace;color:var(--blue)">+5.0pt</td>
+            <td style="padding:8px 12px;text-align:center;font-size:11px;color:var(--blue)">やや過多</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);background:var(--red-l)">
+            <td style="padding:8px 12px;font-weight:700;color:var(--red)">近畿</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">17名</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace;color:var(--red);font-weight:700">9.6%</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">14.5%</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace;color:var(--red);font-weight:700">▲4.9pt</td>
+            <td style="padding:8px 12px;text-align:center;font-size:11px;color:var(--red)">⚠ 最大不足</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:8px 12px">東海北陸</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">16名</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">9.0%</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">11.5%</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace;color:var(--red)">▲2.5pt</td>
+            <td style="padding:8px 12px;text-align:center;font-size:11px;color:var(--red)">不足</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:8px 12px">九州</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">19名</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">10.7%</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">11.3%</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace;color:var(--ink2)">▲0.6pt</td>
+            <td style="padding:8px 12px;text-align:center;font-size:11px;color:var(--green)">ほぼ均衡</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:8px 12px">東北</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">15名</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">8.5%</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">6.8%</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace;color:var(--blue)">+1.7pt</td>
+            <td style="padding:8px 12px;text-align:center;font-size:11px;color:var(--blue)">やや過多</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:8px 12px">北海道</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">14名</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">7.9%</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">4.3%</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace;color:var(--blue)">+3.6pt</td>
+            <td style="padding:8px 12px;text-align:center;font-size:11px;color:var(--blue)">過多</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:8px 12px">中国</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">14名</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">7.9%</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">5.8%</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace;color:var(--blue)">+2.1pt</td>
+            <td style="padding:8px 12px;text-align:center;font-size:11px;color:var(--blue)">やや過多</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:8px 12px">四国</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">10名</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">5.6%</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">2.9%</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace;color:var(--blue)">+2.7pt</td>
+            <td style="padding:8px 12px;text-align:center;font-size:11px;color:var(--blue)">過多</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 12px">沖縄</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">3名</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">1.7%</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace">1.1%</td>
+            <td style="padding:8px 12px;text-align:right;font-family:'JetBrains Mono',monospace;color:var(--blue)">+0.6pt</td>
+            <td style="padding:8px 12px;text-align:center;font-size:11px;color:var(--green)">ほぼ均衡</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-box" style="margin-top:10px">
+      <strong>意外な発見：近畿（大阪・京都・神戸）が最大の不足地域。</strong><br>
+      人口比14.5%に対し採用比率9.6%。差▲4.9ptは全地域で最大。人口が多くても採用枠が比例しない。一方、北海道・四国・中国は人口比を上回っており、地方の出先機関が採用を牽引していることを示す。<br>
+      ※人口比は令和2年国勢調査ベースの概算値。地域区分は試験の地域区分に合わせた概算。
+    </div>
+  </div>
+
+  <!-- ========== 図5：刑務官 体力検査基準 ========== -->
+  <div class="section gap">
+    <div class="stitle">図5｜刑務官区分 体力検査・身体測定の基準と氷河期世代の平均値</div>
+    <div class="ssub">「1種目でも基準未達で不合格」──40〜59歳の平均と比べるとどうか</div>
+
+    <!-- 身体測定 -->
+    <div style="font-size:11px;font-weight:700;color:var(--ink2);margin-bottom:8px;letter-spacing:0.5px">▌ 身体測定（下記に1つでも該当すると不合格）</div>
+    <div style="overflow-x:auto;margin-bottom:18px">
+      <table style="width:100%;border-collapse:collapse;font-size:12px">
+        <thead>
+          <tr style="background:#e8e4dc">
+            <th style="text-align:left;padding:7px 12px;font-size:11px;color:var(--ink2)">項目</th>
+            <th style="padding:7px 12px;font-size:11px;color:var(--ink2);text-align:center">男性基準</th>
+            <th style="padding:7px 12px;font-size:11px;color:var(--ink2);text-align:center">女性基準</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:7px 12px">身長</td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace">160cm 以上</td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace">148cm 以上</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:7px 12px">体重</td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace">47kg 以上</td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace">40kg 以上</td>
+          </tr>
+          <tr>
+            <td style="padding:7px 12px">視力</td>
+            <td style="padding:7px 12px;text-align:center;font-size:11px" colspan="2">裸眼で一眼でも0.6未満は不合格<br>（矯正視力が両眼で1.0以上の場合は可）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 体力検査 -->
+    <div style="font-size:11px;font-weight:700;color:var(--ink2);margin-bottom:8px;letter-spacing:0.5px">▌ 体力検査（1種目でも基準未達で不合格）と氷河期世代の年齢別平均</div>
+    <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:12px">
+        <thead>
+          <tr style="background:#e8e4dc">
+            <th style="text-align:left;padding:7px 12px;font-size:11px;color:var(--ink2)">種目</th>
+            <th style="padding:7px 12px;font-size:11px;color:var(--red);text-align:center">合格基準</th>
+            <th style="padding:7px 12px;font-size:11px;color:var(--ink2);text-align:center">40-44歳<br>平均</th>
+            <th style="padding:7px 12px;font-size:11px;color:var(--ink2);text-align:center">45-49歳<br>平均</th>
+            <th style="padding:7px 12px;font-size:11px;color:var(--ink2);text-align:center">50-54歳<br>平均</th>
+            <th style="padding:7px 12px;font-size:11px;color:var(--ink2);text-align:center">55-59歳<br>平均</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 立ち幅跳び 男性 -->
+          <tr style="border-bottom:1px solid var(--border);background:#fafaf8">
+            <td style="padding:7px 12px;font-weight:700" rowspan="2">立ち幅跳び<br><span style="font-size:10px;font-weight:400;color:var(--ink2)">（瞬発力）</span></td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace" rowspan="2">
+              <span style="color:var(--red);font-weight:700">男 205cm↑<br>女 147cm↑</span>
+            </td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--green)">男 211cm<br><span style="font-size:10px;color:var(--green)">✓余裕</span></td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--red);font-weight:700">男 204cm<br><span style="font-size:10px">⚠平均で未達</span></td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--red)">男 〜196cm<br><span style="font-size:10px">⚠厳しい</span></td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--red)">男 〜184cm<br><span style="font-size:10px">⚠厳しい</span></td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--green)">女 156cm<br><span style="font-size:10px;color:var(--green)">✓余裕</span></td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--green)">女 152cm<br><span style="font-size:10px;color:var(--green)">✓やや余裕</span></td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--gold)">女 〜147cm<br><span style="font-size:10px;color:var(--gold)">△ギリギリ</span></td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--red)">女 138cm<br><span style="font-size:10px">⚠平均で未達</span></td>
+          </tr>
+          <!-- 反復横跳び -->
+          <tr style="border-bottom:1px solid var(--border);background:#fafaf8">
+            <td style="padding:7px 12px;font-weight:700" rowspan="2">反復横跳び<br><span style="font-size:10px;font-weight:400;color:var(--ink2)">（20秒・敏捷性）</span></td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace" rowspan="2">
+              <span style="color:var(--red);font-weight:700">男 44回↑<br>女 37回↑</span>
+            </td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--green)">男 48.6回<br><span style="font-size:10px;color:var(--green)">✓余裕</span></td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--green)">男 47.3回<br><span style="font-size:10px;color:var(--green)">✓余裕</span></td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--green)">男 〜45回<br><span style="font-size:10px;color:var(--green)">✓余裕</span></td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--green)">男 〜44回<br><span style="font-size:10px;color:var(--gold)">△ギリギリ</span></td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border)">
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--green)">女 41.6回<br><span style="font-size:10px;color:var(--green)">✓余裕</span></td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--green)">女 41.0回<br><span style="font-size:10px;color:var(--green)">✓余裕</span></td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--green)">女 〜39回<br><span style="font-size:10px;color:var(--green)">✓余裕</span></td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--gold)">女 〜37回<br><span style="font-size:10px;color:var(--gold)">△ギリギリ</span></td>
+          </tr>
+          <!-- 上体起こし -->
+          <tr style="background:#fafaf8">
+            <td style="padding:7px 12px;font-weight:700" rowspan="2">上体起こし<br><span style="font-size:10px;font-weight:400;color:var(--ink2)">（30秒・筋持久力）</span></td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace" rowspan="2">
+              <span style="color:var(--red);font-weight:700">男 21回↑<br>女 13回↑</span>
+            </td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--green)">男 23.4回<br><span style="font-size:10px;color:var(--green)">✓余裕</span></td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--green)">男 22.6回<br><span style="font-size:10px;color:var(--green)">✓余裕</span></td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--green)">男 〜21回<br><span style="font-size:10px;color:var(--gold)">△ギリギリ</span></td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--gold)">男 〜19回<br><span style="font-size:10px;color:var(--red)">⚠平均で未達</span></td>
+          </tr>
+          <tr>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--green)">女 16.6回<br><span style="font-size:10px;color:var(--green)">✓余裕</span></td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--green)">女 15.9回<br><span style="font-size:10px;color:var(--green)">✓余裕</span></td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--green)">女 〜14回<br><span style="font-size:10px;color:var(--green)">✓余裕</span></td>
+            <td style="padding:7px 12px;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--red)">女 12.2回<br><span style="font-size:10px">⚠平均で未達</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-box" style="border-left-color:var(--red);margin-top:10px">
+      <strong style="color:var(--red)">⚠ 最大のハードル：立ち幅跳び</strong><br>
+      男性の場合、45〜49歳の平均204cmが基準205cmをわずかに下回る。50代以降はさらに厳しくなる。<br>
+      女性の場合、55〜59歳の平均138cmが基準147cmを9cm下回り、平均的な体力では通過できない。<br>
+      氷河期世代の年齢範囲（2026年時点で40〜59歳）の中でも、特に50代後半の受験者には体力検査が実質的な参入障壁となっている。<br>
+      ※体力平均値は文部科学省「体力・運動能力調査」各年度データより（令和2〜6年度）。複数年の調査値を参照した概算値。
+    </div>
+  </div>
+
+  <!-- ========== 図6：国交省採用機関リンク ========== -->
+  <div class="section gap">
+    <div class="stitle">図6｜国土交通省（45名）──採用予定機関の確認先</div>
+    <div class="ssub">「国交省に採用」＝どこで働くか。地域別PDFで勤務地を必ず確認</div>
+
+    <div style="background:var(--blue-l);border:1px solid #a9cce3;border-radius:6px;padding:14px 18px;margin-bottom:12px;font-size:12px;line-height:1.8">
+      国土交通省の採用先は河川国道事務所・港湾空港技術調査事務所・営繕事務所など、全国各地の出先機関。「技術区分」が中心で、施設の点検・管理・測量・設計補助などの現場業務が主体となる。<br>
+      <strong>霞が関の本省勤務ではない。</strong>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:6px;font-size:12px">
+      <div style="font-size:11px;font-weight:700;color:var(--ink2);margin-bottom:4px">採用予定機関一覧（地域別・人事院公式）</div>
+
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:4px">
+        <span style="color:var(--gold);font-weight:700;font-size:11px;width:80px;flex-shrink:0">関東甲信越</span>
+        <a href="https://www.jinji.go.jp/content/000016550.xlsx" style="color:var(--blue);text-decoration:none;font-size:11px;word-break:break-all">
+          https://www.jinji.go.jp/content/000016550.xlsx（Excel）
+        </a>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:4px">
+        <span style="color:var(--gold);font-weight:700;font-size:11px;width:80px;flex-shrink:0">北海道</span>
+        <a href="https://www.jinji.go.jp/content/000016541.pdf" style="color:var(--blue);text-decoration:none;font-size:11px">https://www.jinji.go.jp/content/000016541.pdf</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:4px">
+        <span style="color:var(--gold);font-weight:700;font-size:11px;width:80px;flex-shrink:0">東北</span>
+        <a href="https://www.jinji.go.jp/content/000016542.pdf" style="color:var(--blue);text-decoration:none;font-size:11px">https://www.jinji.go.jp/content/000016542.pdf</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:4px">
+        <span style="color:var(--gold);font-weight:700;font-size:11px;width:80px;flex-shrink:0">近畿</span>
+        <a href="https://www.jinji.go.jp/content/000016551.pdf" style="color:var(--blue);text-decoration:none;font-size:11px">https://www.jinji.go.jp/content/000016551.pdf</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:4px">
+        <span style="color:var(--gold);font-weight:700;font-size:11px;width:80px;flex-shrink:0">九州</span>
+        <a href="https://www.jinji.go.jp/content/000016556.pdf" style="color:var(--blue);text-decoration:none;font-size:11px">https://www.jinji.go.jp/content/000016556.pdf</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:4px">
+        <span style="color:var(--gold);font-weight:700;font-size:11px;width:80px;flex-shrink:0">全地域一覧</span>
+        <a href="https://www.jinji.go.jp/saiyo/siken/senkou/hyougaki.html" style="color:var(--blue);text-decoration:none;font-size:11px">https://www.jinji.go.jp/saiyo/siken/senkou/hyougaki.html（人事院トップ）</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 出典 -->
+  <div class="src">
+    <strong>出典・参照資料</strong>
+    <ul>
+      <li>人事院「2026年度国家公務員中途採用者選考試験（就職氷河期世代）」<br>
+        <a href="https://www.jinji.go.jp/saiyo/siken/senkou/hyougaki.html">https://www.jinji.go.jp/saiyo/siken/senkou/hyougaki.html</a></li>
+      <li>人事院「受験案内 概要PDF」（2026年5月11日公表）<br>
+        <a href="https://www.jinji.go.jp/content/000016559.pdf">https://www.jinji.go.jp/content/000016559.pdf</a></li>
+      <li>人事院「採用予定機関一覧（関東甲信越）Excel」<br>
+        <a href="https://www.jinji.go.jp/content/000016550.xlsx">https://www.jinji.go.jp/content/000016550.xlsx</a></li>
+      <li>府省別採用予定数別表（令和8年4月22日時点・171名ベース）<br>
+        氷河期世代ユニオン共有資料より。出所：内閣官房/人事院</li>
+      <li>人事院「刑務官採用試験 受験案内」（2025年度版・体力基準確認）<br>
+        <a href="https://www.jinji.go.jp/content/000005085.pdf">https://www.jinji.go.jp/content/000005085.pdf</a><br>
+        ※氷河期世代試験の刑務官区分も同基準（立ち幅跳び男205cm/女147cm、反復横跳び男44回/女37回、上体起こし男21回/女13回）</li>
+      <li>文部科学省「体力・運動能力調査」（各年度・40〜59歳の体力平均値）<br>
+        <a href="https://www.mext.go.jp/sports/b_menu/toukei/chousa04/tairyoku/1368148.htm">https://www.mext.go.jp/sports/b_menu/toukei/chousa04/tairyoku/1368148.htm</a><br>
+        ※立ち幅跳び・反復横跳び・上体起こしの年齢別平均値は令和2〜6年度データを参照した概算値</li>
+      <li>総務省「令和2年国勢調査」（地域別人口比較の参照）<br>
+        ※地域別人口比は都道府県の人口データを試験地域区分に合算した概算値</li>
+    </ul>
+    <div style="margin-top:12px">
+      居酒屋氷河期世代コミュニティ｜X: @kami_sora_fly｜note: note.com/kami_sora_fly/portal<br>
+      ※数値はすべて人事院・内閣官房の一次資料に基づく。解釈・論評は筆者による。
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
